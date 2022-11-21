@@ -1,0 +1,20 @@
+<mvc:View
+    controllerName="eventlogs.controller.App"
+          xmlns="sap.m"
+          xmlns:f="sap.f"
+          xmlns:mvc="sap.ui.core.mvc"
+          class="sapUiSizeCompact"
+          xmlns:tnt="sap.tnt"
+          displayBlock="true">
+    <tnt:ToolHeader>
+        <Button id="navBack" icon="sap-icon://nav-back" press="onNavBack" visible="{navModel>/visible}"/>
+        <Image src="./images/SAP-Logo.png" width="4rem"/>
+        <Text text="{i18n>title}" class="appTitle" wrapping="false" />
+        <ToolbarSpacer />
+        <Button id="helpTopic" icon="sap-icon://sys-help" tooltip="Activate to show Help Topics" class="toolHeaderIcon" press=".onOpenHelpPopover" />
+        <Button id="PersonalProfile" icon="sap-icon://customer" tooltip="Activate to show more option" class="toolHeaderIcon" press=".onOpenPersonalProfile" />
+    </tnt:ToolHeader>
+    <Shell id="shell">
+        <App id="app" />
+    </Shell>
+</mvc:View>

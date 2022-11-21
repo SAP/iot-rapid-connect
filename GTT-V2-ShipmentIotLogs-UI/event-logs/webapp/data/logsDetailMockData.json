@@ -1,0 +1,8 @@
+{
+  "requestId": "0080045552",
+  "reportedAt": "",
+  "status": "Success",
+  "updatedAt": "",
+  "reportedBy": "User 1",
+  "payload": "[{'Key':'TemperatureExceeded','Value':'500','Timestamp':''},{'Key':'VibrationExceeded','Value':'200','Timestamp':''}]"
+}
