@@ -1,0 +1,164 @@
+<mvc:View controllerName="eventlogs.controller.ShipmentLogsDetail"
+  xmlns="sap.m"
+  xmlns:u="sap.uxap"
+  xmlns:t="sap.ui.table"
+  xmlns:f="sap.ui.layout.form"
+  xmlns:card="sap.f.cards"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:grid="sap.ui.layout.cssgrid"
+  xmlns:commons="sap.suite.ui.commons"
+  xmlns:layout="sap.ui.layout">
+  <Page id="landing-page"
+    showHeader="false"
+    title="{i18n>LandingPageTitle}"
+    showNavButton="false"
+    navButtonPress=".onNavBack"
+    titleAlignment="Center"
+    >
+    <content class="padding-0">
+      <u:ObjectPageLayout id="profile-object-page"
+        upperCaseAnchorBar="false"
+        enableLazyLoading="true"
+        showHeaderContent="true"
+        showTitleInHeaderContent="false"
+        alwaysShowContentHeader="false"
+        showFooter="{editModel>/edit}">
+        <u:headerTitle>
+          <u:ObjectPageDynamicHeaderTitle>
+          <u:expandedHeading>
+            <Title text="{detailModel>/requestId}" wrapping="true"/>
+          </u:expandedHeading>
+          <u:actions>
+            <Button text="retrigger" press="onRetrigger" />
+          </u:actions>
+          </u:ObjectPageDynamicHeaderTitle>
+        </u:headerTitle>
+        <u:headerContent>
+          <FlexBox wrap="Wrap" fitContainer="true" class="detail_header">
+            <VBox width="45%">
+              <!-- <layout:HorizontalLayout>
+                  <layout:layoutData>
+                    <u:ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                  </layout:layoutData>
+                <Label  text="Tracking ID: "/>
+                <Text class="detail_labelText" text="{detailModel>/trackingId}"/>
+              </layout:HorizontalLayout> -->
+              <layout:HorizontalLayout>
+                  <layout:layoutData>
+                    <u:ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                  </layout:layoutData>
+                <Label  text="Reported By: "/>
+                <Text class="detail_labelText" text="{detailModel>/reportedBy}"/>
+              </layout:HorizontalLayout>
+              <layout:HorizontalLayout>
+                  <layout:layoutData>
+                    <u:ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                  </layout:layoutData>
+                <Label  text="Reported At: "/>
+                <Text class="detail_labelText" tooltip="{detailModel>/reported_at}" text="{
+                                path: 'detailModel>/reportedAt',
+                                type: 'sap.ui.model.type.DateTime',
+                                formatOptions: {
+                                    style: 'medium'
+                                }
+                            }" />
+              </layout:HorizontalLayout>
+              <layout:HorizontalLayout>
+                  <layout:layoutData>
+                    <u:ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                  </layout:layoutData>
+                <Label  text="Updated At: "/>
+                <Text class="detail_labelText" tooltip="{detailModel>/updated_at}" text="{
+                  path: 'detailModel>/updatedAt',
+                  type: 'sap.ui.model.type.DateTime',
+                  formatOptions: {
+                      style: 'medium'
+                  }
+                    }" />
+              </layout:HorizontalLayout>
+            </VBox>
+            <VBox width="30%">
+             <layout:HorizontalLayout>
+                  <layout:layoutData>
+                    <u:ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                  </layout:layoutData>
+                <Label  text="Priority: "/>
+                <Text class="detail_labelText" text="{detailModel>/priority}"/>
+              </layout:HorizontalLayout>
+              <layout:HorizontalLayout class="detail_labelText_Status_V">
+                  <layout:layoutData>
+                    <u:ObjectPageHeaderLayoutData visibleS="false" visibleM="false"/>
+                  </layout:layoutData>
+                <Label  text="Status: "/>
+                <!-- <Text class="detail_labelText" text="{detailModel>/status}"/> -->
+                <ObjectStatus
+                                class = "detail_labelText_Status"
+                                text="{detailModel>/status}"
+                                state="{
+                                    path : 'detailModel>/status',
+                                    formatter: '.formatter.logState'
+                                }" 
+                            />
+              </layout:HorizontalLayout>
+            </VBox>
+          </FlexBox>
+        </u:headerContent>
+        <u:sections>
+          <u:ObjectPageSection titleUppercase="false" title="Process Flow">
+            <u:subSections>
+              <u:ObjectPageSubSection visible="{/visible}">
+                <u:blocks>
+                  <commons:ProcessFlow
+                    id="processflow"
+                    scrollable="false"
+                    wheelZoomable="false"
+                    nodePress="onNodePress"
+                    nodes="{/nodes}"
+                    lanes="{/lanes}">
+                    <commons:nodes>
+                      <commons:ProcessFlowNode
+                        laneId="{lane}"
+                        nodeId="{id}"
+                        title="{title}"
+                        children="{children}"
+                        state="{state}"
+                        stateText="{stateText}"
+                        texts="{texts}"
+                        focused="{focused}" />
+                    </commons:nodes>
+                    <commons:lanes>
+                      <commons:ProcessFlowLaneHeader
+                        laneId="{id}"
+                        iconSrc="{icon}"
+                        text="{label}"
+                        position="{position}" />
+                    </commons:lanes>
+                  </commons:ProcessFlow>
+                </u:blocks>
+              </u:ObjectPageSubSection>
+            </u:subSections>
+          </u:ObjectPageSection>
+          <u:ObjectPageSection titleUppercase="false" title="Request Payload">
+            <u:subSections>
+              <u:ObjectPageSubSection>
+                <u:blocks>
+			            <TextArea class="detailsPaylod" value="{detailModel>/payload}" growing="true" width="100%"/>
+                </u:blocks>
+              </u:ObjectPageSubSection>
+            </u:subSections>
+          </u:ObjectPageSection>
+          <u:ObjectPageSection titleUppercase="false" title="Response Data">
+            <u:subSections>
+              <u:ObjectPageSubSection>
+                <u:blocks>
+			            <TextArea class="detailsPaylod" value="{detailModel>/responseData}" growing="true" width="100%"/>
+                </u:blocks>
+              </u:ObjectPageSubSection>
+            </u:subSections>
+          </u:ObjectPageSection>
+        </u:sections>
+      </u:ObjectPageLayout>
+    </content>
+  </Page>
+</mvc:View>

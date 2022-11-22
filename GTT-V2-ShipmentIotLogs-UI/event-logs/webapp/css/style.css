@@ -1,0 +1,25 @@
+/* Enter your custom styles here */
+.detail_labelText {
+	margin-left: 1rem;
+}
+
+.detail_labelText_Status {
+	margin-left: 1rem;
+	font-size: 1.2rem !important;
+}
+
+.detail_labelText_Status_V {
+	margin-top: 0.2rem;
+}
+
+.detail_header {
+	margin-bottom: 1rem !important;
+}
+
+.tableBottomPadding {
+	padding-bottom: 3rem;
+}
+
+.detailsPaylod {
+	white-space: pre-wrap !important;
+}

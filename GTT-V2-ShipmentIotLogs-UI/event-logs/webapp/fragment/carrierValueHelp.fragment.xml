@@ -1,0 +1,33 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<TableSelectDialog
+		noDataText="No Data"
+		title="{requestModel>/title}"
+		liveChange=".handleSearchControl"
+        confirm=".controlVHConfirm"
+		cancel=".controlVHConfirm"
+		showClearButton="false"
+		items="{
+			path : 'requestModel>/valueHelp'
+		}">
+		<columns>
+			<Column >
+				<header>
+					<Text text="NetWork ID" />
+				</header>
+			</Column>
+			<Column >
+				<header>
+					<Text text="Carrier Name" />
+				</header>
+			</Column>
+		</columns>
+        <ColumnListItem selected="{requestModel>selected}">
+			<cells>
+				<Text text="{requestModel>id}"/>
+				<Text text="{requestModel>name}" />
+			</cells>
+		</ColumnListItem>
+	</TableSelectDialog>
+</core:FragmentDefinition>

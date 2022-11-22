@@ -1,0 +1,28 @@
+{
+  "shipmentList": [
+    {
+      "trackingId": "123456",
+      "reportedBy": "User 1",
+      "retriggerCount": "0",
+      "status": "In Process",
+      "reportedAt": "",
+      "updatedAt": "",
+      "reported_at": "Oct 10, 2022, 6:02:34 PM",
+      "updated_at": "Oct 10, 2022, 6:02:34 PM",
+      "priority": "High"
+    },
+    {
+      "trackingId": "456789",
+      "reportedBy": "User 2",
+      "retriggerCount": "0",
+      "status": "In Process",
+      "reportedAt": "",
+      "updatedAt": "",
+      "reported_at": "Oct 10, 2022, 6:02:34 PM",
+      "updated_at": "Oct 10, 2022, 6:02:34 PM",
+      "priority": "High"
+    }
+  ],
+  "oTableTitle": "Events (2)",
+  "retriggerEnabled": false
+}

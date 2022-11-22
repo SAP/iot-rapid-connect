@@ -1,0 +1,185 @@
+<mvc:View controllerName="eventlogs.controller.ShipmentLogs"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:l="sap.ui.layout" 	
+    xmlns:core="sap.ui.core"
+    xmlns:plugins="sap.ui.table.plugins"
+    xmlns:f="sap.f"
+	xmlns="sap.m">
+    <f:DynamicPage id="dynamicPageId" headerExpanded="{/headerExpanded}">
+        <f:header>
+            <f:DynamicPageHeader id="page" pinnable="true">
+                <f:content>
+                <fb:FilterBar reset="onReset" search="onSearch" useToolbar="false" showRestoreButton="true" showClearButton="false">
+                    <fb:filterItems>
+                        <fb:FilterItem name="A1" label="Shipment ID" visibleInFilterBar="true">
+                            <fb:control>
+                                <MultiInput
+                                    id="trackingIDInputID"
+                                    valueHelpOnly="true"
+                                    valueHelpRequest=".onVHRequestedTrackingID"
+                                    tokenUpdate=".onTrackingIDTokenChanged"
+                                    />
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="A2" label="Reported By" visibleInFilterBar="true">
+                            <fb:control>
+                                <MultiInput
+                                    id="reportedByInputID"
+                                    valueHelpOnly="true"
+                                    valueHelpRequest=".onVHRequestedReportedBy"
+                                    />
+                            </fb:control>
+                        </fb:FilterItem>
+                        <fb:FilterItem name="B1" label="Reported At" visibleInFilterBar="true">
+                            <fb:control>
+                                <DateRangeSelection
+                                    id="DRS2"
+                                    change="handleReprtedAtChange"/>
+                            </fb:control>
+                        </fb:FilterItem>               
+                        <fb:FilterItem name="B2" label="Updated At" visibleInFilterBar="true">
+                            <fb:control>
+                                <DateRangeSelection
+                                    id="DRS3"
+                                    change="handleUpdatedAtChange"/>
+                            </fb:control>
+                        </fb:FilterItem>   
+                        <fb:FilterItem name="A6" label="Retrigger Count" visibleInFilterBar="true">
+                           <fb:control>
+                            <MultiInput
+                                    id="retriggerCountInputID"
+                                    valueHelpOnly="true"
+                                    valueHelpRequest=".onVHRetriggerCount"
+                                    />
+                            </fb:control>
+                        </fb:FilterItem>
+
+                        <fb:FilterItem name="A7" label="Priority" visibleInFilterBar="true">
+                           <fb:control>
+                                <MultiComboBox id="prioritySelect" type="Text">
+                                    <items>
+                                        <core:Item key="001" text="High"/>
+                                        <core:Item key="001" text="Medium"/>
+                                        <core:Item key="002" text="Low"/>
+                                    </items>
+                                </MultiComboBox>
+                            </fb:control>
+                        </fb:FilterItem>
+
+                        <fb:FilterItem name="A8" label="Status" visibleInFilterBar="true">
+                           <fb:control>
+                                <MultiComboBox id="statusSelect" type="Text">
+                                    <items>
+                                        <core:Item key="001" text="In Process"/>
+                                        <core:Item key="001" text="Success"/>
+                                        <core:Item key="002" text="Warning"/>
+                                        <core:Item key="003" text="Failed"/>
+                                        <core:Item key="004" text="Pending"/>
+                                    </items>
+                                </MultiComboBox>
+                            </fb:control>
+                        </fb:FilterItem>
+                    </fb:filterItems>
+                </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+
+        <f:content>
+            <Table
+                    class="tableBottomPadding"
+                    id="idShipmentListTable"
+                    mode="MultiSelect"
+		            inset="false"
+                    selectionChange="onSelect"
+                    items="{
+                        path: 'requestModel>/shipmentList'
+                    }">
+                <headerToolbar>
+                <OverflowToolbar>
+                  <Title text="{requestModel>/oTableTitle}"> </Title>
+                    <ToolbarSpacer/>
+                  <Button id="goLogsViewBtn" text="retrigger" press="onRetrigger" enabled="{requestModel>/retriggerEnabled}"/>
+                </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Shipment ID"/>
+                    </Column>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Reported By"/>
+                    </Column>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Reported At"/>
+                    </Column>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Updated By"/>
+                    </Column>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Retrigger Count"/>
+                    </Column>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Priority"/>
+                    </Column>
+                    <Column
+                            minScreenWidth="Tablet"
+                            demandPopin="true">
+                        <Text text="Status"/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        press="onNavToDetail"
+                        type="Navigation"
+                        vAlign="Middle">
+                        <cells>
+                            <Text text="{requestModel>trackingId}"/>
+                            <Text text="{requestModel>reportedBy}"/>
+                            <Text tooltip="{requestModel>reported_at}" text="{
+                                    path: 'requestModel>reportedAt',
+                                    type: 'sap.ui.model.type.DateTime',
+                                    formatOptions: {
+                                        style: 'medium'
+                                    }
+                                }" />
+                            <Text tooltip="{requestModel>updated_at}" text="{
+                                path: 'requestModel>updatedAt',
+                                type: 'sap.ui.model.type.DateTime',
+                                formatOptions: {
+                                    style: 'medium'
+                                }
+                            }" />
+                        
+                            <Text text="{requestModel>retriggerCount}"/>
+                            <Text text="{requestModel>priority}"/>
+                            <ObjectStatus
+                                text="{requestModel>status}"
+                                icon="{
+                                    path : 'requestModel>status',
+                                    formatter: '.formatter.logStatus'
+                                    }"
+                                state="{
+                                    path : 'requestModel>status',
+                                    formatter: '.formatter.logState'
+                                }" 
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>
