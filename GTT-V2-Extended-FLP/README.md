@@ -2,7 +2,7 @@
 
 The FLP project includes 3 template applications which are Track SO Fulfllment, Track Shipments and Track Purchase Orders. Before you build and deploy it, please deploy all the UI projects you need in advance, otherwise the deployment will fail.
 
-![](./Assets/BN4L_IOT_FLP.png)
+![](../Assets/BN4L_IOT_FLP.png)
 
 ## Deploy It with One Project
 
