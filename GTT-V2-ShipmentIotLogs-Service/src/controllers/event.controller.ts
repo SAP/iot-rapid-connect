@@ -8,12 +8,12 @@ import db from '../db/db.config.js';
 
 class EventController {
 
+    // log event payload in db
     async eventLog(req: express.Request, res: express.Response, next) {
         const eventBody = req.body;
         const shipmentNo = req.body.shipmentNo;
         const reportedAt = req.body.reportedAt;
 
-        // insert log into db
         await db.none('INSERT INTO events_log(shipment_no, reported_at, event_body, lbn_status) VALUES($(shipment_no), $(reported_at), $(event_body), $(lbn_status))', {
             shipment_no: shipmentNo,
             reported_at: reportedAt,
@@ -27,6 +27,7 @@ class EventController {
         next();
     }
 
+    // map event payload to LBN format and send to LBN
     async lbnRequest(req: express.Request, res: express.Response) {
         const oDestination = await DestinationConfig("LBN_Access");
         const request = new RequestConfig(oDestination?.data);
@@ -89,8 +90,6 @@ class EventController {
         // add mapping here for event payload to LBN format
         lbnFormat.actualTechnicalTimestamp = reportedAt;
 
-        Logger.info(lbnFormat);
-
         // post event to LBN
         const response = await axios
             .post(request.url, lbnFormat, {
@@ -126,7 +125,7 @@ class EventController {
             Logger.error(`while logging LBN response: ${error}`);
         })
 
-        // // update event status
+        // update event status
         await db.none('UPDATE events_log SET lbn_status = $(lbn_status), updated_at = $(updated_at) WHERE  shipment_no = $(shipment_no) AND reported_at = $(reported_at)', {
             shipment_no: shipmentNo,
             reported_at: reportedAt,
@@ -137,6 +136,7 @@ class EventController {
         })
     }
 
+    // return list of events stored in db
     async eventList(req: express.Request, res: express.Response) {
         await db.result('SELECT shipment_no, reported_at, event_body, lbn_status, updated_at FROM events_log')
             .then(data => {
@@ -148,6 +148,7 @@ class EventController {
             });;
     }
 
+    // return event details by ID
     async eventListByID(req: express.Request, res: express.Response) {
         const shipmentNo = req.params.shipmentNo;
         const reportedAt = req.params.reportedAt;
@@ -161,13 +162,14 @@ class EventController {
             });;
     }
 
+    // return process flow for event by ID
     async processFlow(req: express.Request, res: express.Response) {
         const shipmentNo = req.params.shipmentNo;
         const reportedAt = req.params.reportedAt;
         let processFlowObject: any = '{"event": {}, "lbn_response": {}}';
         let processFlowJSON: any = JSON.parse(processFlowObject);
 
-        // get event payload
+        // event details
         await db.result('SELECT shipment_no, reported_at, event_body, lbn_status, updated_at FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
             .then(data => {
                 processFlowJSON.event.push = data.rows;
@@ -177,7 +179,7 @@ class EventController {
                 res.status(400).send(`Error: ${error}`);
             });;
 
-        // get lbn response payload
+        // LBN response details
         await db.result('SELECT shipment_no, reported_at, response_at, error_body, status from lbn_response WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
             .then(data => {
                 processFlowJSON.lbn_response.push = data.rows;

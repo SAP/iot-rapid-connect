@@ -3,6 +3,7 @@ dotenv.config()
 import pgPromise from 'pg-promise';
 import Logger from '../utils/logger.config.js';
 
+// add database connection details here
 // localhost db
 const conn = {
     host: 'localhost',
