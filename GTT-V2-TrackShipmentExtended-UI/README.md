@@ -2,6 +2,8 @@
 
 sample app - track shipments UI
 
+![](../Assets/BN4L_IOT_TS_UI.png)
+
 ## Pre-requisites
 
 - Node.js - https://nodejs.org/
