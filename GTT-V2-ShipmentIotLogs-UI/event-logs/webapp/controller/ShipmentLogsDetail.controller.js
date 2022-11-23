@@ -12,8 +12,15 @@ sap.ui.define([
 
     return Controller.extend("eventlogs.controller.ShipmentLogsDetail", {
       formatter: formatter,
+
+      //excute when the page first loads
       onInit: function () {
         var oView = this.getView();
+
+        /*
+          There will be error if we set the data from backend directly.
+          So we need to init the process flow first. 
+        */
         var nodes = {
           visible: true,
           "nodes": [
@@ -62,6 +69,7 @@ sap.ui.define([
         this.getRouter().getRoute("RouteLogsDetail").attachPatternMatched(this.loadEventLogsDetail, this);
       },
 
+      //excute when the detial page is loaded, call backend to get the latest detail data.
       loadEventLogsDetail: function (oEvent) {
         var oView = this.getView();
 
@@ -70,6 +78,7 @@ sap.ui.define([
         // oDetailModel.loadData("../data/logsDetailMockData.json", false);
         // oView.setModel(oDetailModel, "detailModel");
 
+        //Get the process flow data from backend.
         var requestId = oEvent.getParameter("arguments").id,
           reportedAt = oEvent.getParameter("arguments").date;
         jQuery.ajax({
@@ -123,6 +132,7 @@ sap.ui.define([
           }
         });
 
+        //Get the top data and payload from backend.
         jQuery.ajax({
           url: "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt,
           type: "GET",
@@ -143,6 +153,10 @@ sap.ui.define([
         });
       },
 
+      /*
+        When click first node, nothing will haapen because this page is about IoT detail.
+        When click second node, the page will jump to the lbn detail page.
+      */
       onNodePress: function (oEvent) {
         var oView = this.getView();
         var sId = oView.getModel("detailModel").getProperty("/requestId"),
@@ -152,6 +166,9 @@ sap.ui.define([
         }
       },
 
+      /*
+        For the backend is not finished yet, so it's mock for now.
+      */
       onRetrigger: function () {
         var oView = this.getView(),
           requestId = oView.getModel("detailModel").getProperty("/requestId");

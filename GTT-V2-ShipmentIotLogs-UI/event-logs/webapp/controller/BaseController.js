@@ -15,6 +15,7 @@ sap.ui.define([
 			return UIComponent.getRouterFor(this);
 		},
 
+		//Go back to former page or go back to logs list page.
 		onNavBack: function () {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();

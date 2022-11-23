@@ -15,10 +15,13 @@ sap.ui.define([
 
     return Controller.extend("eventlogs.controller.ShipmentLogsDetailProcess", {
       formatter: formatter,
+
+      //excute when the page first loads
       onInit: function () {
         this.getRouter().getRoute("RouteLogsDetailProcess").attachPatternMatched(this.loadEventLogsDetail, this);
       },
 
+      //excute when the lbn detial page is loaded, call backend to get the latest detail data.
       loadEventLogsDetail: function (oEvent) {
         var oView = this.getView();
         var requestId = oEvent.getParameter("arguments").id,
@@ -39,6 +42,10 @@ sap.ui.define([
           }
         });
       },
+
+      /*
+        For the backend is not finished yet, so it's mock for now.
+      */
       onRetrigger: function () {
         var oView = this.getView(),
           requestId = oView.getModel("detailModel").getProperty("/requestId");
