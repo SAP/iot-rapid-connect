@@ -1,0 +1,26 @@
+[
+  {
+    "code": "01",
+    "name": "Sea"
+  },
+  {
+    "code": "02",
+    "name": "Rail"
+  },
+  {
+    "code": "03",
+    "name": "Road"
+  },
+  {
+    "code": "04",
+    "name": "Air"
+  },
+  {
+    "code": "00",
+    "name": "Not Specified"
+  },
+  {
+    "code": "09",
+    "name": "Not Applicable"
+  }
+]

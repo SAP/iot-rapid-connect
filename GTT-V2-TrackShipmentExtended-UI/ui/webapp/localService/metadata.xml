@@ -1,0 +1,1187 @@
+<?xml version="1.0" ?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="1.0"
+		xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+		<Schema Namespace="com.lbngttsamples.gtt.app.sof.sofService"
+			xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="EventStatusText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="LocationTypeText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="PlannedEvent">
+				<Key>
+					<PropertyRef Name="id"></PropertyRef>
+				</Key>
+				<Property Name="id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="eventType" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locationAltKey" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="eventMatchKey" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="longitude" Type="Edm.Decimal" Nullable="true"></Property>
+				<Property Name="latitude" Type="Edm.Decimal" Nullable="true"></Property>
+				<Property Name="isFinalPlannedEvent" Type="Edm.Boolean" Nullable="true"></Property>
+				<Property Name="plannedTechnicalTimestamp" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedTechTsEarliest" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedTechTsLatest" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedBusinessTimestamp" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedBizTsEarliest" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedBizTsLatest" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedBusinessTimeZone" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="process_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="payloadSequence" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="nextOverdueDetection" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="overdueDetectionCounter" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="eventStatus_code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="lastProcessEventDirectory_id" Type="Edm.Guid" Nullable="true"></Property>
+				<NavigationProperty Name="eventStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent_2_r_EventStatus" FromRole="PlannedEvent" ToRole="r_EventStatus"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="FreightUnitTp">
+				<Key>
+					<PropertyRef Name="lineNo"></PropertyRef>
+					<PropertyRef Name="shipment_id"></PropertyRef>
+				</Key>
+				<Property Name="lineNo" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="shipment_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="freightUnit_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="freightUnitAltKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<NavigationProperty Name="freightUnit" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitTp_2_r_FreightUnit" FromRole="FreightUnitTp" ToRole="r_FreightUnit"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="Delivery">
+				<Key>
+					<PropertyRef Name="id"></PropertyRef>
+				</Key>
+				<Property Name="id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="subaccountId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="trackedProcessType" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="altKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="scheme" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="partyId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="logicalSystem" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="trackingIdType" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="trackingId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="lastChangedAtBusinessTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="createdByUser" Type="Edm.String" Nullable="true" MaxLength="64"></Property>
+				<Property Name="creationDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="lastChangedByUser" Type="Edm.String" Nullable="true" MaxLength="64"></Property>
+				<Property Name="lastChangeDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="version" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="deliveryNo" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="shipToParty" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="documentDate" Type="Edm.DateTime" Nullable="true"></Property>
+				<Property Name="plannedDate" Type="Edm.DateTime" Nullable="true"></Property>
+				<Property Name="totalWeight" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="netWeight" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="weightUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="volume" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="volumeUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="warehouseNo" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="door" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="shippingPoint" Type="Edm.String" Nullable="true" MaxLength="4"></Property>
+				<Property Name="departureAddress" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="destination" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="destinationAddress" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="destinationTelephone" Type="Edm.String" Nullable="true" MaxLength="30"></Property>
+				<Property Name="incotermsVersion" Type="Edm.String" Nullable="true" MaxLength="4"></Property>
+				<Property Name="billOfLading" Type="Edm.String" Nullable="true" MaxLength="35"></Property>
+				<Property Name="incotermsLocation1" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="warehouseDescription" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="departureCountry" Type="Edm.String" Nullable="true" MaxLength="2"></Property>
+				<Property Name="destinationCountry" Type="Edm.String" Nullable="true" MaxLength="2"></Property>
+				<Property Name="destinationEmail" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="processStatus_code" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="pickingStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="packingStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="goodsIssueStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="podStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="executionStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="transportationStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="incoterms_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<NavigationProperty Name="pickingStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_PickingStatus" FromRole="Delivery" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="packingStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_PickingStatus" FromRole="Delivery" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="goodsIssueStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_PickingStatus" FromRole="Delivery" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="podStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_PickingStatus" FromRole="Delivery" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="executionStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_ExecutionStatus" FromRole="Delivery" ToRole="r_ExecutionStatus"></NavigationProperty>
+				<NavigationProperty Name="transportationStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_PickingStatus" FromRole="Delivery" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="incoterms" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_Incoterms" FromRole="Delivery" ToRole="r_Incoterms"></NavigationProperty>
+				<NavigationProperty Name="processStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_ProcessStatus" FromRole="Delivery" ToRole="r_ProcessStatus"></NavigationProperty>
+				<NavigationProperty Name="shipmentTPs" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_ShipmentTps" FromRole="Delivery" ToRole="r_ShipmentTps"></NavigationProperty>
+				<NavigationProperty Name="deliveryItems" Relationship="com.lbngttsamples.gtt.app.sof.sofService.r_Delivery_2_r_DeliveryItems" FromRole="r_Delivery" ToRole="r_DeliveryItems"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="DeliveryTp">
+				<Key>
+					<PropertyRef Name="lineNo"></PropertyRef>
+					<PropertyRef Name="shipment_id"></PropertyRef>
+				</Key>
+				<Property Name="lineNo" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="shipment_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="deliveryAltKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="delivery_id" Type="Edm.Guid" Nullable="true"></Property>
+				<NavigationProperty Name="delivery" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryTp_2_r_Delivery" FromRole="DeliveryTp" ToRole="r_Delivery"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="ExecutionStatus">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus_2_r_Localized" FromRole="ExecutionStatus" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="IncotermText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="TrafficDirectionText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="Shipment">
+				<Key>
+					<PropertyRef Name="id"></PropertyRef>
+				</Key>
+				<Property Name="id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="subaccountId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="cloneInstanceId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="trackedProcessType" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="altKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="scheme" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="partyId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="logicalSystem" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="trackingIdType" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="trackingId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="lastChangedAtBusinessTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="createdByUser" Type="Edm.String" Nullable="true" MaxLength="64"></Property>
+				<Property Name="creationDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="lastChangedByUser" Type="Edm.String" Nullable="true" MaxLength="64"></Property>
+				<Property Name="lastChangeDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="version" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="shipmentNo" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="serviceAgentLbnId" Type="Edm.String" Nullable="true" MaxLength="60"></Property>
+				<Property Name="dangerousGoods" Type="Edm.Boolean" Nullable="true"></Property>
+				<Property Name="forwardingAgentTrackingId" Type="Edm.String" Nullable="true" MaxLength="35"></Property>
+				<Property Name="trackId" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="incotermLocation" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="plannedTotalDistance" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14"></Property>
+				<Property Name="plannedGrossDuration" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="plannedNetDuration" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="vehicle" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="registrationCountry" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="registrationNumber" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="cargoVolumn" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14"></Property>
+				<Property Name="volumnUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="cargoWeight" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14"></Property>
+				<Property Name="weightUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="cargoQuantity" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14"></Property>
+				<Property Name="quantityUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="departureLocationId" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="plannedDepartureDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedDepartureDateTimeZone" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="arrivalLocationId" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="plannedArrivalDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedArrivalDateTimeZone" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="processStatus_code" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="transportationMode_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="shippingType_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="executionStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="trafficDirection_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="incoterms_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="transportMeans_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="departureLocationType_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="arrivalLocationType_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="deliveryId" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="transportationMode" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_TransportationMode" FromRole="Shipment" ToRole="r_TransportationMode"></NavigationProperty>
+				<NavigationProperty Name="shippingType" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ShippingType" FromRole="Shipment" ToRole="r_ShippingType"></NavigationProperty>
+				<NavigationProperty Name="executionStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ExecutionStatus" FromRole="Shipment" ToRole="r_ExecutionStatus"></NavigationProperty>
+				<NavigationProperty Name="trafficDirection" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_TrafficDirection" FromRole="Shipment" ToRole="r_TrafficDirection"></NavigationProperty>
+				<NavigationProperty Name="processStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ProcessStatus" FromRole="Shipment" ToRole="r_ProcessStatus"></NavigationProperty>
+				<NavigationProperty Name="arrivalLocation" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ArrivalLocation" FromRole="Shipment" ToRole="r_ArrivalLocation"></NavigationProperty>
+				<NavigationProperty Name="departureLocation" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_DepartureLocation" FromRole="Shipment" ToRole="r_DepartureLocation"></NavigationProperty>
+				<NavigationProperty Name="eventStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_EventStatus" FromRole="Shipment" ToRole="r_EventStatus"></NavigationProperty>
+				<NavigationProperty Name="incoterms" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_Incoterms" FromRole="Shipment" ToRole="r_Incoterms"></NavigationProperty>
+				<NavigationProperty Name="transportMeans" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_TransportMeans" FromRole="Shipment" ToRole="r_TransportMeans"></NavigationProperty>
+				<NavigationProperty Name="plannedEvents" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_PlannedEvents" FromRole="Shipment" ToRole="r_PlannedEvents"></NavigationProperty>
+				<NavigationProperty Name="carrierRefDocuments" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_CarrierRefDocuments" FromRole="Shipment" ToRole="r_CarrierRefDocuments"></NavigationProperty>
+				<NavigationProperty Name="stopsForVP" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_StopsForVp" FromRole="Shipment" ToRole="r_StopsForVp"></NavigationProperty>
+				<NavigationProperty Name="deliveryTPs" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_DeliveryTps" FromRole="Shipment" ToRole="r_DeliveryTps"></NavigationProperty>
+				<NavigationProperty Name="freightUnitTPs" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_FreightUnitTps" FromRole="Shipment" ToRole="r_FreightUnitTps"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="ShipmentTp">
+				<Key>
+					<PropertyRef Name="lineNo"></PropertyRef>
+					<PropertyRef Name="delivery_id"></PropertyRef>
+				</Key>
+				<Property Name="lineNo" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="delivery_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="shipmentAltKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="shipment_id" Type="Edm.Guid" Nullable="true"></Property>
+				<NavigationProperty Name="shipment" Relationship="com.lbngttsamples.gtt.app.sof.sofService.ShipmentTp_2_r_Shipment" FromRole="ShipmentTp" ToRole="r_Shipment"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="TrafficDirection">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirection_2_r_Localized" FromRole="TrafficDirection" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="CarrierReferenceDocumentType">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentType_2_r_Localized" FromRole="CarrierReferenceDocumentType" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="TransportMeansStandardCodeText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="OperationStatusText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="CarrierReferenceDocument">
+				<Key>
+					<PropertyRef Name="docType_code"></PropertyRef>
+					<PropertyRef Name="docId"></PropertyRef>
+				</Key>
+				<Property Name="docType_code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="docId" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="docType" Relationship="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocument_2_r_DocType" FromRole="CarrierReferenceDocument" ToRole="r_DocType"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="StopsForVp">
+				<Key>
+					<PropertyRef Name="stopId"></PropertyRef>
+				</Key>
+				<Property Name="stopId" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="ordinalNo" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="locationId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="locationType_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<NavigationProperty Name="locationType" Relationship="com.lbngttsamples.gtt.app.sof.sofService.StopsForVp_2_r_LocationType" FromRole="StopsForVp" ToRole="r_LocationType"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="Incoterm">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.Incoterm_2_r_Localized" FromRole="Incoterm" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="LocationType">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.LocationType_2_r_Localized" FromRole="LocationType" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="ExecutionStatusText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="ShippingType">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.ShippingType_2_r_Localized" FromRole="ShippingType" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="FreightUnit">
+				<Key>
+					<PropertyRef Name="id"></PropertyRef>
+				</Key>
+				<Property Name="id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="subaccountId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="cloneInstanceId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="trackedProcessType" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="altKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="scheme" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="partyId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="logicalSystem" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="trackingIdType" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="trackingId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="lastChangedAtBusinessTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="createdByUser" Type="Edm.String" Nullable="true" MaxLength="64"></Property>
+				<Property Name="creationDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="lastChangedByUser" Type="Edm.String" Nullable="true" MaxLength="64"></Property>
+				<Property Name="lastChangeDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="version" Type="Edm.Int32" Nullable="true"></Property>
+				<Property Name="freightUnitNo" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="plannedTotalDistance" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14"></Property>
+				<Property Name="plannedGrossDuration" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="plannedNetDuration" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="dangerousGoods" Type="Edm.Boolean" Nullable="true"></Property>
+				<Property Name="departureLocationId" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="plannedDepartureDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedDepartureDateTimeZone" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="arrivalLocationId" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="plannedArrivalDateTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="plannedArrivalDateTimeZone" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="serviceAgentLbnId" Type="Edm.String" Nullable="true" MaxLength="60"></Property>
+				<Property Name="processStatus_code" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="shippingType_code" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="incoterms_code" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="transportationMode_code" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="departureLocationType_code" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="arrivalLocationType_code" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="executionStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<NavigationProperty Name="processStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ProcessStatus" FromRole="FreightUnit" ToRole="r_ProcessStatus"></NavigationProperty>
+				<NavigationProperty Name="shippingType" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ShippingType" FromRole="FreightUnit" ToRole="r_ShippingType"></NavigationProperty>
+				<NavigationProperty Name="departureLocationType" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_DepartureLocationType" FromRole="FreightUnit" ToRole="r_DepartureLocationType"></NavigationProperty>
+				<NavigationProperty Name="arrivalLocationType" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_DepartureLocationType" FromRole="FreightUnit" ToRole="r_DepartureLocationType"></NavigationProperty>
+				<NavigationProperty Name="incoterms" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_Incoterms" FromRole="FreightUnit" ToRole="r_Incoterms"></NavigationProperty>
+				<NavigationProperty Name="transportationMode" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_TransportationMode" FromRole="FreightUnit" ToRole="r_TransportationMode"></NavigationProperty>
+				<NavigationProperty Name="arrivalLocation" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ArrivalLocation" FromRole="FreightUnit" ToRole="r_ArrivalLocation"></NavigationProperty>
+				<NavigationProperty Name="departureLocation" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ArrivalLocation" FromRole="FreightUnit" ToRole="r_ArrivalLocation"></NavigationProperty>
+				<NavigationProperty Name="executionStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ExecutionStatus" FromRole="FreightUnit" ToRole="r_ExecutionStatus"></NavigationProperty>
+				<NavigationProperty Name="plannedEvents" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_PlannedEvents" FromRole="FreightUnit" ToRole="r_PlannedEvents"></NavigationProperty>
+				<NavigationProperty Name="carrierRefDocuments" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_CarrierRefDocuments" FromRole="FreightUnit" ToRole="r_CarrierRefDocuments"></NavigationProperty>
+				<NavigationProperty Name="stopsForVP" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_StopsForVp" FromRole="FreightUnit" ToRole="r_StopsForVp"></NavigationProperty>
+				<NavigationProperty Name="freightUnitItems" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_FreightUnitItems" FromRole="FreightUnit" ToRole="r_FreightUnitItems"></NavigationProperty>
+				<NavigationProperty Name="shipmentTPs" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ShipmentTps" FromRole="FreightUnit" ToRole="r_ShipmentTps"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="DeliveryItem">
+				<Key>
+					<PropertyRef Name="id"></PropertyRef>
+				</Key>
+				<Property Name="id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="partyId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="altKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="logicalSystem" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="trackingIdType" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="trackingId" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="deliveryNo" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="itemNo" Type="Edm.String" Nullable="true" MaxLength="6"></Property>
+				<Property Name="materialNo" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="materialDescription" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="quantityUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="upc" Type="Edm.String" Nullable="true" MaxLength="18"></Property>
+				<Property Name="initialPlannedDate" Type="Edm.DateTime" Nullable="true"></Property>
+				<Property Name="grossWeight" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="netWeight" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="weightUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="volume" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="volumeUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="dangerousGoods" Type="Edm.Boolean" Nullable="true"></Property>
+				<Property Name="estimatedArrivalTime" Type="Edm.DateTimeOffset" Nullable="true"></Property>
+				<Property Name="orderQuantity" Type="Edm.Decimal" Nullable="true" Precision="15" Scale="3"></Property>
+				<Property Name="warehouseNo" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="door" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="shippingPoint" Type="Edm.String" Nullable="true" MaxLength="4"></Property>
+				<Property Name="departureAddress" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="destination" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="destinationAddress" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="destinationTelephone" Type="Edm.String" Nullable="true" MaxLength="30"></Property>
+				<Property Name="incotermsVersion" Type="Edm.String" Nullable="true" MaxLength="4"></Property>
+				<Property Name="billofLading" Type="Edm.String" Nullable="true" MaxLength="35"></Property>
+				<Property Name="incotermsLocation1" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="warehouseDescription" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="destinationEmail" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="revisedPlannedDate" Type="Edm.DateTime" Nullable="true"></Property>
+				<Property Name="documentDate" Type="Edm.DateTime" Nullable="true"></Property>
+				<Property Name="lastCorrelatedEventId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="lastEventName" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="lastLocationAltKey" Type="Edm.String" Nullable="true" MaxLength="255"></Property>
+				<Property Name="processStatus_code" Type="Edm.String" Nullable="true" MaxLength="50"></Property>
+				<Property Name="pickingStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="packingStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="goodsIssueStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="podStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="executionStatus_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="incoterms_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="delivery_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="destinationLocationType_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<Property Name="lastVPLocationType_code" Type="Edm.String" Nullable="true" MaxLength="20"></Property>
+				<NavigationProperty Name="incoterms" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_Incoterms" FromRole="DeliveryItem" ToRole="r_Incoterms"></NavigationProperty>
+				<NavigationProperty Name="processStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_ProcessStatus" FromRole="DeliveryItem" ToRole="r_ProcessStatus"></NavigationProperty>
+				<NavigationProperty Name="executionStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_ExecutionStatus" FromRole="DeliveryItem" ToRole="r_ExecutionStatus"></NavigationProperty>
+				<NavigationProperty Name="pickingStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PickingStatus" FromRole="DeliveryItem" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="packingStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PickingStatus" FromRole="DeliveryItem" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="goodsIssueStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PickingStatus" FromRole="DeliveryItem" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="podStatus" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PickingStatus" FromRole="DeliveryItem" ToRole="r_PickingStatus"></NavigationProperty>
+				<NavigationProperty Name="delivery" Relationship="com.lbngttsamples.gtt.app.sof.sofService.r_Delivery_2_r_DeliveryItems" FromRole="r_DeliveryItems" ToRole="r_Delivery"></NavigationProperty>
+				<NavigationProperty Name="plannedEvents" Relationship="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PlannedEvents" FromRole="DeliveryItem" ToRole="r_PlannedEvents"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="ProcessStatus">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus_2_r_Localized" FromRole="ProcessStatus" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="ProcessStatusText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="EventStatus">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.EventStatus_2_r_Localized" FromRole="EventStatus" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="Location">
+				<Key>
+					<PropertyRef Name="id"></PropertyRef>
+				</Key>
+				<Property Name="id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="locationAltKey" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="tenantId" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="locationId" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="sourceSystem" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="externalId" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="longitude" Type="Edm.Decimal" Nullable="true"></Property>
+				<Property Name="latitude" Type="Edm.Decimal" Nullable="true"></Property>
+				<Property Name="locationTypeCode" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locationDescription" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locationTypeDescription" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="objectTypeCode" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="objectTypeDescription" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="postalCode" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="houseNumber" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="streetName" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="cityName" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="regionCode" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="regionName" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="countryCode" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="countryName" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="addressTimeZone" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="timeZoneId" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="timeZoneDisplayName" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="addressDetail" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="formattedAddress" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="ShippingTypeText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="TransportMeansStandardCode">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCode_2_r_Localized" FromRole="TransportMeansStandardCode" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="CarrierReferenceDocumentTypeText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<EntityType Name="TransportationMode">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode_2_r_Localized" FromRole="TransportationMode" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="FreightUnitItem">
+				<Key>
+					<PropertyRef Name="itemNo"></PropertyRef>
+					<PropertyRef Name="freightUnit_id"></PropertyRef>
+				</Key>
+				<Property Name="itemNo" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="freightUnit_id" Type="Edm.Guid" Nullable="true"></Property>
+				<Property Name="deliveryNo" Type="Edm.String" Nullable="true" MaxLength="35"></Property>
+				<Property Name="deliveryItemNo" Type="Edm.String" Nullable="true" MaxLength="10"></Property>
+				<Property Name="quantity" Type="Edm.Decimal" Nullable="true" Precision="31" Scale="14"></Property>
+				<Property Name="quantityUoM" Type="Edm.String" Nullable="true" MaxLength="3"></Property>
+				<Property Name="materialNo" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<Property Name="materialDescription" Type="Edm.String" Nullable="true" MaxLength="40"></Property>
+				<NavigationProperty Name="deliveryItem" Relationship="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitItem_2_r_DeliveryItem" FromRole="FreightUnitItem" ToRole="r_DeliveryItem"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="OperationStatus">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+				<NavigationProperty Name="localized" Relationship="com.lbngttsamples.gtt.app.sof.sofService.OperationStatus_2_r_Localized" FromRole="OperationStatus" ToRole="r_Localized"></NavigationProperty>
+			</EntityType>
+			<EntityType Name="TransportationModeText">
+				<Key>
+					<PropertyRef Name="code"></PropertyRef>
+					<PropertyRef Name="locale"></PropertyRef>
+				</Key>
+				<Property Name="code" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="locale" Type="Edm.String" Nullable="true"></Property>
+				<Property Name="name" Type="Edm.String" Nullable="true"></Property>
+			</EntityType>
+			<Association Name="Shipment_2_r_TransportationMode">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode" Multiplicity="1" Role="r_TransportationMode"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_TransportationMode">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="Shipment">
+						<PropertyRef Name="transportationMode_code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="StopsForVp_2_r_LocationType">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.StopsForVp" Multiplicity="1" Role="StopsForVp"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.LocationType" Multiplicity="1" Role="r_LocationType"></End>
+			</Association>
+			<Association Name="EventStatus_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.EventStatus" Multiplicity="1" Role="EventStatus"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.EventStatusText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="EventStatus">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Shipment_2_r_TransportMeans">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCode" Multiplicity="1" Role="r_TransportMeans"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_TransportMeans">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="Shipment">
+						<PropertyRef Name="transportMeans_code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FreightUnit_2_r_ExecutionStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus" Multiplicity="1" Role="r_ExecutionStatus"></End>
+			</Association>
+			<Association Name="Shipment_2_r_DeliveryTps">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryTp" Multiplicity="*" Role="r_DeliveryTps"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_ShipmentTps">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShipmentTp" Multiplicity="*" Role="r_ShipmentTps"></End>
+			</Association>
+			<Association Name="Shipment_2_r_Incoterms">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Incoterm" Multiplicity="1" Role="r_Incoterms"></End>
+			</Association>
+			<Association Name="Shipment_2_r_ProcessStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus" Multiplicity="1" Role="r_ProcessStatus"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_ProcessStatus">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="Shipment">
+						<PropertyRef Name="processStatus_code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Shipment_2_r_CarrierRefDocuments">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocument" Multiplicity="*" Role="r_CarrierRefDocuments"></End>
+			</Association>
+			<Association Name="CarrierReferenceDocumentType_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentType" Multiplicity="1" Role="CarrierReferenceDocumentType"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentTypeText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="CarrierReferenceDocumentType">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FreightUnit_2_r_Incoterms">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Incoterm" Multiplicity="1" Role="r_Incoterms"></End>
+			</Association>
+			<Association Name="Delivery_2_r_Incoterms">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="Delivery"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Incoterm" Multiplicity="1" Role="r_Incoterms"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_ShippingType">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShippingType" Multiplicity="1" Role="r_ShippingType"></End>
+			</Association>
+			<Association Name="DeliveryItem_2_r_ExecutionStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="1" Role="DeliveryItem"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus" Multiplicity="1" Role="r_ExecutionStatus"></End>
+			</Association>
+			<Association Name="ProcessStatus_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus" Multiplicity="1" Role="ProcessStatus"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatusText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="ProcessStatus">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="LocationType_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.LocationType" Multiplicity="1" Role="LocationType"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.LocationTypeText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="LocationType">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FreightUnit_2_r_FreightUnitItems">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitItem" Multiplicity="*" Role="r_FreightUnitItems"></End>
+			</Association>
+			<Association Name="TrafficDirection_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirection" Multiplicity="1" Role="TrafficDirection"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirectionText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="TrafficDirection">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Shipment_2_r_ArrivalLocation">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Location" Multiplicity="1" Role="r_ArrivalLocation"></End>
+			</Association>
+			<Association Name="Shipment_2_r_DepartureLocation">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Location" Multiplicity="1" Role="r_DepartureLocation"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_DepartureLocation">
+						<PropertyRef Name="externalId"></PropertyRef>
+					</Principal>
+					<Dependent Role="Shipment">
+						<PropertyRef Name="departureLocationId"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Delivery_2_r_PickingStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="Delivery"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.OperationStatus" Multiplicity="1" Role="r_PickingStatus"></End>
+			</Association>
+			<Association Name="Delivery_2_r_ProcessStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="Delivery"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus" Multiplicity="1" Role="r_ProcessStatus"></End>
+			</Association>
+			<Association Name="Shipment_2_r_StopsForVp">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.StopsForVp" Multiplicity="*" Role="r_StopsForVp"></End>
+			</Association>
+			<Association Name="Shipment_2_r_FreightUnitTps">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitTp" Multiplicity="*" Role="r_FreightUnitTps"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_StopsForVp">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.StopsForVp" Multiplicity="*" Role="r_StopsForVp"></End>
+			</Association>
+			<Association Name="PlannedEvent_2_r_EventStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent" Multiplicity="1" Role="PlannedEvent"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus" Multiplicity="1" Role="r_EventStatus"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_ProcessStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus" Multiplicity="1" Role="r_ProcessStatus"></End>
+			</Association>
+			<Association Name="ShippingType_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShippingType" Multiplicity="1" Role="ShippingType"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShippingTypeText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="ShippingType">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="Shipment_2_r_ExecutionStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus" Multiplicity="1" Role="r_ExecutionStatus"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_ExecutionStatus">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="Shipment">
+						<PropertyRef Name="executionStatus_code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FreightUnitItem_2_r_DeliveryItem">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitItem" Multiplicity="1" Role="FreightUnitItem"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="1" Role="r_DeliveryItem"></End>
+			</Association>
+			<Association Name="Shipment_2_r_ShippingType">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShippingType" Multiplicity="1" Role="r_ShippingType"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_ShippingType">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="Shipment">
+						<PropertyRef Name="shippingType_code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="OperationStatus_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.OperationStatus" Multiplicity="1" Role="OperationStatus"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.OperationStatusText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="OperationStatus">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="DeliveryItem_2_r_Incoterms">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="1" Role="DeliveryItem"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Incoterm" Multiplicity="1" Role="r_Incoterms"></End>
+			</Association>
+			<Association Name="Incoterm_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Incoterm" Multiplicity="1" Role="Incoterm"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.IncotermText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="Incoterm">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FreightUnit_2_r_PlannedEvents">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent" Multiplicity="*" Role="r_PlannedEvents"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_CarrierRefDocuments">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocument" Multiplicity="*" Role="r_CarrierRefDocuments"></End>
+			</Association>
+			<Association Name="Delivery_2_r_ExecutionStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="Delivery"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus" Multiplicity="1" Role="r_ExecutionStatus"></End>
+			</Association>
+			<Association Name="DeliveryItem_2_r_ProcessStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="1" Role="DeliveryItem"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus" Multiplicity="1" Role="r_ProcessStatus"></End>
+			</Association>
+			<Association Name="Shipment_2_r_TrafficDirection">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirection" Multiplicity="1" Role="r_TrafficDirection"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_ArrivalLocation">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Location" Multiplicity="1" Role="r_ArrivalLocation"></End>
+			</Association>
+			<Association Name="DeliveryItem_2_r_PickingStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="1" Role="DeliveryItem"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.OperationStatus" Multiplicity="1" Role="r_PickingStatus"></End>
+			</Association>
+			<Association Name="FreightUnitTp_2_r_FreightUnit">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitTp" Multiplicity="1" Role="FreightUnitTp"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="r_FreightUnit"></End>
+			</Association>
+			<Association Name="ShipmentTp_2_r_Shipment">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShipmentTp" Multiplicity="1" Role="ShipmentTp"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="r_Shipment"></End>
+			</Association>
+			<Association Name="DeliveryTp_2_r_Delivery">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryTp" Multiplicity="1" Role="DeliveryTp"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="r_Delivery"></End>
+			</Association>
+			<Association Name="ExecutionStatus_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus" Multiplicity="1" Role="ExecutionStatus"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatusText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="ExecutionStatus">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="FreightUnit_2_r_TransportationMode">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode" Multiplicity="1" Role="r_TransportationMode"></End>
+			</Association>
+			<Association Name="Delivery_2_r_ShipmentTps">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="Delivery"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.ShipmentTp" Multiplicity="*" Role="r_ShipmentTps"></End>
+			</Association>
+			<Association Name="FreightUnit_2_r_DepartureLocationType">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit" Multiplicity="1" Role="FreightUnit"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.LocationType" Multiplicity="1" Role="r_DepartureLocationType"></End>
+			</Association>
+			<Association Name="Shipment_2_r_PlannedEvents">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent" Multiplicity="*" Role="r_PlannedEvents"></End>
+			</Association>
+			<Association Name="Shipment_2_r_EventStatus">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Shipment" Multiplicity="1" Role="Shipment"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.EventStatus" Multiplicity="1" Role="r_EventStatus"></End>
+			</Association>
+			<Association Name="DeliveryItem_2_r_PlannedEvents">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="1" Role="DeliveryItem"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent" Multiplicity="*" Role="r_PlannedEvents"></End>
+			</Association>
+			<Association Name="TransportationMode_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode" Multiplicity="1" Role="TransportationMode"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportationModeText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="TransportationMode">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="r_Delivery_2_r_DeliveryItems">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.Delivery" Multiplicity="1" Role="r_Delivery"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem" Multiplicity="*" Role="r_DeliveryItems"></End>
+			</Association>
+			<Association Name="TransportMeansStandardCode_2_r_Localized">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCode" Multiplicity="1" Role="TransportMeansStandardCode"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCodeText" Multiplicity="1" Role="r_Localized"></End>
+				<ReferentialConstraint>
+					<Principal Role="r_Localized">
+						<PropertyRef Name="code"></PropertyRef>
+					</Principal>
+					<Dependent Role="TransportMeansStandardCode">
+						<PropertyRef Name="code"></PropertyRef>
+					</Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="CarrierReferenceDocument_2_r_DocType">
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocument" Multiplicity="1" Role="CarrierReferenceDocument"></End>
+				<End Type="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentType" Multiplicity="1" Role="r_DocType"></End>
+			</Association>
+			<EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="EventStatus_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.EventStatusText"></EntitySet>
+				<EntitySet Name="LocationType_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.LocationTypeText"></EntitySet>
+				<EntitySet Name="PlannedEvent" EntityType="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent"></EntitySet>
+				<EntitySet Name="FreightUnitTP" EntityType="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitTp"></EntitySet>
+				<EntitySet Name="Delivery" EntityType="com.lbngttsamples.gtt.app.sof.sofService.Delivery"></EntitySet>
+				<EntitySet Name="DeliveryTP" EntityType="com.lbngttsamples.gtt.app.sof.sofService.DeliveryTp"></EntitySet>
+				<EntitySet Name="ExecutionStatus" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus"></EntitySet>
+				<EntitySet Name="Incoterms_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.IncotermText"></EntitySet>
+				<EntitySet Name="TrafficDirection_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirectionText"></EntitySet>
+				<EntitySet Name="Shipment" EntityType="com.lbngttsamples.gtt.app.sof.sofService.Shipment"></EntitySet>
+				<EntitySet Name="ShipmentTP" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ShipmentTp"></EntitySet>
+				<EntitySet Name="TrafficDirection" EntityType="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirection"></EntitySet>
+				<EntitySet Name="CarrierRefDocumentType" EntityType="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentType"></EntitySet>
+				<EntitySet Name="TransportMeansStandardCode_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCodeText"></EntitySet>
+				<EntitySet Name="OperationStatus_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.OperationStatusText"></EntitySet>
+				<EntitySet Name="CarrierRefDocuments" EntityType="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocument"></EntitySet>
+				<EntitySet Name="ShipmentStopsForVP" EntityType="com.lbngttsamples.gtt.app.sof.sofService.StopsForVp"></EntitySet>
+				<EntitySet Name="Incoterm" EntityType="com.lbngttsamples.gtt.app.sof.sofService.Incoterm"></EntitySet>
+				<EntitySet Name="LocationType" EntityType="com.lbngttsamples.gtt.app.sof.sofService.LocationType"></EntitySet>
+				<EntitySet Name="ExecutionStatus_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatusText"></EntitySet>
+				<EntitySet Name="ShippingType" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ShippingType"></EntitySet>
+				<EntitySet Name="FreightUnit" EntityType="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit"></EntitySet>
+				<EntitySet Name="DeliveryItem" EntityType="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem"></EntitySet>
+				<EntitySet Name="ProcessStatus" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus"></EntitySet>
+				<EntitySet Name="ProcessStatus_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatusText"></EntitySet>
+				<EntitySet Name="EventStatus" EntityType="com.lbngttsamples.gtt.app.sof.sofService.EventStatus"></EntitySet>
+				<EntitySet Name="Location" EntityType="com.lbngttsamples.gtt.app.sof.sofService.Location"></EntitySet>
+				<EntitySet Name="ShippingType_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.ShippingTypeText"></EntitySet>
+				<EntitySet Name="TransportMeansStandardCode" EntityType="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCode"></EntitySet>
+				<EntitySet Name="CarrierRefDocumentType_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentTypeText"></EntitySet>
+				<EntitySet Name="TransportationMode" EntityType="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode"></EntitySet>
+				<EntitySet Name="FreightUnitItem" EntityType="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitItem"></EntitySet>
+				<EntitySet Name="OperationStatus" EntityType="com.lbngttsamples.gtt.app.sof.sofService.OperationStatus"></EntitySet>
+				<EntitySet Name="TransportationMode_texts" EntityType="com.lbngttsamples.gtt.app.sof.sofService.TransportationModeText"></EntitySet>
+				<AssociationSet Name="Shipment_2_r_DepartureLocation" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_DepartureLocation">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="Location" Role="r_DepartureLocation"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_TransportationMode" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_TransportationMode">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="TransportationMode" Role="r_TransportationMode"></End>
+				</AssociationSet>
+				<AssociationSet Name="StopsForVp_2_r_LocationType" Association="com.lbngttsamples.gtt.app.sof.sofService.StopsForVp_2_r_LocationType">
+					<End EntitySet="ShipmentStopsForVP" Role="StopsForVp"></End>
+					<End EntitySet="LocationType" Role="r_LocationType"></End>
+				</AssociationSet>
+				<AssociationSet Name="EventStatus_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.EventStatus_2_r_Localized">
+					<End EntitySet="EventStatus" Role="EventStatus"></End>
+					<End EntitySet="EventStatus_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_TransportMeans" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_TransportMeans">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="TransportMeansStandardCode" Role="r_TransportMeans"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_ExecutionStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ExecutionStatus">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="ExecutionStatus" Role="r_ExecutionStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_DeliveryTps" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_DeliveryTps">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="DeliveryTP" Role="r_DeliveryTps"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_ShipmentTps" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ShipmentTps">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="ShipmentTP" Role="r_ShipmentTps"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_Incoterms" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_Incoterms">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="Incoterm" Role="r_Incoterms"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_ProcessStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ProcessStatus">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="ProcessStatus" Role="r_ProcessStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_CarrierRefDocuments" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_CarrierRefDocuments">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="CarrierRefDocuments" Role="r_CarrierRefDocuments"></End>
+				</AssociationSet>
+				<AssociationSet Name="CarrierReferenceDocumentType_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocumentType_2_r_Localized">
+					<End EntitySet="CarrierRefDocumentType" Role="CarrierReferenceDocumentType"></End>
+					<End EntitySet="CarrierRefDocumentType_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_Incoterms" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_Incoterms">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="Incoterm" Role="r_Incoterms"></End>
+				</AssociationSet>
+				<AssociationSet Name="Delivery_2_r_Incoterms" Association="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_Incoterms">
+					<End EntitySet="Delivery" Role="Delivery"></End>
+					<End EntitySet="Incoterm" Role="r_Incoterms"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_ShippingType" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ShippingType">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="ShippingType" Role="r_ShippingType"></End>
+				</AssociationSet>
+				<AssociationSet Name="DeliveryItem_2_r_ExecutionStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_ExecutionStatus">
+					<End EntitySet="DeliveryItem" Role="DeliveryItem"></End>
+					<End EntitySet="ExecutionStatus" Role="r_ExecutionStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="ProcessStatus_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus_2_r_Localized">
+					<End EntitySet="ProcessStatus" Role="ProcessStatus"></End>
+					<End EntitySet="ProcessStatus_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="LocationType_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.LocationType_2_r_Localized">
+					<End EntitySet="LocationType" Role="LocationType"></End>
+					<End EntitySet="LocationType_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_FreightUnitItems" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_FreightUnitItems">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="FreightUnitItem" Role="r_FreightUnitItems"></End>
+				</AssociationSet>
+				<AssociationSet Name="TrafficDirection_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirection_2_r_Localized">
+					<End EntitySet="TrafficDirection" Role="TrafficDirection"></End>
+					<End EntitySet="TrafficDirection_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_ArrivalLocation" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ArrivalLocation">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="Location" Role="r_ArrivalLocation"></End>
+				</AssociationSet>
+				<AssociationSet Name="Delivery_2_r_PickingStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_PickingStatus">
+					<End EntitySet="Delivery" Role="Delivery"></End>
+					<End EntitySet="OperationStatus" Role="r_PickingStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="Delivery_2_r_ProcessStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_ProcessStatus">
+					<End EntitySet="Delivery" Role="Delivery"></End>
+					<End EntitySet="ProcessStatus" Role="r_ProcessStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_StopsForVp" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_StopsForVp">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="ShipmentStopsForVP" Role="r_StopsForVp"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_FreightUnitTps" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_FreightUnitTps">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="FreightUnitTP" Role="r_FreightUnitTps"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_StopsForVp" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_StopsForVp">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="ShipmentStopsForVP" Role="r_StopsForVp"></End>
+				</AssociationSet>
+				<AssociationSet Name="PlannedEvent_2_r_EventStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.PlannedEvent_2_r_EventStatus">
+					<End EntitySet="PlannedEvent" Role="PlannedEvent"></End>
+					<End EntitySet="ProcessStatus" Role="r_EventStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_ProcessStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ProcessStatus">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="ProcessStatus" Role="r_ProcessStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="ShippingType_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.ShippingType_2_r_Localized">
+					<End EntitySet="ShippingType" Role="ShippingType"></End>
+					<End EntitySet="ShippingType_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_ExecutionStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ExecutionStatus">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="ExecutionStatus" Role="r_ExecutionStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnitItem_2_r_DeliveryItem" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitItem_2_r_DeliveryItem">
+					<End EntitySet="FreightUnitItem" Role="FreightUnitItem"></End>
+					<End EntitySet="DeliveryItem" Role="r_DeliveryItem"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_ShippingType" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_ShippingType">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="ShippingType" Role="r_ShippingType"></End>
+				</AssociationSet>
+				<AssociationSet Name="OperationStatus_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.OperationStatus_2_r_Localized">
+					<End EntitySet="OperationStatus" Role="OperationStatus"></End>
+					<End EntitySet="OperationStatus_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="DeliveryItem_2_r_Incoterms" Association="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_Incoterms">
+					<End EntitySet="DeliveryItem" Role="DeliveryItem"></End>
+					<End EntitySet="Incoterm" Role="r_Incoterms"></End>
+				</AssociationSet>
+				<AssociationSet Name="Incoterm_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.Incoterm_2_r_Localized">
+					<End EntitySet="Incoterm" Role="Incoterm"></End>
+					<End EntitySet="Incoterms_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_PlannedEvents" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_PlannedEvents">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="PlannedEvent" Role="r_PlannedEvents"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_CarrierRefDocuments" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_CarrierRefDocuments">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="CarrierRefDocuments" Role="r_CarrierRefDocuments"></End>
+				</AssociationSet>
+				<AssociationSet Name="Delivery_2_r_ExecutionStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_ExecutionStatus">
+					<End EntitySet="Delivery" Role="Delivery"></End>
+					<End EntitySet="ExecutionStatus" Role="r_ExecutionStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="DeliveryItem_2_r_ProcessStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_ProcessStatus">
+					<End EntitySet="DeliveryItem" Role="DeliveryItem"></End>
+					<End EntitySet="ProcessStatus" Role="r_ProcessStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_TrafficDirection" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_TrafficDirection">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="TrafficDirection" Role="r_TrafficDirection"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_ArrivalLocation" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_ArrivalLocation">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="Location" Role="r_ArrivalLocation"></End>
+				</AssociationSet>
+				<AssociationSet Name="DeliveryItem_2_r_PickingStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PickingStatus">
+					<End EntitySet="DeliveryItem" Role="DeliveryItem"></End>
+					<End EntitySet="OperationStatus" Role="r_PickingStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnitTp_2_r_FreightUnit" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnitTp_2_r_FreightUnit">
+					<End EntitySet="FreightUnitTP" Role="FreightUnitTp"></End>
+					<End EntitySet="FreightUnit" Role="r_FreightUnit"></End>
+				</AssociationSet>
+				<AssociationSet Name="ShipmentTp_2_r_Shipment" Association="com.lbngttsamples.gtt.app.sof.sofService.ShipmentTp_2_r_Shipment">
+					<End EntitySet="ShipmentTP" Role="ShipmentTp"></End>
+					<End EntitySet="Shipment" Role="r_Shipment"></End>
+				</AssociationSet>
+				<AssociationSet Name="DeliveryTp_2_r_Delivery" Association="com.lbngttsamples.gtt.app.sof.sofService.DeliveryTp_2_r_Delivery">
+					<End EntitySet="DeliveryTP" Role="DeliveryTp"></End>
+					<End EntitySet="Delivery" Role="r_Delivery"></End>
+				</AssociationSet>
+				<AssociationSet Name="ExecutionStatus_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus_2_r_Localized">
+					<End EntitySet="ExecutionStatus" Role="ExecutionStatus"></End>
+					<End EntitySet="ExecutionStatus_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_TransportationMode" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_TransportationMode">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="TransportationMode" Role="r_TransportationMode"></End>
+				</AssociationSet>
+				<AssociationSet Name="Delivery_2_r_ShipmentTps" Association="com.lbngttsamples.gtt.app.sof.sofService.Delivery_2_r_ShipmentTps">
+					<End EntitySet="Delivery" Role="Delivery"></End>
+					<End EntitySet="ShipmentTP" Role="r_ShipmentTps"></End>
+				</AssociationSet>
+				<AssociationSet Name="FreightUnit_2_r_DepartureLocationType" Association="com.lbngttsamples.gtt.app.sof.sofService.FreightUnit_2_r_DepartureLocationType">
+					<End EntitySet="FreightUnit" Role="FreightUnit"></End>
+					<End EntitySet="LocationType" Role="r_DepartureLocationType"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_PlannedEvents" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_PlannedEvents">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="PlannedEvent" Role="r_PlannedEvents"></End>
+				</AssociationSet>
+				<AssociationSet Name="Shipment_2_r_EventStatus" Association="com.lbngttsamples.gtt.app.sof.sofService.Shipment_2_r_EventStatus">
+					<End EntitySet="Shipment" Role="Shipment"></End>
+					<End EntitySet="EventStatus" Role="r_EventStatus"></End>
+				</AssociationSet>
+				<AssociationSet Name="DeliveryItem_2_r_PlannedEvents" Association="com.lbngttsamples.gtt.app.sof.sofService.DeliveryItem_2_r_PlannedEvents">
+					<End EntitySet="DeliveryItem" Role="DeliveryItem"></End>
+					<End EntitySet="PlannedEvent" Role="r_PlannedEvents"></End>
+				</AssociationSet>
+				<AssociationSet Name="TransportationMode_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode_2_r_Localized">
+					<End EntitySet="TransportationMode" Role="TransportationMode"></End>
+					<End EntitySet="TransportationMode_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="r_Delivery_2_r_DeliveryItems" Association="com.lbngttsamples.gtt.app.sof.sofService.r_Delivery_2_r_DeliveryItems">
+					<End EntitySet="Delivery" Role="r_Delivery"></End>
+					<End EntitySet="DeliveryItem" Role="r_DeliveryItems"></End>
+				</AssociationSet>
+				<AssociationSet Name="TransportMeansStandardCode_2_r_Localized" Association="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCode_2_r_Localized">
+					<End EntitySet="TransportMeansStandardCode" Role="TransportMeansStandardCode"></End>
+					<End EntitySet="TransportMeansStandardCode_texts" Role="r_Localized"></End>
+				</AssociationSet>
+				<AssociationSet Name="CarrierReferenceDocument_2_r_DocType" Association="com.lbngttsamples.gtt.app.sof.sofService.CarrierReferenceDocument_2_r_DocType">
+					<End EntitySet="CarrierRefDocuments" Role="CarrierReferenceDocument"></End>
+					<End EntitySet="CarrierRefDocumentType" Role="r_DocType"></End>
+				</AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

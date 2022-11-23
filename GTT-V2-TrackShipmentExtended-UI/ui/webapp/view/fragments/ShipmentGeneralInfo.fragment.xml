@@ -1,0 +1,134 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<smartForm:SmartForm id="shipmentGeneralInfoSmartForm"
+		editTogglable="false">
+		<smartForm:layout>
+			<smartForm:Layout labelSpanS="12"
+				labelSpanM="12"
+				labelSpanL="12"
+				labelSpanXL="12"
+				columnsM="2"
+				columnsL="3" />
+		</smartForm:layout>
+
+		<smartForm:Group>
+			<smartForm:GroupElement>
+				<smartField:SmartField id="serviceAgentLbnId"
+					textLabel="{i18n>carrier}"
+					value="{serviceAgentLbnId}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement>
+				<smartField:SmartField id="shippingType"
+					textLabel="{label>/Shipment/shippingType_code}"
+					value="{=
+						!!${shippingType/localized/name} ? ${shippingType/localized/name} : ${shippingType/name}
+					}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement>
+				<smartField:SmartField id="trafficDirection"
+					textLabel="{label>/Shipment/trafficDirection_code}"
+					value="{=
+						!!${trafficDirection/localized/name} ? ${trafficDirection/localized/name} : ${trafficDirection/name}
+					}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement>
+				<smartField:SmartField id="incoterms"
+					textLabel="{label>/Shipment/incoterms_code}"
+					value="{=
+						!!${incoterms/localized/name} ? ${incoterms/localized/name} : ${incoterms/name}
+					}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement>
+				<smartField:SmartField id="incotermLocation"
+					value="{incotermLocation}" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+
+		<smartForm:Group>
+			<smartForm:GroupElement>
+				<smartField:SmartField id="dangerousGoods"
+					value="{dangerousGoods}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement
+				label="{label>/Shipment/plannedTotalDistance}">
+				<Text text="{
+					parts: ['plannedTotalDistance'],
+					formatter: '.formatter.formatQuantityToTwoDecimalWithUom'
+				}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement
+				label="{label>/Shipment/plannedGrossDuration}">
+				<Text id="plannedGrossDuration"
+					text="{
+						path: 'plannedGrossDuration',
+						formatter: '.formatter.formatGrossNetDuration'
+					}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement
+				label="{label>/Shipment/plannedNetDuration}">
+				<Text id="plannedNetDuration"
+					text="{
+						path: 'plannedNetDuration',
+						formatter: '.formatter.formatGrossNetDuration'
+					}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement>
+				<smartField:SmartField id="transportMeans"
+					textLabel="{label>/Shipment/transportMeans_code}"
+					value="{=
+						!!${transportMeans/localized/name} ? ${transportMeans/localized/name} : ${transportMeans/name}
+					}" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+
+		<smartForm:Group>
+			<smartForm:GroupElement
+				label="{i18n>registrationCountryRegionAndNumber}">
+				<Text id="registrationCountryRegionAndNumber"
+					text="{
+						parts: ['registrationCountry', 'registrationNumber'],
+						formatter: '.formatter.registrationCountryRegionAndNumber'
+					}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement>
+				<smartField:SmartField id="vehicle"
+					value="{vehicle}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement
+				label="{label>/Shipment/cargoWeight}">
+				<Text text="{
+					parts: ['cargoWeight', 'weightUoM'],
+					formatter: '.formatter.formatQuantityToTwoDecimalWithUom'
+				}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement
+				label="{label>/Shipment/cargoVolumn}">
+				<Text text="{
+					parts: ['cargoVolumn', 'volumnUoM'],
+					formatter: '.formatter.formatQuantityToTwoDecimalWithUom'
+				}" />
+			</smartForm:GroupElement>
+
+			<smartForm:GroupElement
+				label="{label>/Shipment/cargoQuantity}">
+				<Text text="{
+					parts: ['cargoQuantity', 'quantityUoM'],
+					formatter: '.formatter.formatQuantityToTwoDecimalWithUom'
+				}" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+	</smartForm:SmartForm>
+</core:FragmentDefinition>
