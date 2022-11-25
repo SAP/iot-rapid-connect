@@ -6,7 +6,7 @@ Global value chains are becoming increasingly complex due to rising geopolitical
 
 ![](Assets/Usecase.png)
 
-The [Connected Product solution] (https://news.sap.com/sea/2022/07/ntt-data-and-sap-announce-co-innovation-solution-to-track-fragile-and-sensitive-cargo-shipments-and-facilitate-insurance-procedures/) responds to this need by monitoring the location and environmental conditions of goods in transit.
+The [Connected Product solution](https://news.sap.com/sea/2022/07/ntt-data-and-sap-announce-co-innovation-solution-to-track-fragile-and-sensitive-cargo-shipments-and-facilitate-insurance-procedures/) responds to this need by monitoring the location and environmental conditions of goods in transit.
 
 ## About this project
 
