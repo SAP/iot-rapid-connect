@@ -1,5 +1,13 @@
 # SAP IoT Rapid Connect - Business Network for Logistics - Global Track & Trace
 
+## Use case
+
+Global value chains are becoming increasingly complex due to rising geopolitical risk, trade growth, and volatility of material availability. Losses due to poor transportation conditions have become a multibillion-dollar problem due to extreme difficulty in identifying the cause of damage or when an incident occurred. These challenges offer a great opportunity to overhaul the overall value chain with a solution that can provide real-time information on transport operations – from changes in temperature and humidity to whether the goods have been tilted – to all parties involved, giving everyone the ability to quickly adapt to potential incidents and rapidly recover from them.
+
+![](Assets/Usecase.png)
+
+The [Connected Product solution] (https://news.sap.com/sea/2022/07/ntt-data-and-sap-announce-co-innovation-solution-to-track-fragile-and-sensitive-cargo-shipments-and-facilitate-insurance-procedures/) responds to this need by monitoring the location and environmental conditions of goods in transit.
+
 ## About this project
 
 *IoT Rapid Connect is an open source adapter supporting integration with IOT platforms on hyperscalers. The adapter provides a framework that exposes REST based interfaces to communicate events determined by an IOT platform and the adapter transforms and delegates the events to Business Network for Logistics - Global Track & Trace component.*
