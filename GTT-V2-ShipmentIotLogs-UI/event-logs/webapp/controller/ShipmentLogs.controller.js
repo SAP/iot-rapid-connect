@@ -14,6 +14,8 @@ sap.ui.define([
     "use strict";
     return Controller.extend("eventlogs.controller.ShipmentLogs", {
       formatter: formatter,
+
+      //excute when the page first loads
       onInit: function () {
         this._oSingleInputtrackingIDInputID = this.byId("trackingIDInputID");
         this._oSingleInputreportedByInputID = this.byId("reportedByInputID");
@@ -21,6 +23,7 @@ sap.ui.define([
         this.getRouter().getRoute("RouteLogs").attachPatternMatched(this.loadEventLogs, this);
       },
 
+      //excute when the list page is loaded, call backend to get the latest list.
       loadEventLogs: async function () {
         var that = this;
         var oView = this.getView();
@@ -30,6 +33,7 @@ sap.ui.define([
         // oRequestModel.loadData("../data/logsListMockData.json", false);
         // oView.setModel(oRequestModel, "requestModel");
 
+        //get Data from backend.
         jQuery.ajax({
           url: "/shipmentLogTest/api/v1/iot/shipment/events",
           type: "GET",
@@ -61,6 +65,7 @@ sap.ui.define([
         });
       },
 
+      //Nav to detail page when click any list line.
       onNavToDetail: function (oEvent) {
         var requestId = oEvent.getSource().getAggregation("cells")[0].getText();
         var reportedAt = oEvent.getSource().getAggregation("cells")[2].getTooltip();
@@ -68,6 +73,7 @@ sap.ui.define([
         this.oRouter.navTo("RouteLogsDetail", { id: requestId, date: reportedAt });
       },
 
+      //search the list by the top search filter 
       onSearch: function () {
         var oFilters = [];
         var oValue;
@@ -139,6 +145,7 @@ sap.ui.define([
         this.getView().getModel("requestModel").setProperty("/oTableTitle", oTableTitle);
       },
 
+      //open value help dialog
       onVHRequestedTrackingID: function () {
         this.getView().getModel("requestModel").setProperty("/inputID", "trackingIDInputID");
         this.getView().getModel("requestModel").setProperty("/valueHelpTitle", "Shipment ID");
@@ -183,27 +190,40 @@ sap.ui.define([
         }.bind(this));
       },
 
+      /*
+      When close the value help dialog with ok button.
+      Save the selected tokens.
+      */
       onMultiConditionValueHelpOkPress: function (oEvent) {
         var aTokens = oEvent.getParameter("tokens");
         var inputID = this.getView().getModel("requestModel").getProperty("/inputID");
         this["_oSingleInput" + inputID].setTokens(aTokens);
         this["_oSingleDialog" + inputID].close();
       },
+
+      /*
+      When close the value help dialog with cancel button.
+      Don't save the selected tokens.
+      */
       onMultiConditionCancelPress: function () {
         var inputID = this.getView().getModel("requestModel").getProperty("/inputID");
         this["_oSingleDialog" + inputID].close();
       },
 
-      // onTrackingIDTokenChanged: function (oEvent) {
-      //   this._oSingleInputtrackingIDInputID.removeToken(oEvent.getParameter("removedTokens")[0]);
-      // },
-
+      /*
+        Excute when call backend with error.
+      */
       errorHandler: function (oError) {
         if (oError.message) {
           MessageBox.error(oError.message);
         }
       },
 
+      /*
+        When the seleted list lines have error, excute the retrigger funcion.
+        But the backend for retrigger funcion is not finished yet.
+        So here is just the mock.
+      */
       onRetrigger: function () {
         var oTable = this.getView().byId("idShipmentListTable");
         var oItems = oTable.getSelectedItems();
@@ -241,6 +261,9 @@ sap.ui.define([
         }
       },
 
+      /*
+        When user select any line, the retrigger button will be enabled.
+      */
       onSelect: function (oEvent) {
         var oView = this.getView();
         var selectedItems = oEvent.getSource().getSelectedItems();
