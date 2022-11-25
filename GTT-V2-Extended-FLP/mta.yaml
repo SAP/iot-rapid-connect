@@ -1,35 +1,35 @@
 ---
-ID: lbn-gtt-sample-app-flp
+ID: lbn-gtt-iot-app-flp
 _schema-version: "3.1"
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
   append: "${space}"
-  xsappname: tt_sof_${append}
+  xsappname: tt_iot_sof_${append}
 version: 2.3.0
 modules:
-  - name: lbn-gtt-sample-app-appRouter
+  - name: lbn-gtt-iot-app-appRouter
     type: approuter.nodejs
     path: flp_appRouter
     parameters:
       disk-quota: 256M
       memory: 256M
       routes:
-        - route: lbn-gtt-samples-app-flp-co-innovation.${domain}
+        - route: lbn-gtt-iot-app-flp-co-innovation.${domain}
     properties:
       SAP_JWT_TRUST_ACL:
         - clientid: "*"
           identityzone: "*"
       destinations:
-        - name: lbn-gtt-sst-api
-          url: "~{lbn-gtt-sst-api/url}"
+        - name: lbn-iot-gtt-sst-api
+          url: "~{lbn-iot-gtt-sst-api/url}"
           forwardAuthToken: true
     requires:
-      - name: lbn-gtt-sample-app-uaa
-      - name: lbn-gtt-sample-app-runtime
-      - name: lbn-gtt-sample-portal-resources
-      - name: lbn-gtt-sst-api
-  - name: flp
+      - name: lbn-gtt-iot-app-uaa
+      - name: lbn-gtt-iot-app-runtime
+      - name: lbn-gtt-iot-portal-resources
+      - name: lbn-iot-gtt-sst-api
+  - name: flp-iot
     type: com.sap.portal.content
     path: flp
     parameters:
@@ -37,24 +37,24 @@ modules:
       memory: 128M
       buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.6.39/nodejs-buildpack-cflinuxfs3-v1.6.39.zip
     requires:
-      - name: lbn-gtt-sample-app-uaa
-      - name: lbn-gtt-sample-portal-resources
-      - name: gtt-ui-sample-track-shipments-app-host
+      - name: lbn-gtt-iot-app-uaa
+      - name: lbn-gtt-iot-portal-resources
+      - name: gtt-ui-iot-track-shipments-app-host
 resources:
-  - name: lbn-gtt-sample-app-runtime
+  - name: lbn-gtt-iot-app-runtime
     parameters:
       service-plan: app-runtime
       service: html5-apps-repo
     type: org.cloudfoundry.managed-service
-  - name: lbn-gtt-sample-portal-resources
+  - name: lbn-gtt-iot-portal-resources
     parameters:
       service-plan: standard
       service: portal
     type: org.cloudfoundry.managed-service
-  - name: lbn-gtt-sst-api
+  - name: lbn-iot-gtt-sst-api
     properties:
-      url: https://gtt-sample-track-shipments-service-co-innovation.${default-domain}
-  - name: lbn-gtt-sample-app-uaa
+      url: https://gtt-iot-track-shipments-service-gtt.${default-domain}
+  - name: lbn-gtt-iot-app-uaa
     type: com.sap.xs.uaa-application
     parameters:
       config:
@@ -104,9 +104,9 @@ resources:
             scope-references:
               - "$XSAPPNAME.sst.w"
               - uaa.user
-  - name: gtt-ui-sample-track-shipments-app-host
+  - name: gtt-ui-iot-track-shipments-app-host
     type: org.cloudfoundry.existing-service
-  - name: lbn-gtt-sample-destination
+  - name: lbn-gtt-iot-destination
     type: org.cloudfoundry.managed-service
     parameters:
       service-plan: lite

@@ -1,7 +1,7 @@
 {
-  "name": "gtt-v2-ui-sample-track-shipments",
+  "name": "gtt-v2-ui-iot-track-shipments",
   "version": "2.0.0",
-  "description": "GTT Sample Track Shipments UI",
+  "description": "GTT IOT Track Shipments UI",
   "license": "ISC",
   "author": "SAP SE",
   "repository": {
