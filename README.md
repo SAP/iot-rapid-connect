@@ -17,7 +17,7 @@ The [Connected Product solution](https://news.sap.com/sea/2022/07/ntt-data-and-s
 ## Requirements and Setup
 
 *In order to use the adapter, the following are a pre-requisites*
- - [SAP Business Network for Logistics-Global TrackShipments & Trace](https://www.sap.com/products/business-network/global-track-and-trace.html)
+ - [SAP Business Network for Logistics-Global Track & Trace](https://www.sap.com/products/business-network/global-track-and-trace.html)
     - [How to get a free Data Contributor tenant](https://github.com/SAP-samples/logistics-business-network-integration)
  - [SAP Business Technology Platform](https://www.sap.com/products/technology-platform.html)
  - Any IOT platform

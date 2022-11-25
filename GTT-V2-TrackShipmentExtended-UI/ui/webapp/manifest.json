@@ -1,7 +1,7 @@
 {
   "_version": "1.12.0",
   "sap.app": {
-    "id": "com.sap.gtt.app.sample.sst",
+    "id": "com.sap.gtt.app.iot.sst",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {

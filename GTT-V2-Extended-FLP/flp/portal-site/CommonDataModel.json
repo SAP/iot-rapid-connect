@@ -17,7 +17,7 @@
         "payload": {
           "viz": [
             {
-              "id": "com.sap.gtt.app.sample.sst",
+              "id": "com.sap.gtt.app.iot.sst",
               "vizId": "Shipment-track"
             }
           ]
@@ -36,8 +36,8 @@
         "payload": {
           "viz": [
             {
-              "id": "com.sap.gtt.app.sample.sst",
-              "appId": "com.sap.gtt.app.sample.sst",
+              "id": "com.sap.gtt.app.iot.sst",
+              "appId": "com.sap.gtt.app.iot.sst",
               "vizId": "Shipment-track"
             }
           ]
