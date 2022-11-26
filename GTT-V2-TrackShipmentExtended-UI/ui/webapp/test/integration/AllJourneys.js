@@ -1,11 +1,11 @@
 sap.ui.define(
   [
-    "com/sap/gtt/app/sample/sst/localService/mockserver",
+    "com/sap/gtt/app/iot/sst/localService/mockserver",
     "sap/ui/test/Opa5",
-    "com/sap/gtt/app/sample/sst/test/integration/ShipmentListJourney",
-    "com/sap/gtt/app/sample/sst/test/integration/ShipmentJourney",
-    "com/sap/gtt/app/sample/sst/test/integration/NavigationJourney",
-    "com/sap/gtt/app/sample/sst/test/integration/NotFoundJourney",
+    "com/sap/gtt/app/iot/sst/test/integration/ShipmentListJourney",
+    "com/sap/gtt/app/iot/sst/test/integration/ShipmentJourney",
+    "com/sap/gtt/app/iot/sst/test/integration/NavigationJourney",
+    "com/sap/gtt/app/iot/sst/test/integration/NotFoundJourney",
   ],
   function (
     mockserver,

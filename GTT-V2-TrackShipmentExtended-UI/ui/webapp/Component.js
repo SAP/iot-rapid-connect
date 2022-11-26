@@ -27,7 +27,7 @@ sap.ui.define(
   ) {
     "use strict";
 
-    return UIComponent.extend("com.sap.gtt.app.sample.sst.Component", {
+    return UIComponent.extend("com.sap.gtt.app.iot.sst.Component", {
       metadata: {
         manifest: "json",
         handleValidation: true,

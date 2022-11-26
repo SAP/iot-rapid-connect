@@ -161,7 +161,7 @@
 					class="sstHeaderContentPropertyText"
 					text="{
 						path: 'view>/nextStop/estimatedArrivalTime',
-						type: 'com.sap.gtt.app.sample.sst.model.type.ISODateTime'
+						type: 'com.sap.gtt.app.iot.sst.model.type.ISODateTime'
 					}" />
 			</HBox>
 
@@ -215,7 +215,7 @@
 					class="sstHeaderContentPropertyText"
 					text="{
 						path: 'view>/deliveryInformation/actualBusinessTimestamp',
-						type: 'com.sap.gtt.app.sample.sst.model.type.ISODateTime'
+						type: 'com.sap.gtt.app.iot.sst.model.type.ISODateTime'
 					}" />
 			</HBox>
 		</VBox>

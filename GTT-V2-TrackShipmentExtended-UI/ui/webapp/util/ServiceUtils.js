@@ -7,7 +7,7 @@ sap.ui.define([
 ) {
   "use strict";
 
-  var appModulePath = "com/sap/gtt/app/sample/sst/";
+  var appModulePath = "com/sap/gtt/app/iot/sst/";
   var manifestModel = new JSONModel();
   var ServiceUtils = {};
 

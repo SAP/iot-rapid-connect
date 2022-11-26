@@ -5,10 +5,10 @@ sap.ui.getCore().attachInit(function () {
 
   sap.ui.require(
     [
-      "com/sap/gtt/app/sample/sst/localService/mockserver",
-      "com/sap/gtt/app/sample/sst/test/integration/ShipmentListJourney",
-      "com/sap/gtt/app/sample/sst/test/integration/NavigationJourney",
-      "com/sap/gtt/app/sample/sst/test/integration/NotFoundJourney",
+      "com/sap/gtt/app/iot/sst/localService/mockserver",
+      "com/sap/gtt/app/iot/sst/test/integration/ShipmentListJourney",
+      "com/sap/gtt/app/iot/sst/test/integration/NavigationJourney",
+      "com/sap/gtt/app/iot/sst/test/integration/NotFoundJourney",
     ],
     function (
       mockserver

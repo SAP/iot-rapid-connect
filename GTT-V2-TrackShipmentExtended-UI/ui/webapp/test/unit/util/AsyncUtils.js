@@ -1,4 +1,4 @@
-sap.ui.define(["com/sap/gtt/app/sample/sst/util/AsyncUtils"], function (AsyncUtils) {
+sap.ui.define(["com/sap/gtt/app/iot/sst/util/AsyncUtils"], function (AsyncUtils) {
   "use strict";
 
   var sandbox = sinon.sandbox.create();

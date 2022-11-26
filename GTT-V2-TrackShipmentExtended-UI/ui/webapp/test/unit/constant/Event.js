@@ -1,7 +1,7 @@
 sap.ui.define([
   "sap/ui/core/IconColor",
   "sap/base/strings/formatMessage",
-  "com/sap/gtt/app/sample/sst/constant/Event",
+  "com/sap/gtt/app/iot/sst/constant/Event",
 ], function (IconColor, formatMessage, Event) {
   "use strict";
 

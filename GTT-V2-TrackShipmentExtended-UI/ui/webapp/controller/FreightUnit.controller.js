@@ -7,7 +7,7 @@ sap.ui.define(
   ) {
     "use strict";
 
-    return ShipmentController.extend("com.sap.gtt.app.sample.sst.controller.FreightUnit", {
+    return ShipmentController.extend("com.sap.gtt.app.iot.sst.controller.FreightUnit", {
       routeName: "freightUnit",
 
       onBeforeRendering: function () {

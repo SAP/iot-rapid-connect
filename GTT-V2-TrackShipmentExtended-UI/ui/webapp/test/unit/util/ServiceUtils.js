@@ -1,4 +1,4 @@
-sap.ui.define(["com/sap/gtt/app/sample/sst/util/ServiceUtils"], function (ServiceUtils) {
+sap.ui.define(["com/sap/gtt/app/iot/sst/util/ServiceUtils"], function (ServiceUtils) {
   "use strict";
 
   var sandbox = sinon.sandbox.create();
@@ -47,7 +47,7 @@ sap.ui.define(["com/sap/gtt/app/sample/sst/util/ServiceUtils"], function (Servic
     // Arrange
     var component = {};
     var manifestObject = {};
-    stub(manifestObject, "getComponentName").returns("com.sap.gtt.app.sample.sst");
+    stub(manifestObject, "getComponentName").returns("com.sap.gtt.app.iot.sst");
     stub(component, "getManifestObject").returns(manifestObject);
 
     // Act

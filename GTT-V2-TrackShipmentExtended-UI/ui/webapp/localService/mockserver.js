@@ -9,7 +9,7 @@ sap.ui.define(
     "use strict";
 
     var oMockServer;
-    var _sAppModulePath = "com/sap/gtt/app/sample/sst/";
+    var _sAppModulePath = "com/sap/gtt/app/iot/sst/";
 
     var oMockServerInterface = {
       /**

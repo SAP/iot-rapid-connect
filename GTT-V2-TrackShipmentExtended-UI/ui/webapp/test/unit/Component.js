@@ -1,6 +1,6 @@
 sap.ui.define([
-  "com/sap/gtt/app/sample/sst/Component",
-  "com/sap/gtt/app/sample/sst/controller/ErrorHandler",
+  "com/sap/gtt/app/iot/sst/Component",
+  "com/sap/gtt/app/iot/sst/controller/ErrorHandler",
 ], function (Component, ErrorHandler) {
   "use strict";
 
@@ -37,7 +37,7 @@ sap.ui.define([
     stub(Component.prototype, "getRootControl").returns(fakeRootControl);
 
     // Act
-    var COMPONENT_NAME = "com.sap.gtt.app.sample.sst";
+    var COMPONENT_NAME = "com.sap.gtt.app.iot.sst";
     var component = new Component();
     var componentName = component.getComponentName();
 

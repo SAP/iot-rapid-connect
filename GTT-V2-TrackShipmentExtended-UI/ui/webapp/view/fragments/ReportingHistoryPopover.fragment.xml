@@ -16,7 +16,7 @@
 					title="{i18n>actualAt}"
 					text="{
 						path: 'props>actualBusinessTimestamp',
-						type: 'com.sap.gtt.app.sample.sst.model.type.ISODateTime'
+						type: 'com.sap.gtt.app.iot.sst.model.type.ISODateTime'
 					}"
 					active="false" />
 
@@ -34,7 +34,7 @@
 					title="{i18n>reportedAt}"
 					text="{
 						path: 'props>actualTechnicalTimestamp',
-						type: 'com.sap.gtt.app.sample.sst.model.type.ISODateTime'
+						type: 'com.sap.gtt.app.iot.sst.model.type.ISODateTime'
 					}"
 					active="false" />
 			</CustomListItem>

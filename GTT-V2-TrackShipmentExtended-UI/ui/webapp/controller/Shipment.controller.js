@@ -14,7 +14,7 @@ sap.ui.define(
       IS_FREIGHT_UNIT: "isFreightUnit",
     });
 
-    return BaseDetailController.extend("com.sap.gtt.app.sample.sst.controller.Shipment", {
+    return BaseDetailController.extend("com.sap.gtt.app.iot.sst.controller.Shipment", {
       routeName: "shipment",
 
       initControls: function () {

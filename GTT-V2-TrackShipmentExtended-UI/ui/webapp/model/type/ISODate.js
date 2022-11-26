@@ -18,7 +18,7 @@ sap.ui.define(["sap/ui/model/type/Date"], function (DateType) {
    * For a list of all available options, see {@link sap.ui.core.format.DateFormat.getDateTimeInstance DateFormat}.
    * @param {object} [oConstraints] Value constraints. Supports the same kind of constraints as its base type Date, but note the different format options (Date vs. DateTime).
    */
-  return DateType.extend("com.sap.gtt.app.sample.sst.model.type.ISODate", {
+  return DateType.extend("com.sap.gtt.app.iot.sst.model.type.ISODate", {
     constructor: function (oFormatOptions, oConstraints) {
       var formatOptions = oFormatOptions || {};
       formatOptions.source = {

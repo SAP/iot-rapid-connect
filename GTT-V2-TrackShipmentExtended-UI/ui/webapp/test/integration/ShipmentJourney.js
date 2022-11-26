@@ -19,7 +19,7 @@ sap.ui.define(
       // Arrangements
       Given.iStartMyUIComponent({
         componentConfig: {
-          name: "com/sap/gtt/app/sample/sst",
+          name: "com/sap/gtt/app/iot/sst",
           async: true,
         },
         hash: "#/Shipment(guid'8781028f-e85a-584f-9e95-b878cbf6e92b')",
@@ -38,7 +38,7 @@ sap.ui.define(
       // Arrangements
       Given.iStartMyUIComponent({
         componentConfig: {
-          name: "com/sap/gtt/app/sample/sst",
+          name: "com/sap/gtt/app/iot/sst",
           async: true,
         },
         hash: "#/Shipment(guid'8781028f-e85a-584f-9e95-b878cbf6e92d')",
@@ -61,7 +61,7 @@ sap.ui.define(
       // Arrangements
       Given.iStartMyUIComponent({
         componentConfig: {
-          name: "com/sap/gtt/app/sample/sst",
+          name: "com/sap/gtt/app/iot/sst",
           async: true,
         },
         hash: "#/Shipment(guid'8781028f-e85a-584f-9e95-b878cbf6e92b')",

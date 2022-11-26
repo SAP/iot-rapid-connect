@@ -28,7 +28,7 @@ sap.ui.define(
       IS_FREIGHT_UNIT: "isFreightUnit",
     });
 
-    return BaseController.extend("com.sap.gtt.app.sample.sst.controller.TrackingTimeline", {
+    return BaseController.extend("com.sap.gtt.app.iot.sst.controller.TrackingTimeline", {
 
       CHANNEL: "tracking-timeline",
 
@@ -197,7 +197,7 @@ sap.ui.define(
         if (!this.reportEventsActionSheet) {
           Fragment.load({
             id: this.createId("reportEventsActionSheet"),
-            name: "com.sap.gtt.app.sample.sst.view.fragments.ReportEventsActionSheet",
+            name: "com.sap.gtt.app.iot.sst.view.fragments.ReportEventsActionSheet",
             controller: this,
           }).then(function (actionSheet) {
             this.reportEventsActionSheet = actionSheet;
@@ -276,7 +276,7 @@ sap.ui.define(
         if (!this.deliveryItemsPopover) {
           Fragment.load({
             id: this.createId("deliveryItemsPopover"),
-            name: "com.sap.gtt.app.sample.sst.view.fragments.DeliveryItemsPopover",
+            name: "com.sap.gtt.app.iot.sst.view.fragments.DeliveryItemsPopover",
             controller: this,
           }).then(function (popover) {
             this.deliveryItemsPopover = popover;
@@ -308,7 +308,7 @@ sap.ui.define(
         if (!this.reportingHistoryPopover) {
           Fragment.load({
             id: this.createId("reportingHistoryPopover"),
-            name: "com.sap.gtt.app.sample.sst.view.fragments.ReportingHistoryPopover",
+            name: "com.sap.gtt.app.iot.sst.view.fragments.ReportingHistoryPopover",
             controller: this,
           }).then(function (popover) {
             this.reportingHistoryPopover = popover;

@@ -341,7 +341,7 @@ sap.ui.define(
     delegateComponentMethods(controllerClassInfo);
 
     return Controller.extend(
-      "com.sap.gtt.app.sample.sst.controller.BaseController",
+      "com.sap.gtt.app.iot.sst.controller.BaseController",
       controllerClassInfo
     );
   }

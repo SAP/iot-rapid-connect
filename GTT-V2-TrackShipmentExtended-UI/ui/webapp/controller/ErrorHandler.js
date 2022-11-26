@@ -17,7 +17,7 @@ sap.ui.define(
      * @public
      * @extends sap.ui.base.Object
      */
-    var ErrorHandler = UI5Object.extend("com.sap.gtt.app.sample.sst.ErrorHandler", {
+    var ErrorHandler = UI5Object.extend("com.sap.gtt.app.iot.sst.ErrorHandler", {
       constructor: function (component) {
         UI5Object.apply(this, arguments);
 

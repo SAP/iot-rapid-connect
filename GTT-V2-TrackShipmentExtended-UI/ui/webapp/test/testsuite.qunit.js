@@ -4,7 +4,7 @@ sap.ui.define(function () {
   return {
     defaults: {
       coverage: {
-        only: ["com/sap/gtt/app/sample/sst"],
+        only: ["com/sap/gtt/app/iot/sst"],
       },
       ui5: {
         libs: [
@@ -20,7 +20,7 @@ sap.ui.define(function () {
       },
       loader: {
         paths: {
-          "com/sap/gtt/app/sample/sst": "/base/webapp",
+          "com/sap/gtt/app/iot/sst": "/base/webapp",
           "com/sap/gtt/sample/ui/lib": "/base/webapp/uilib",
         },
       },
