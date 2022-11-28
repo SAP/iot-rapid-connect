@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.sap.gtt.app.sample.sst.controller.Shipment"
+<mvc:View controllerName="com.sap.gtt.app.iot.sst.controller.Shipment"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.uxap"
 	xmlns:m="sap.m"
@@ -66,7 +66,7 @@
 
 		<headerContent>
 			<core:Fragment id="headerContentFragment"
-				fragmentName="com.sap.gtt.app.sample.sst.view.fragments.ObjectPageHeaderContent"
+				fragmentName="com.sap.gtt.app.iot.sst.view.fragments.ObjectPageHeaderContent"
 				type="XML" />
 		</headerContent>
 
@@ -78,7 +78,21 @@
 					<ObjectPageSubSection>
 						<blocks>
 							<core:Fragment id="generalInfoFragment"
-								fragmentName="com.sap.gtt.app.sample.sst.view.fragments.ShipmentGeneralInfo"
+								fragmentName="com.sap.gtt.app.iot.sst.view.fragments.ShipmentGeneralInfo"
+								type="XML" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection id="iotInformationSection"
+				title="{i18n>IoTInformationView}"
+				titleUppercase="false">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment id="iotInfoFragment"
+								fragmentName="com.sap.gtt.app.iot.sst.view.fragments.ShipmentIoTInfo"
 								type="XML" />
 						</blocks>
 					</ObjectPageSubSection>
@@ -92,7 +106,7 @@
 					<ObjectPageSubSection>
 						<blocks>
 							<core:Fragment id="referenceDocumentsFragment"
-								fragmentName="com.sap.gtt.app.sample.sst.view.fragments.ReferenceDocuments"
+								fragmentName="com.sap.gtt.app.iot.sst.view.fragments.ReferenceDocuments"
 								type="XML" />
 						</blocks>
 					</ObjectPageSubSection>
@@ -105,7 +119,7 @@
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<mvc:XMLView id="trackingTimelineView" viewName="com.sap.gtt.app.sample.sst.view.TrackingTimeline"/>
+							<mvc:XMLView id="trackingTimelineView" viewName="com.sap.gtt.app.iot.sst.view.TrackingTimeline"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>
@@ -114,7 +128,7 @@
 			<core:ExtensionPoint name="sectionAfterTrackingTimeline"></core:ExtensionPoint>
 		</sections>
 		<dependents>
-			<core:Fragment fragmentName="com.sap.gtt.app.sample.sst.view.fragments.LocationQuickView" type="XML"/>
+			<core:Fragment fragmentName="com.sap.gtt.app.iot.sst.view.fragments.LocationQuickView" type="XML"/>
 		</dependents>
 	</ObjectPageLayout>
 </mvc:View>

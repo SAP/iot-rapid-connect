@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="com.sap.gtt.app.sample.sst.controller.ShipmentList"
+	controllerName="com.sap.gtt.app.iot.sst.controller.ShipmentList"
 	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
@@ -38,7 +38,7 @@
 						afterVariantLoad=".onAfterVariantLoad"
 						showClearButton="false">
 						<smartFilterBar:controlConfiguration>
-							<core:Fragment id="customFilterFragment" fragmentName="com.sap.gtt.app.sample.sst.view.fragments.CustomFilters" type="XML"/>
+							<core:Fragment id="customFilterFragment" fragmentName="com.sap.gtt.app.iot.sst.view.fragments.CustomFilters" type="XML"/>
 						</smartFilterBar:controlConfiguration>
 					</smartFilterBar:SmartFilterBar>
 				</f:content>
@@ -213,7 +213,7 @@
 			</smartTable:SmartTable>
 		</f:content>
 		<f:dependents>
-			<core:Fragment fragmentName="com.sap.gtt.app.sample.sst.view.fragments.LocationQuickView" type="XML"/>
+			<core:Fragment fragmentName="com.sap.gtt.app.iot.sst.view.fragments.LocationQuickView" type="XML"/>
 		</f:dependents>
 	</f:DynamicPage>
 </mvc:View>

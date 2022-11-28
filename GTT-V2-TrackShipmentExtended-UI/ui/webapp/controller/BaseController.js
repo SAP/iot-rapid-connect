@@ -253,9 +253,16 @@ sap.ui.define(
         var bindingContext = this.getView().getBindingContext();
         var id = bindingContext.getProperty("id");
         var path = isFreightUnit ? "/freightUnits/" : "/shipments/";
+        if (isFreightUnit === "/isIoTInformation") {
+          path = "/api/v1/iot/shipment/0080045552/";
+          jsonService = ServiceUtils.getDataSource("restServiceIoT");
+        }
         var url = ServiceUtils.getUrl(jsonService.uri.concat(path).concat(name));
         var params = {};
-        if (isFreightUnit) {
+        if (isFreightUnit === "/isIoTInformation") {
+          params = {};
+        }
+        else if (isFreightUnit) {
           params.freightUnitId = id;
         } else {
           params.shipmentId = id;
@@ -341,7 +348,7 @@ sap.ui.define(
     delegateComponentMethods(controllerClassInfo);
 
     return Controller.extend(
-      "com.sap.gtt.app.sample.sst.controller.BaseController",
+      "com.sap.gtt.app.iot.sst.controller.BaseController",
       controllerClassInfo
     );
   }

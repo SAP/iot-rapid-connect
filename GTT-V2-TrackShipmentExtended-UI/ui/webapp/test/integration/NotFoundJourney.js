@@ -14,7 +14,7 @@ sap.ui.define(
       // Arrangements
       Given.iStartMyUIComponent({
         componentConfig: {
-          name: "com/sap/gtt/app/sample/sst",
+          name: "com/sap/gtt/app/iot/sst",
           async: true,
         },
         hash: "#/abc",

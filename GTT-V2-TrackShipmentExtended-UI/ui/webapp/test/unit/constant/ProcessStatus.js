@@ -1,7 +1,7 @@
 sap.ui.define([
   "sap/base/strings/formatMessage",
   "sap/ui/core/ValueState",
-  "com/sap/gtt/app/sample/sst/constant/ProcessStatus",
+  "com/sap/gtt/app/iot/sst/constant/ProcessStatus",
 ], function (formatMessage, ValueState, ProcessStatus) {
   "use strict";
 

@@ -13,7 +13,7 @@ sap.ui.define(
     };
 
     return BaseController.extend(
-      "com.sap.gtt.app.sample.sst.controller.NotFound",
+      "com.sap.gtt.app.iot.sst.controller.NotFound",
       controllerClassInfo
     );
   }

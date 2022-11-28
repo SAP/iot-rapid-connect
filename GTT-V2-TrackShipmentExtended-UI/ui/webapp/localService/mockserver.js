@@ -9,7 +9,7 @@ sap.ui.define(
     "use strict";
 
     var oMockServer;
-    var _sAppModulePath = "com/sap/gtt/app/sample/sst/";
+    var _sAppModulePath = "com/sap/gtt/app/iot/sst/";
 
     var oMockServerInterface = {
       /**
@@ -103,6 +103,28 @@ sap.ui.define(
             // set requests and start the server
             oMockServer.setRequests(aRequests);
             oMockServer.start();
+
+            // rest service
+            var oJsonDataSource1 = oManifestModel.getProperty("/sap.app/dataSources/restServiceIoT");
+            var restMockServerUrl1 = sap.ui.require.toUrl(_sAppModulePath + oJsonDataSource1.uri);
+            var restMockServer3 = new MockServer({
+              rootUri: restMockServerUrl1,
+              requests: [
+                {
+                  method: "GET",
+                  path: /\/customFields(.*)/,
+                  response: function (oXhr) {
+                    var mockdataFileUrl = sap.ui.require.toUrl(
+                      _sAppModulePath + oJsonDataSource1.settings.localUri + "IoTInformation.json"
+                    );
+                    oXhr.respondFile(200, {}, mockdataFileUrl);
+                    return true;
+                  },
+                },
+              ],
+            });
+
+            restMockServer3.start();
 
             // rest service
             var oJsonDataSource = oManifestModel.getProperty("/sap.app/dataSources/restService");

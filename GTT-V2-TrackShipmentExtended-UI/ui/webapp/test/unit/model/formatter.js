@@ -1,10 +1,10 @@
 sap.ui.define([
-  "com/sap/gtt/app/sample/sst/model/formatter",
+  "com/sap/gtt/app/iot/sst/model/formatter",
   "sap/base/strings/formatMessage",
   "sap/m/ValueColor",
   "sap/ui/core/ValueState",
-  "com/sap/gtt/app/sample/sst/model/type/ISODate",
-  "com/sap/gtt/app/sample/sst/model/type/ISODateTime",
+  "com/sap/gtt/app/iot/sst/model/type/ISODate",
+  "com/sap/gtt/app/iot/sst/model/type/ISODateTime",
 ], function (formatter, formatMessage, ValueColor, ValueState, ISODate, ISODateTime) {
   "use strict";
 

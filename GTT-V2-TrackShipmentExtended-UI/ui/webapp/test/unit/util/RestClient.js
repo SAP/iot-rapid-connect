@@ -1,4 +1,4 @@
-sap.ui.define(["com/sap/gtt/app/sample/sst/util/RestClient"], function (RestClient) {
+sap.ui.define(["com/sap/gtt/app/iot/sst/util/RestClient"], function (RestClient) {
   "use strict";
 
   var sandbox = sinon.sandbox.create();
@@ -19,7 +19,7 @@ sap.ui.define(["com/sap/gtt/app/sample/sst/util/RestClient"], function (RestClie
 
   QUnit.module("util/RestClient", {
     beforeEach: function () {
-      this.componentName = "com.sap.gtt.app.sample.sst";
+      this.componentName = "com.sap.gtt.app.iot.sst";
     },
     afterEach: function () {
       sandbox.restore();

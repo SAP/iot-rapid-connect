@@ -51,7 +51,7 @@ sap.ui.define(
     var LOCAL_TIMEZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
     var CODE_LIST_FIELD_SUFFIX = "_code";
 
-    return ManagedObject.extend("com.sap.gtt.app.sample.sst.controller.ReportEventsDialog", {
+    return ManagedObject.extend("com.sap.gtt.app.iot.sst.controller.ReportEventsDialog", {
 
       state: {
         eventType: "",
@@ -100,7 +100,7 @@ sap.ui.define(
         if (!this._dialog) {
           Fragment.load({
             id: this._id,
-            name: "com.sap.gtt.app.sample.sst.view.fragments.ReportEventsDialog",
+            name: "com.sap.gtt.app.iot.sst.view.fragments.ReportEventsDialog",
             controller: this,
           }).then(function (dialog) {
             this._dialog = dialog;

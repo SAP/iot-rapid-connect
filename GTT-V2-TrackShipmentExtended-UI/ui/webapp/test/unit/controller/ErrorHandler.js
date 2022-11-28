@@ -1,5 +1,5 @@
 sap.ui.define([
-  "com/sap/gtt/app/sample/sst/controller/ErrorHandler",
+  "com/sap/gtt/app/iot/sst/controller/ErrorHandler",
   "sap/m/MessageBox",
   "sap/ui/base/Event",
 ], function (ErrorHandler, MessageBox, Event) {
@@ -23,7 +23,7 @@ sap.ui.define([
     return stubbed;
   }
 
-  QUnit.module("com.sap.gtt.app.sample.sst.controller.ErrorHandler", {
+  QUnit.module("com.sap.gtt.app.iot.sst.controller.ErrorHandler", {
     beforeEach: function () {
       var fakeModel = {};
       stub(fakeModel, "attachMetadataFailed");

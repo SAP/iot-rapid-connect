@@ -24,7 +24,7 @@ sap.ui.define(
       CUSTOM_FILTERS: "customFilters",
     });
 
-    return BaseController.extend("com.sap.gtt.app.sample.sst.controller.ShipmentList", {
+    return BaseController.extend("com.sap.gtt.app.iot.sst.controller.ShipmentList", {
       routeName: "shipmentList",
 
       initModel: function () {

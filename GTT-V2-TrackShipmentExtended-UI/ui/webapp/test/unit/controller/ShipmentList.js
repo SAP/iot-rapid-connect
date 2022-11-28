@@ -1,5 +1,5 @@
 sap.ui.define([
-  "com/sap/gtt/app/sample/sst/controller/ShipmentList.controller",
+  "com/sap/gtt/app/iot/sst/controller/ShipmentList.controller",
   "sap/ui/model/Filter",
   "sap/ui/model/FilterOperator",
 ], function (ShipmentList, Filter, FilterOperator) {

@@ -20,7 +20,7 @@ sap.ui.define(
       // Arrangements
       Given.iStartMyUIComponent({
         componentConfig: {
-          name: "com/sap/gtt/app/sample/sst",
+          name: "com/sap/gtt/app/iot/sst",
           async: true,
         },
         timeout: 60,
@@ -41,7 +41,7 @@ sap.ui.define(
       // Arrangements
       Given.iStartMyUIComponent({
         componentConfig: {
-          name: "com/sap/gtt/app/sample/sst",
+          name: "com/sap/gtt/app/iot/sst",
           async: true,
         },
         hash: "#/FreightUnit(guid'2337b132-c573-5449-b41e-9325e6b18e00')/?itemNo=10",

@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="com.sap.gtt.app.sample.sst.controller.NotFound"
+	controllerName="com.sap.gtt.app.iot.sst.controller.NotFound"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m">
 	<MessagePage

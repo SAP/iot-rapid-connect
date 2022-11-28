@@ -75,8 +75,8 @@ sap.ui.define(["sap/base/util/ObjectPath", "sap/ushell/services/Container"], fun
                 },
                 resolutionResult: {
                   applicationType: "SAPUI5",
-                  additionalInformation: "SAPUI5.Component=com.sap.gtt.app.sample.sst",
-                  url: sap.ui.require.toUrl("com/sap/gtt/app/sample/sst"),
+                  additionalInformation: "SAPUI5.Component=com.sap.gtt.app.iot.sst",
+                  url: sap.ui.require.toUrl("com/sap/gtt/app/iot/sst"),
                 },
               },
               "SalesOrder-track": {
@@ -89,7 +89,7 @@ sap.ui.define(["sap/base/util/ObjectPath", "sap/ushell/services/Container"], fun
                 },
                 resolutionResult: {
                   applicationType: "SAPUI5",
-                  additionalInformation: "SAPUI5.Component=com.sap.gtt.app.sample.sof",
+                  additionalInformation: "SAPUI5.Component=com.sap.gtt.app.iot.sof",
                   url: sap.ui.require.toUrl("com/sap/gtt/app/sample/sof"),
                 },
               },

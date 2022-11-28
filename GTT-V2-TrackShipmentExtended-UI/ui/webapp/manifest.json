@@ -42,6 +42,14 @@
         "uri": "annotations/annotations.xml",
         "type": "ODataAnnotation"
       },
+      "restServiceIoT": {
+        "uri": "trackshipments/iot",
+        "type": "JSON",
+        "settings": {
+          "localUri": "localService/mockdata/",
+          "maxAge": 30
+        }
+      },
       "restService": {
         "uri": "trackshipments/sap/logistics/gtt/sample/sst/rest/v1",
         "type": "JSON",
@@ -132,7 +140,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.sap.gtt.app.sample.sst.i18n.i18n"
+          "bundleName": "com.sap.gtt.app.iot.sst.i18n.i18n"
         }
       },
       "@i18n": {
@@ -141,7 +149,7 @@
         "settings": {
           "enhanceWith": [
             {
-              "bundleName": "com.sap.gtt.app.sample.sst.i18n.i18n"
+              "bundleName": "com.sap.gtt.app.iot.sst.i18n.i18n"
             }
           ]
         }
@@ -162,7 +170,7 @@
       }
     },
     "rootView": {
-      "viewName": "com.sap.gtt.app.sample.sst.view.App",
+      "viewName": "com.sap.gtt.app.iot.sst.view.App",
       "type": "XML",
       "id": "app",
       "async": true
@@ -171,7 +179,7 @@
     "config": {
       "css": [
         {
-          "id": "com.sap.gtt.app.sample.sst",
+          "id": "com.sap.gtt.app.iot.sst",
           "uri": "css/sst.less"
         }
       ]
@@ -180,7 +188,7 @@
       "config": {
         "routerClass": "sap.m.routing.Router",
         "viewType": "XML",
-        "viewPath": "com.sap.gtt.app.sample.sst.view",
+        "viewPath": "com.sap.gtt.app.iot.sst.view",
         "controlId": "app",
         "controlAggregation": "pages",
         "bypassed": {

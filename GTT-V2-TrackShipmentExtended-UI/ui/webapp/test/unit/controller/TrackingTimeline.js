@@ -1,5 +1,5 @@
 sap.ui.define([
-  "com/sap/gtt/app/sample/sst/controller/TrackingTimeline.controller",
+  "com/sap/gtt/app/iot/sst/controller/TrackingTimeline.controller",
   "sap/ui/core/Fragment",
 ], function (
   TrackingTimeline,

@@ -1,4 +1,4 @@
-sap.ui.define(["com/sap/gtt/app/sample/sst/util/AnnotationUtil"], function (AnnotationUtil) {
+sap.ui.define(["com/sap/gtt/app/iot/sst/util/AnnotationUtil"], function (AnnotationUtil) {
   "use strict";
 
   var sandbox = sinon.sandbox.create();

@@ -24,11 +24,15 @@ modules:
         - name: lbn-iot-gtt-sst-api
           url: "~{lbn-iot-gtt-sst-api/url}"
           forwardAuthToken: true
+        - name: lbn-iot-gtt-sst-extend-api
+          url: "~{lbn-iot-gtt-sst-extend-api/url}"
+          forwardAuthToken: true
     requires:
       - name: lbn-gtt-iot-app-uaa
       - name: lbn-gtt-iot-app-runtime
       - name: lbn-gtt-iot-portal-resources
       - name: lbn-iot-gtt-sst-api
+      - name: lbn-iot-gtt-sst-extend-api
   - name: flp-iot
     type: com.sap.portal.content
     path: flp
@@ -54,6 +58,9 @@ resources:
   - name: lbn-iot-gtt-sst-api
     properties:
       url: https://gtt-iot-track-shipments-service-gtt.${default-domain}
+  - name: lbn-iot-gtt-sst-extend-api
+    properties:
+      url: https://track-shipment-extended.${default-domain}
   - name: lbn-gtt-iot-app-uaa
     type: com.sap.xs.uaa-application
     parameters:

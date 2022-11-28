@@ -3,9 +3,9 @@ sap.ui.define([
 ], function (Control) {
   "use strict";
 
-  return Control.extend("com.sap.gtt.app.sample.sst.controls.CurrentLocation", {
+  return Control.extend("com.sap.gtt.app.iot.sst.controls.CurrentLocation", {
 
-    library : "com.sap.gtt.app.sample.sst.controls",
+    library : "com.sap.gtt.app.iot.sst.controls",
     metadata: {
       properties: {
         color: {

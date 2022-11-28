@@ -4,7 +4,7 @@
 	xmlns:vbm="sap.ui.vbm"
 	xmlns:vk="sap.ui.vk"
 	xmlns:core="sap.ui.core"
-	xmlns:controls="com.sap.gtt.app.sample.sst.controls">
+	xmlns:controls="com.sap.gtt.app.iot.sst.controls">
 	<VBox height="100%" busy="{= !${map>/isStopsRoutesLoaded} }">
 		<items>
 			<MessageStrip
@@ -80,7 +80,7 @@
 												type="Hidden"
 												labelText="{i18n>eta}: {
 													path: 'map>estimatedArrival/estimatedArrivalTime',
-													type: 'com.sap.gtt.app.sample.sst.model.type.ISODateTime'
+													type: 'com.sap.gtt.app.iot.sst.model.type.ISODateTime'
 												}"
 												labelType="{
 													path: 'map>estimatedArrival/eventStatusCode',

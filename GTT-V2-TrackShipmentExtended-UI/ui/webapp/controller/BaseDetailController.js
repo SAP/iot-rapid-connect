@@ -189,7 +189,7 @@ sap.ui.define(
     };
 
     return BaseController.extend(
-      "com.sap.gtt.app.sample.sst.controller.BaseDetailController",
+      "com.sap.gtt.app.iot.sst.controller.BaseDetailController",
       controllerClassInfo
     );
   }
