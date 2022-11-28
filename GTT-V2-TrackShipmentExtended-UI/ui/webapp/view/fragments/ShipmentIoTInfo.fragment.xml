@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<smartForm:SmartForm id="shipmentGeneralInfoSmartForm"
+		editTogglable="false">
+		<smartForm:layout>
+			<smartForm:Layout labelSpanS="12"
+				labelSpanM="12"
+				labelSpanL="12"
+				labelSpanXL="12"
+				columnsM="2"
+				columnsL="3" />
+		</smartForm:layout>
+
+		<smartForm:Group>
+			<smartForm:GroupElement
+     		label="{i18n>iotDeviceId}">
+				<Text text="{view>/iotInformation/iot_device_identifier}" />
+			</smartForm:GroupElement>
+      <smartForm:GroupElement
+     		label="{i18n>iotCustomerCode}">
+				<Text text="{view>/iotInformation/customer_code}" />
+			</smartForm:GroupElement>
+      <smartForm:GroupElement
+     		label="{i18n>iotCustomerAddress}">
+				<Text text="{view>/iotInformation/customer_address}" />
+			</smartForm:GroupElement>
+      <smartForm:GroupElement
+     		label="{i18n>iotCustomerProfile}">
+				<Text text="{view>/iotInformation/customer_profile}" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+
+		<smartForm:Group>
+			<smartForm:GroupElement
+        label="{i18n>iotGoods}">
+				<Text text="{view>/iotInformation/name_of_goods}" />
+			</smartForm:GroupElement>
+            <smartForm:GroupElement
+     		label="{i18n>iotValueOfGoods}">
+				<Text text="{view>/iotInformation/value_of_goods}" />
+			</smartForm:GroupElement>
+      <smartForm:GroupElement
+     		label="{i18n>iotShippingCompany}">
+				<Text text="{view>/iotInformation/shipping_company}" />
+			</smartForm:GroupElement>
+      <smartForm:GroupElement
+     		label="{i18n>iotCustomerID}">
+				<Text text="{view>/iotInformation/customer_id}" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+
+    <smartForm:Group>
+			<smartForm:GroupElement
+        label="{i18n>iotExportCompany}">
+				<Text text="{view>/iotInformation/export_company}" />
+			</smartForm:GroupElement>
+            <smartForm:GroupElement
+     		label="{i18n>iotImportCompany}">
+				<Text text="{view>/iotInformation/import_company}" />
+			</smartForm:GroupElement>
+      <smartForm:GroupElement
+     		label="{i18n>iotCurrency}">
+				<Text text="{view>/iotInformation/value_of_goods_currency}" />
+			</smartForm:GroupElement>
+		</smartForm:Group>
+
+	</smartForm:SmartForm>
+</core:FragmentDefinition>

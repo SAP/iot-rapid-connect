@@ -85,6 +85,20 @@
 				</subSections>
 			</ObjectPageSection>
 
+			<ObjectPageSection id="iotInformationSection"
+				title="{i18n>IoTInformationView}"
+				titleUppercase="false">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment id="iotInfoFragment"
+								fragmentName="com.sap.gtt.app.iot.sst.view.fragments.ShipmentIoTInfo"
+								type="XML" />
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
 			<ObjectPageSection id="referenceDocumentsSection"
 				title="{i18n>referenceDocumentsView}"
 				titleUppercase="false">

@@ -42,6 +42,14 @@
         "uri": "annotations/annotations.xml",
         "type": "ODataAnnotation"
       },
+      "restServiceIoT": {
+        "uri": "trackshipments/iot",
+        "type": "JSON",
+        "settings": {
+          "localUri": "localService/mockdata/",
+          "maxAge": 30
+        }
+      },
       "restService": {
         "uri": "trackshipments/sap/logistics/gtt/sample/sst/rest/v1",
         "type": "JSON",

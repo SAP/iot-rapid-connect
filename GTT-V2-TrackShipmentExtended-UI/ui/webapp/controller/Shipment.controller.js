@@ -14,6 +14,11 @@ sap.ui.define(
       IS_FREIGHT_UNIT: "isFreightUnit",
     });
 
+    var IOTCONSTANTS = Object.freeze({
+      SLASH: "/",
+      IS_IOT_UNIT: "isIoTInformation",
+    });
+
     return BaseDetailController.extend("com.sap.gtt.app.iot.sst.controller.Shipment", {
       routeName: "shipment",
 
@@ -23,6 +28,7 @@ sap.ui.define(
       },
 
       onBeforeRendering: function () {
+        this.getModel("view").setProperty(IOTCONSTANTS.SLASH + IOTCONSTANTS.IS_IOT_UNIT, "/isIoTInformation");
         this.getModel("view").setProperty(CONSTANTS.SLASH + CONSTANTS.IS_FREIGHT_UNIT, false);
       },
 
@@ -74,7 +80,7 @@ sap.ui.define(
           this.updateNextStop();
         }
         this.updateTrackedProcessEventsByStatus();
-
+        this.updateIotInformation();
         // refresh subsections
         this.refreshSubSection("trackingTimelineView");
 
@@ -115,6 +121,15 @@ sap.ui.define(
           ));
           model.setProperty("/eventsByStatusSet", this.groupEventsByStatus(data));
         }.bind(this));
+      },
+
+      updateIotInformation: function () {
+        var model = this.getModel("view");
+
+        var request = this.createGetRequestWithId("customFields", model.getProperty(IOTCONSTANTS.SLASH + IOTCONSTANTS.IS_IOT_UNIT));
+        request.then(function (data) {
+          model.setProperty("/iotInformation", data);
+        });
       },
 
       /**

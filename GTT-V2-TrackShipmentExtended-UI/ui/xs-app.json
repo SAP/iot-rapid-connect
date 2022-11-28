@@ -26,6 +26,13 @@
       "scope": ["$XSAPPNAME.sst.w"]
     },
     {
+      "source": "^/trackshipments/iot/(.*)$",
+      "target": "/$1",
+      "httpMethods": ["GET"],
+      "destination": "lbn-iot-gtt-sst-extend-api",
+      "scope": ["$XSAPPNAME.sst.w"]
+    },
+    {
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",

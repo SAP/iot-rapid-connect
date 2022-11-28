@@ -1,0 +1,15 @@
+{
+  "shipment_no": "0080045552",
+  "iot_device_identifier": "MO001",
+  "name_of_goods": "MOS",
+  "export_company": "Company A",
+  "customer_code": "1932",
+  "smart_shipment_id": "0243296",
+  "value_of_goods": "1000,000",
+  "import_company": "Company B",
+  "customer_address": "**City, **Street, NO.1",
+  "shipping_company": "MAERSK",
+  "value_of_goods_currency": "EUR",
+  "customer_profile": "C02",
+  "customer_id": "349034293"
+}

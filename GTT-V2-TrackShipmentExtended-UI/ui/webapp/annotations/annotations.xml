@@ -26,9 +26,9 @@
 		<edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
 	</edmx:Reference>
 	<edmx:DataServices>
-		<Schema Namespace="com.lbngttsamples.gtt.app.sof.sofService" Alias="com.lbngttsamples.gtt.app.sof.sofService"
+		<Schema Namespace="com.nttsapsolutionownertest2.gtt.app.sof.sofService" Alias="com.nttsapsolutionownertest2.gtt.app.sof.sofService"
 			xmlns="http://docs.oasis-open.org/odata/ns/edm">
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment">
 				<Annotation Term="Common.SemanticKey">
 					<Collection>
 						<PropertyPath>shipmentNo</PropertyPath>
@@ -72,7 +72,7 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.EntityContainer/Shipment"
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.EntityContainer/Shipment"
 				xmlns="http://docs.oasis-open.org/odata/ns/edm">
 				<Annotation Term="Capabilities.FilterRestrictions">
 					<Record Type="Capabilities.FilterRestrictionsType">
@@ -122,7 +122,7 @@
 					</Collection>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/processStatus_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/processStatus_code">
 				<Annotation Term="Common.ValueList">
 					<Record Type="Common.ValueListType">
 						<PropertyValue Property="CollectionPath" String="ProcessStatus"/>
@@ -141,7 +141,7 @@
 				</Annotation>
 				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/executionStatus_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/executionStatus_code">
 				<Annotation Term="Common.ValueList">
 					<Record Type="Common.ValueListType">
 						<PropertyValue Property="CollectionPath" String="ExecutionStatus"/>
@@ -160,7 +160,7 @@
 				</Annotation>
 				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/shippingType_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/shippingType_code">
 				<Annotation Term="Common.Text" Path="shippingType/localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
@@ -182,7 +182,7 @@
 				</Annotation>
 				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/transportationMode_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/transportationMode_code">
 				<Annotation Term="Common.Text" Path="transportationMode/localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
@@ -204,7 +204,7 @@
 				</Annotation>
 				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/transportMeans_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/transportMeans_code">
 				<Annotation Term="Common.Text" Path="transportMeans/localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
@@ -226,7 +226,7 @@
 				</Annotation>
 				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/trafficDirection_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/trafficDirection_code">
 				<Annotation Term="Common.Text" Path="trafficDirection/localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
@@ -248,12 +248,12 @@
 				</Annotation>
 				<Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/incoterms_code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/incoterms_code">
 				<Annotation Term="Common.Text" Path="incoterms/localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/departureLocationId">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/departureLocationId">
 				<Annotation Term="Common.Text" Path="departureLocation/locationDescription">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
@@ -285,7 +285,7 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Shipment/arrivalLocationId">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Shipment/arrivalLocationId">
 				<Annotation Term="Common.Label" String="{@i18n&gt;plannedArrivalLocation}"/>
 				<Annotation Term="Common.Text" Path="arrivalLocation/locationDescription">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
@@ -317,42 +317,42 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.ProcessStatus/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.ProcessStatus/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.ShippingType/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.ShippingType/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.TransportationMode/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.TransportationMode/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.TransportMeansStandardCode/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.TransportMeansStandardCode/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.ExecutionStatus/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.ExecutionStatus/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.TrafficDirection/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.TrafficDirection/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.lbngttsamples.gtt.app.sof.sofService.Incoterms/code">
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Incoterms/code">
 				<Annotation Term="Common.Text" Path="localized/name">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Location">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Location">
 				<Annotation Term="UI.SelectionFields">
 					<Collection>
 						<PropertyPath>externalId</PropertyPath>
@@ -360,26 +360,26 @@
 					</Collection>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Location/locationAltKey" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Location/locationAltKey" xmlns="http://docs.oasis-open.org/odata/ns/edm">
 				<Annotation Term="Common.Label" String="{@i18n&gt;locationAltKey}"/>
 				<Annotation Term="Common.Text" Path="locationDescription">
 					<Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Location/locationDescription" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Location/locationDescription" xmlns="http://docs.oasis-open.org/odata/ns/edm">
 				<Annotation Term="Common.Label" String="{@i18n&gt;locationDescription}"/>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Location/sourceSystem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Location/sourceSystem" xmlns="http://docs.oasis-open.org/odata/ns/edm">
 				<Annotation Term="Common.Label" String="{@i18n&gt;sourceSystem}"/>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Location/externalId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Location/externalId" xmlns="http://docs.oasis-open.org/odata/ns/edm">
 				<Annotation Term="Common.Label" String="{@i18n&gt;externalId}"/>
 				<Annotation Term="Common.Text" Path="locationDescription"/>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.Location/objectTypeDescription" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.Location/objectTypeDescription" xmlns="http://docs.oasis-open.org/odata/ns/edm">
 				<Annotation Term="Common.Label" String="{@i18n&gt;locationObjectType}"/>
 			</Annotations>
-			<Annotations Target="com.lbngttsamples.gtt.app.sof.sofService.EntityContainer/Location">
+			<Annotations Target="com.nttsapsolutionownertest2.gtt.app.sof.sofService.EntityContainer/Location">
 				<Annotation Term="Capabilities.FilterRestrictions">
 					<Record Type="Capabilities.FilterRestrictionsType">
 						<PropertyValue Property="NonFilterableProperties">
