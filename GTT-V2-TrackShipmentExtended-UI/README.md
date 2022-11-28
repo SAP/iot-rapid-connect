@@ -38,6 +38,13 @@ You can visit http://localhost:5000/test/flpSandboxMockServer.html in the browse
 
 ## Deploy
 
+```sh
+cf login -a {API Endponit} -u {Email address} --sso
+Open the link {API Endponit/password} and get passcode.
+cd GTT-V2-TrackShipmetExtended-UI
+mbt build
+cf deploy mta_archives/gtt-v2-ui-iot-track-shipments_2.4.0.mtar
+```
 ### Pre-requisites
 
 Change the TENANT_NAME in ui/.env file
