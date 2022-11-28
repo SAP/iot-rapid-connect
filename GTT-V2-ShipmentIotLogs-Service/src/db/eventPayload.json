@@ -1,0 +1,178 @@
+{
+    "eventReasonText": "string",
+    "eventReasonCode": "string",
+    "senderPartyId": "string",
+    "reportedBy": "string",
+    "altKey": "xri://sap.com/id:LBN#10010001016:QM7CLNT910:OUTBOUND_DELIVERY:0080045552",
+    "locationAltKey": "string",
+    "eventMatchKey": "string",
+    "priority": 0,
+    "references": [
+        {
+            "referenceType_code": "TRACKING",
+            "altKey": "string",
+            "validFrom": "string",
+            "validTo": "string",
+            "action_code": "ADD"
+        }
+    ],
+    "estimatedTimestamps": [
+        {
+            "eventType": "string",
+            "locationAltKey": "string",
+            "eventMatchKey": "string",
+            "estimatedTimestamp": "string",
+            "additionalMatchKey": "string"
+        }
+    ],
+    "actualTechnicalTimestamp": "string",
+    "actualBusinessTimestamp": "string",
+    "actualBusinessTimeZone": "string",
+    "longitude": 999.999999999,
+    "latitude": 999.999999999,
+    "folderId": "string",
+    "messageSourceType": "string",
+    "plannedEvents": [
+        {
+            "eventType": "string",
+            "locationAltKey": "string",
+            "eventMatchKey": "string",
+            "payloadSequence": 0,
+            "longitude": 999.999999999,
+            "latitude": 999.999999999,
+            "isFinalPlannedEvent": true,
+            "plannedTechnicalTimestamp": "string",
+            "plannedTechTsEarliest": "string",
+            "plannedTechTsLatest": "string",
+            "plannedBusinessTimestamp": "string",
+            "plannedBizTsEarliest": "string",
+            "plannedBizTsLatest": "string",
+            "plannedBusinessTimeZone": "string",
+            "groupName": "string",
+            "additionalMatchKey": "string"
+        }
+    ],
+    "plannedEventUpdateStrategy_code": "KEEP_REPORTED_WITH_DELETION",
+    "plannedEventGroups": [
+        {
+            "groupName": "string",
+            "plannedEventUpdateStrategy_code": "KEEP_REPORTED_WITH_DELETION"
+        }
+    ],
+    "externalTrackingIds": [
+        {
+            "networkPartnerLbnId": "string",
+            "businessPartnerLbnId": "string",
+            "serviceCategory_code": "SHIPMENT_TRACKING",
+            "trackingId": "string"
+        }
+    ],
+    "transportationMode_code": "02",
+    "shippingType_code": "18",
+    "trafficDirection_code": "1",
+    "incoterms_code": "FCA",
+    "transportMeans_code": "112",
+    "departureLocationType_code": "Plant",
+    "arrivalLocationType_code": "Plant",
+    "executionStatus_code": "COMPLETED",
+    "shipmentNo": "string",
+    "serviceAgentLbnId": "string",
+    "dangerousGoods": true,
+    "forwardingAgentTrackingId": "string",
+    "resourceTPs": [
+        {
+            "lineNo": 0,
+            "resourceAltKey": "string"
+        }
+    ],
+    "carrierRefDocuments": [
+        {
+            "docType_code": "CONT",
+            "docId": "string"
+        }
+    ],
+    "trackId": "string",
+    "trackedObjects": [
+        {
+            "idType_code": "LICENSE_PLATE",
+            "value": "string"
+        }
+    ],
+    "incotermLocation": "string",
+    "plannedTotalDistance": 100000000000000000,
+    "plannedGrossDuration": "string",
+    "plannedNetDuration": "string",
+    "vehicle": "string",
+    "registrationCountry": "str",
+    "registrationNumber": "string",
+    "cargoVolume": 100000000000000000,
+    "volumeUoM": "str",
+    "cargoWeight": 100000000000000000,
+    "weightUoM": "str",
+    "cargoQuantity": 100000000000000000,
+    "quantityUoM": "str",
+    "departureLocationId": "string",
+    "plannedDepartureDateTime": "string",
+    "plannedDepartureDateTimeZone": "string",
+    "arrivalLocationId": "string",
+    "plannedArrivalDateTime": "string",
+    "plannedArrivalDateTimeZone": "string",
+    "freightUnitTPs": [
+        {
+            "lineNo": 0,
+            "freightUnitAltKey": "string",
+            "firstStop": "string",
+            "lastStop": "string"
+        }
+    ],
+    "plannedTotalDistanceUoM": "str",
+    "stops": [
+        {
+            "locationType_code": "Plant",
+            "stopId": "string",
+            "ordinalNo": 0,
+            "locationId": "string",
+            "locationAltKey": "string"
+        }
+    ],
+    "shipmentType": "string",
+    "shipperRefDocuments": [
+        {
+            "docType_code": "STO",
+            "docId": "string"
+        }
+    ],
+    "inboundDeliveryTPs": [
+        {
+            "lineNo": 0,
+            "inboundDeliveryNo": "string"
+        }
+    ],
+    "completedAt": "string",
+    "delayStatus": true,
+    "estimatedArrivalDateTime": "string",
+    "senderLbnId": "string",
+    "shipmentCsaId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "departureLocationAltKey": "string",
+    "arrivalLocationAltKey": "string",
+    "purchaseOrderItemTPs": [
+        {
+            "lineNo": 0,
+            "purchaseOrderItemAltKey": "string"
+        }
+    ],
+    "trackingUnitTPs": [
+        {
+            "lineNo": 0,
+            "trackingUnitAltKey": "string",
+            "firstStop": "string",
+            "lastStop": "string"
+        }
+    ],
+    "currentObservedTPs": [
+        {
+            "lineNo": 0,
+            "altKey": "string"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+  "routes": [{
+    "source": "^/src",
+    "target": "/",
+    "destination": "shipment-destination"
+  }]
+}
