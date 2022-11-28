@@ -6,6 +6,14 @@ The FLP project includes 3 template applications which are Track SO Fulfllment, 
 
 ## Deploy It with One Project
 
+```sh
+cd GTT-V2-Extended-FLP
+cf login -a {API Endponit} -u {Email address} --sso
+Open the link {API Endponit/password} and get passcode.
+mbt build
+cf deploy mta_archives/lbn-gtt-iot-app-flp_2.3.0.mtar
+```
+
 If you only need Track Shipments app, do the following changes:
 
 1. Open `mta.yaml`
