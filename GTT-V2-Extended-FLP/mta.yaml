@@ -38,12 +38,13 @@ modules:
     path: flp
     parameters:
       stack: cflinuxfs3
-      memory: 128M
+      memory: 256M
       buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.6.39/nodejs-buildpack-cflinuxfs3-v1.6.39.zip
     requires:
       - name: lbn-gtt-iot-app-uaa
       - name: lbn-gtt-iot-portal-resources
       - name: gtt-ui-iot-track-shipments-app-host
+      - name: event-logs_html_repo_host
 resources:
   - name: lbn-gtt-iot-app-runtime
     parameters:
@@ -112,6 +113,8 @@ resources:
               - "$XSAPPNAME.sst.w"
               - uaa.user
   - name: gtt-ui-iot-track-shipments-app-host
+    type: org.cloudfoundry.existing-service
+  - name: event-logs_html_repo_host
     type: org.cloudfoundry.existing-service
   - name: lbn-gtt-iot-destination
     type: org.cloudfoundry.managed-service
