@@ -1,0 +1,6 @@
+node_modules
+dist
+logs
+default-env.json
+docs/
+.vscode/

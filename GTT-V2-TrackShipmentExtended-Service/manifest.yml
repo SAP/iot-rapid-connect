@@ -1,0 +1,8 @@
+---
+applications:
+  - name: track-shipment-extended
+    memory: 512M
+    instances: 1
+    buildpack: nodejs_buildpack
+    command: npm run-script start
+    timeout: 180
