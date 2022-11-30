@@ -19,6 +19,10 @@
             {
               "id": "com.sap.gtt.app.iot.sst",
               "vizId": "Shipment-track"
+            },
+            {
+              "id": "eventlogs",
+              "vizId": "Object-display"
             }
           ]
         }
@@ -39,6 +43,11 @@
               "id": "com.sap.gtt.app.iot.sst",
               "appId": "com.sap.gtt.app.iot.sst",
               "vizId": "Shipment-track"
+            },
+            {
+              "id": "eventlogs",
+              "appId": "eventlogs",
+              "vizId": "Object-display"
             }
           ]
         }
