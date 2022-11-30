@@ -22,7 +22,7 @@
             },
             {
               "id": "eventlogs",
-              "vizId": "eventlogs-inbound"
+              "vizId": "Object-display"
             }
           ]
         }
@@ -47,7 +47,7 @@
             {
               "id": "eventlogs",
               "appId": "eventlogs",
-              "vizId": "eventlogs-inbound"
+              "vizId": "Object-display"
             }
           ]
         }

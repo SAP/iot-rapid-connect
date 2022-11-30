@@ -23,7 +23,7 @@
         },
         "crossNavigation": {
             "inbounds": {
-                "eventlogs-inbound": {
+                "Object-display": {
                     "signature": {
                         "parameters": {},
                         "additionalParameters": "allowed"
@@ -111,17 +111,17 @@
             "routes": [
                 {
                     "pattern": "",
-                    "name": "RouteLogs",
+                    "name": "TargetLogs",
                     "target": "TargetLogs"
                 },
                 {
                     "pattern": "smartshipmentLogsDetail/{id}/{date}",
-                    "name": "RouteLogsDetail",
+                    "name": "TargetLogsDetail",
                     "target": "TargetLogsDetail"
                 },
                 {
                     "pattern": "smartshipmentLogsDetailProcess/{id}/{date}",
-                    "name": "RouteLogsDetailProcess",
+                    "name": "TargetLogsDetailProcess",
                     "target": "TargetLogsDetailProcess"
                 }
             ],

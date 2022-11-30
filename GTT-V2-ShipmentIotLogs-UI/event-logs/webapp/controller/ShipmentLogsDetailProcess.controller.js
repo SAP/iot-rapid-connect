@@ -18,7 +18,7 @@ sap.ui.define([
 
       //excute when the page first loads
       onInit: function () {
-        this.getRouter().getRoute("RouteLogsDetailProcess").attachPatternMatched(this.loadEventLogsDetail, this);
+        this.getRouter().getRoute("TargetLogsDetailProcess").attachPatternMatched(this.loadEventLogsDetail, this);
       },
 
       //excute when the lbn detial page is loaded, call backend to get the latest detail data.

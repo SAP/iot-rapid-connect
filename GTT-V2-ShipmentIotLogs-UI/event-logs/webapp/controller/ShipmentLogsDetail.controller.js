@@ -66,7 +66,7 @@ sap.ui.define([
         oView.setModel(oModel);
         var oProcessFlow = oView.byId("processflow");
         oProcessFlow.updateModel();
-        this.getRouter().getRoute("RouteLogsDetail").attachPatternMatched(this.loadEventLogsDetail, this);
+        this.getRouter().getRoute("TargetLogsDetail").attachPatternMatched(this.loadEventLogsDetail, this);
       },
 
       //excute when the detial page is loaded, call backend to get the latest detail data.
@@ -162,7 +162,7 @@ sap.ui.define([
         var sId = oView.getModel("detailModel").getProperty("/requestId"),
           reportedAt = oView.getModel("detailModel").getProperty("/reported_at");
         if (oEvent.getParameter("mBindingInfos").nodeId.binding.oValue == "2") {
-          this.getRouter().navTo("RouteLogsDetailProcess", { id: sId, date: reportedAt });
+          this.getRouter().navTo("TargetLogsDetailProcess", { id: sId, date: reportedAt });
         }
       },
 
