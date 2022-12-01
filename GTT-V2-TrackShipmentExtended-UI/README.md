@@ -45,6 +45,24 @@ cd GTT-V2-TrackShipmetExtended-UI
 mbt build
 cf deploy mta_archives/gtt-v2-ui-iot-track-shipments_2.4.0.mtar
 ```
+
+
+## Extend
+Add a new filed into deatil page IoT Fields conent.
+1、 Open ui/webapp/view/fragment/ShipmentIoTInfo.fragment.xml
+2、 Copy any tag <smartForm:GroupElement>……</smartForm:GroupElement> and paste it in parallel
+3、 Chage the label and text path to what you set.
+4、 Save file and deploy the app. 
+
+Add a new section into detail page.
+1、 Write a new fragment file with reference to ui/webapp/view/fragment/ShipmentIoTInfo.fragment.xml and put it into ui/webapp/view/fragment.
+1、 open ui/webapp/view/Shipment.view.xml page
+2、 copy any tag <ObjectPageSection>……</ObjectPageSection> and paste it in parallel
+3、 change the id to be unique.
+4、 change viewName to the path where you put the fragment file
+5、 You can use javascript to call backend servie and set model in ui/webapp/controller/ShipmentIoTInfo.controller.js
+
+
 ### Pre-requisites
 
 Change the TENANT_NAME in ui/.env file

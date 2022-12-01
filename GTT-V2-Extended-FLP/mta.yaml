@@ -27,23 +27,28 @@ modules:
         - name: lbn-iot-gtt-sst-extend-api
           url: "~{lbn-iot-gtt-sst-extend-api/url}"
           forwardAuthToken: true
+        - name: lbn-iot-gtt-sst-eventlogs-api
+          url: "~{lbn-iot-gtt-sst-eventlogs-api/url}"
+          forwardAuthToken: true
     requires:
       - name: lbn-gtt-iot-app-uaa
       - name: lbn-gtt-iot-app-runtime
       - name: lbn-gtt-iot-portal-resources
       - name: lbn-iot-gtt-sst-api
       - name: lbn-iot-gtt-sst-extend-api
+      - name: lbn-iot-gtt-sst-eventlogs-api
   - name: flp-iot
     type: com.sap.portal.content
     path: flp
     parameters:
       stack: cflinuxfs3
-      memory: 128M
+      memory: 256M
       buildpack: https://github.com/cloudfoundry/nodejs-buildpack/releases/download/v1.6.39/nodejs-buildpack-cflinuxfs3-v1.6.39.zip
     requires:
       - name: lbn-gtt-iot-app-uaa
       - name: lbn-gtt-iot-portal-resources
       - name: gtt-ui-iot-track-shipments-app-host
+      - name: event-logs_html_repo_host
 resources:
   - name: lbn-gtt-iot-app-runtime
     parameters:
@@ -61,6 +66,9 @@ resources:
   - name: lbn-iot-gtt-sst-extend-api
     properties:
       url: https://track-shipment-extended.${default-domain}
+  - name: lbn-iot-gtt-sst-eventlogs-api
+    properties:
+      url: https://IoT-LBN-microservice.${default-domain}
   - name: lbn-gtt-iot-app-uaa
     type: com.sap.xs.uaa-application
     parameters:
@@ -82,6 +90,8 @@ resources:
             description: Allow to access standalone shipment tracking application
           - name: "$XSAPPNAME.sst.w"
             description: Allow to report events in standalone shipment tracking application
+          - name: "$XSAPPNAME.log.r"
+            description: Allow to access standalone event logs application
           - name: uaa.user
             description: UAA
         authorities:
@@ -89,6 +99,7 @@ resources:
           - "$XSAPPNAME.pof.r"
           - "$XSAPPNAME.sst.r"
           - "$XSAPPNAME.sst.w"
+          - "$XSAPPNAME.log.r"
           - uaa.user
         role-templates:
           - name: SalesOrderFulfillmentAppUserDisplayTemplate
@@ -111,7 +122,14 @@ resources:
             scope-references:
               - "$XSAPPNAME.sst.w"
               - uaa.user
+          - name: StandaloneEventLogsAppUserProcessTemplate
+            description:  Event logs App User Read Access
+            scope-references:
+              - "$XSAPPNAME.log.r"
+              - uaa.user
   - name: gtt-ui-iot-track-shipments-app-host
+    type: org.cloudfoundry.existing-service
+  - name: event-logs_html_repo_host
     type: org.cloudfoundry.existing-service
   - name: lbn-gtt-iot-destination
     type: org.cloudfoundry.managed-service

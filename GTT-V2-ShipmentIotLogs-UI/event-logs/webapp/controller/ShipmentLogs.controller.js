@@ -20,7 +20,7 @@ sap.ui.define([
         this._oSingleInputtrackingIDInputID = this.byId("trackingIDInputID");
         this._oSingleInputreportedByInputID = this.byId("reportedByInputID");
         this._oSingleInputretriggerCountInputID = this.byId("retriggerCountInputID");
-        this.getRouter().getRoute("RouteLogs").attachPatternMatched(this.loadEventLogs, this);
+        this.getRouter().getRoute("TargetLogs").attachPatternMatched(this.loadEventLogs, this);
       },
 
       //excute when the list page is loaded, call backend to get the latest list.
@@ -34,8 +34,9 @@ sap.ui.define([
         // oView.setModel(oRequestModel, "requestModel");
 
         //get Data from backend.
+        var sUrl = sap.ui.require.toUrl("eventlogs" + "/shipmentLogTest/api/v1/iot/shipment/events");
         jQuery.ajax({
-          url: "/shipmentLogTest/api/v1/iot/shipment/events",
+          url: sUrl,
           type: "GET",
           success: function (oData) {
             var shipmentList = [];
@@ -70,7 +71,7 @@ sap.ui.define([
         var requestId = oEvent.getSource().getAggregation("cells")[0].getText();
         var reportedAt = oEvent.getSource().getAggregation("cells")[2].getTooltip();
         this.oRouter = this.getRouter();
-        this.oRouter.navTo("RouteLogsDetail", { id: requestId, date: reportedAt });
+        this.oRouter.navTo("TargetLogsDetail", { id: requestId, date: reportedAt });
       },
 
       //search the list by the top search filter 

@@ -18,7 +18,7 @@ sap.ui.define([
 
       //excute when the page first loads
       onInit: function () {
-        this.getRouter().getRoute("RouteLogsDetailProcess").attachPatternMatched(this.loadEventLogsDetail, this);
+        this.getRouter().getRoute("TargetLogsDetailProcess").attachPatternMatched(this.loadEventLogsDetail, this);
       },
 
       //excute when the lbn detial page is loaded, call backend to get the latest detail data.
@@ -26,8 +26,9 @@ sap.ui.define([
         var oView = this.getView();
         var requestId = oEvent.getParameter("arguments").id,
           reportedAt = oEvent.getParameter("arguments").date;
+        var sUrl = sap.ui.require.toUrl("eventlogs" + "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt + "/processFlow");
         jQuery.ajax({
-          url: "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt + "/processFlow",
+          url: sUrl,
           type: "GET",
           async: false,
           success: function (oData) {
