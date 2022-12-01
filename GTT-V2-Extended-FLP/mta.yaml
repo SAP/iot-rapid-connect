@@ -90,6 +90,8 @@ resources:
             description: Allow to access standalone shipment tracking application
           - name: "$XSAPPNAME.sst.w"
             description: Allow to report events in standalone shipment tracking application
+          - name: "$XSAPPNAME.log.r"
+            description: Allow to access standalone event logs application
           - name: uaa.user
             description: UAA
         authorities:
@@ -97,6 +99,7 @@ resources:
           - "$XSAPPNAME.pof.r"
           - "$XSAPPNAME.sst.r"
           - "$XSAPPNAME.sst.w"
+          - "$XSAPPNAME.log.r"
           - uaa.user
         role-templates:
           - name: SalesOrderFulfillmentAppUserDisplayTemplate
@@ -118,6 +121,11 @@ resources:
             description: Track & Trace Standalone Shipment Tracking Template App User Write Access
             scope-references:
               - "$XSAPPNAME.sst.w"
+              - uaa.user
+          - name: StandaloneEventLogsAppUserProcessTemplate
+            description:  Event logs App User Read Access
+            scope-references:
+              - "$XSAPPNAME.log.r"
               - uaa.user
   - name: gtt-ui-iot-track-shipments-app-host
     type: org.cloudfoundry.existing-service

@@ -5,8 +5,9 @@
     {
       "source": "^/shipmentLogTest/(.*)$",
       "target": "/$1",
+      "httpMethods": ["GET"],
       "destination": "lbn-iot-gtt-sst-eventlogs-api",
-      "scope": ["$XSAPPNAME.sst.r"]
+      "scope": ["$XSAPPNAME.log.r"]
     },
     {
       "source": "^(.*)$",

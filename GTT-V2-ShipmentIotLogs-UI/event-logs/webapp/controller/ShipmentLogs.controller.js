@@ -34,8 +34,9 @@ sap.ui.define([
         // oView.setModel(oRequestModel, "requestModel");
 
         //get Data from backend.
+        var sUrl = sap.ui.require.toUrl("eventlogs" + "/shipmentLogTest/api/v1/iot/shipment/events");
         jQuery.ajax({
-          url: "/shipmentLogTest/api/v1/iot/shipment/events",
+          url: sUrl,
           type: "GET",
           success: function (oData) {
             var shipmentList = [];

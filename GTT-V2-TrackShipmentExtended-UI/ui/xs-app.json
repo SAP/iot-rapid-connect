@@ -30,7 +30,7 @@
       "target": "/$1",
       "httpMethods": ["GET"],
       "destination": "lbn-iot-gtt-sst-extend-api",
-      "scope": ["$XSAPPNAME.sst.w"]
+      "scope": ["$XSAPPNAME.sst.r"]
     },
     {
       "source": "^(.*)$",

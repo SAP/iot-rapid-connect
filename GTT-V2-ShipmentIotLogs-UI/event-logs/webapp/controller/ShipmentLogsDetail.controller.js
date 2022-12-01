@@ -81,8 +81,9 @@ sap.ui.define([
         //Get the process flow data from backend.
         var requestId = oEvent.getParameter("arguments").id,
           reportedAt = oEvent.getParameter("arguments").date;
+        var sUrl = sap.ui.require.toUrl("eventlogs" + "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt + "/processFlow");
         jQuery.ajax({
-          url: "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt + "/processFlow",
+          url: sUrl,
           type: "GET",
           async: false,
           success: function (oData) {
@@ -133,8 +134,9 @@ sap.ui.define([
         });
 
         //Get the top data and payload from backend.
+        var sUrl2 = sap.ui.require.toUrl("eventlogs" + "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt);
         jQuery.ajax({
-          url: "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt,
+          url: sUrl2,
           type: "GET",
           async: false,
           success: function (oData) {

@@ -26,8 +26,9 @@ sap.ui.define([
         var oView = this.getView();
         var requestId = oEvent.getParameter("arguments").id,
           reportedAt = oEvent.getParameter("arguments").date;
+        var sUrl = sap.ui.require.toUrl("eventlogs" + "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt + "/processFlow");
         jQuery.ajax({
-          url: "/shipmentLogTest/api/v1/iot/shipment/" + requestId + "/events/" + reportedAt + "/processFlow",
+          url: sUrl,
           type: "GET",
           async: false,
           success: function (oData) {
