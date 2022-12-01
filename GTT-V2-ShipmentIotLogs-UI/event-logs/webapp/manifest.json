@@ -110,7 +110,7 @@
             },
             "routes": [
                 {
-                    "pattern": "",
+                    "pattern": ":?sap-iapp-state:",
                     "name": "TargetLogs",
                     "target": "TargetLogs"
                 },
