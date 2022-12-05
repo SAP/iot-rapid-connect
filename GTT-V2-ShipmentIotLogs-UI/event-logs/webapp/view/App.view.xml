@@ -14,7 +14,7 @@
         <Button id="helpTopic" icon="sap-icon://sys-help" tooltip="Activate to show Help Topics" class="toolHeaderIcon" press=".onOpenHelpPopover" />
         <Button id="PersonalProfile" icon="sap-icon://customer" tooltip="Activate to show more option" class="toolHeaderIcon" press=".onOpenPersonalProfile" />
     </tnt:ToolHeader> -->
-    <Shell id="shell">
+    <Shell id="shell" appWidthLimited="false">
         <App id="app" />
     </Shell>
 </mvc:View>

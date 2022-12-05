@@ -128,7 +128,7 @@ sap.ui.define(
 
         var request = this.createGetRequestWithId("customFields", model.getProperty(IOTCONSTANTS.SLASH + IOTCONSTANTS.IS_IOT_UNIT));
         request.then(function (data) {
-          model.setProperty("/iotInformation", data);
+          model.setProperty("/iotInformation", data[0]);
         });
       },
 
