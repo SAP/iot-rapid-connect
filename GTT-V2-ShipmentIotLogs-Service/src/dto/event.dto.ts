@@ -1,5 +1,4 @@
 import { IsString } from "class-validator";
-import shortid from "shortid";
 
 export default class EventDto {
 

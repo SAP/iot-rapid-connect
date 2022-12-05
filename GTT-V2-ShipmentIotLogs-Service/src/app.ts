@@ -1,6 +1,8 @@
 import express from 'express';
+import passport from 'passport';
 import * as http from 'http';
-import basicAuth from 'express-basic-auth';
+import { JWTStrategy } from '@sap/xssec';
+import xsenv from '@sap/xsenv';
 
 import cors from 'cors';
 import { RoutesConfig } from './routes/base.routes.js';
@@ -12,18 +14,10 @@ const server: http.Server = http.createServer(app);
 const port = 8080;
 const routes: Array<RoutesConfig> = [];
 
-
-
-app.use(basicAuth({
-    users: { 'admin': 'redbluegreen' },
-    unauthorizedResponse: getUnauthorizedResponse
-}));
-
-function getUnauthorizedResponse(req) {
-    return req.auth
-        ? ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected')
-        : 'No credentials provided'
-}
+// auth
+passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false }));
 
 app.use(express.json());
 app.use(httpLogger);
