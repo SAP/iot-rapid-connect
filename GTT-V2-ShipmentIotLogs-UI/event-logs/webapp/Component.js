@@ -8,7 +8,10 @@ sap.ui.define([
 
         return UIComponent.extend("eventlogs.Component", {
             metadata: {
-                manifest: "json"
+                manifest: "json",
+                config: {
+				              fullWidth:true
+			           }
             },
 
             /**
