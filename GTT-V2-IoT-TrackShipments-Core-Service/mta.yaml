@@ -1,0 +1,29 @@
+---
+_schema-version: '3.1'
+ID: gtt-v2-iot-track-shipments-service
+version: 2.6.0
+modules:
+- name: gtt-iot-track-shipments-service
+  type: java
+  path: srv/
+  properties:
+    SPRING_PROFILES_ACTIVE: cloud
+    DESTINATION_GTT: gtt_core_engine_flp_base_url
+    HERE_MAP_KEY: 6OYdhmagtGi6hns0-O56oK6gy1QxujVp1peN0XeN4S
+  parameters:
+    buildpack: java_buildpack
+    health-check-timeout: 180
+    host: gtt-iot-track-shipments-service-gtt
+  build-parameters:
+    ignore:
+    - "*.md"
+    build-result: target/*.jar
+    timeout: 10m
+  requires:
+  - name: lbn-gtt-iot-app-uaa
+  - name: lbn-gtt-iot-destination
+resources:
+- name: lbn-gtt-iot-app-uaa
+  type: org.cloudfoundry.existing-service
+- name: lbn-gtt-iot-destination
+  type: org.cloudfoundry.existing-service
