@@ -21,7 +21,7 @@ This will build the application and generate a deployable *.mtar file.
 ```sh
 cf deploy mta_archives/lbn-gtt-iot-app-flp_2.3.0.mtar
 ```
-This will deploy the FLP to the platform. Once successful, you can find the FLP approuter URL using ```cf a```. Launch the URL in a browser.
+This will deploy the FLP to the platform. Once successful, you can find the FLP approuter URL using ```cf a```, look for application named *lbn-gtt-iot-app-appRouter*. Launch the URL in a browser.
 
 ## Result
 

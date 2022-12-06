@@ -21,6 +21,9 @@ The [Connected Product solution](https://news.sap.com/sea/2022/07/ntt-data-and-s
     - [How to get a free Data Contributor tenant](https://github.com/SAP-samples/logistics-business-network-integration)
  - [SAP Business Technology Platform](https://www.sap.com/products/technology-platform.html)
  - Any IOT platform
+ - Install [mbt tools](https://sap.github.io/cloud-mta-build-tool/download/).
+ - Install [CF CLI](https://help.sap.com/docs/HANA_CLOUD_DATABASE/c2b99f19e9264c4d9ae9221b22f6f589/1307bc5dbb844146b0cf4594b39fc3db.html).
+ - [Create a sub-account and space on Business Technology platform](https://help.sap.com/docs/BTP/65de2977205c403bbc107264b8eccf4b/c4c25cc63ac845779f76202360f98694.html?locale=en-US). 
 
 ## Support, Feedback, Contributing
 
