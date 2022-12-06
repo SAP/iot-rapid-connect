@@ -34,6 +34,8 @@ CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100
 ```
 ### Event API specification
 TODO
+- <payload structure, explain fields>
+- <authentication for API call> - This should be based on client credentials.
 
 ### Test
 Using Postman, send a http request to the following endpoints:
