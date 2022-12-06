@@ -30,7 +30,10 @@ CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),
 ```
 ``` sql
 CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100),reported_at timestamp with time zone,response_at timestamp with time zone,error_body character varying(100),status character varying(30),CONSTRAINT lbn_response_pkey PRIMARY KEY (shipment_no, reported_at));
-``` 
+```
+### Event API specification
+TODO
+
 ### Test
 Using Postman, send a http request to the following endpoints:
  `"application-url"/api/v1/iot/shipment/events` POST - Send an event payload to the microservice
