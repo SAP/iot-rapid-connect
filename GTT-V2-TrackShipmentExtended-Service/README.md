@@ -60,10 +60,6 @@ import xsenv from '@sap/xsenv';
 passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
 app.use(passport.initialize());
 app.use(passport.authenticate('JWT', { session: false }));
-
-app.use(express.json());
-app.use(httpLogger);
-app.use(cors());
 ```
 ### Test
 Using Postman, send a http request to the following endpoints:

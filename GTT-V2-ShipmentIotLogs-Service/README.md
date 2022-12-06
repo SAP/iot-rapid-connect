@@ -43,13 +43,12 @@ CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100
     "timezone": "London",
     "priority": 3,
     "reportedBy":"MO001",
-    "eventDetails":[
+    "eventDetails":
         {
             "Key":"Temperature Exceeded",
             "Value":"500",
             "Timestamp":""
         }
-    ]
 }
 ```
 #### Authentication for API call
@@ -62,10 +61,6 @@ import xsenv from '@sap/xsenv';
 passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
 app.use(passport.initialize());
 app.use(passport.authenticate('JWT', { session: false }));
-
-app.use(express.json());
-app.use(httpLogger);
-app.use(cors());
 ```
 ### Test
 Using Postman, send a http request to the following endpoints:
