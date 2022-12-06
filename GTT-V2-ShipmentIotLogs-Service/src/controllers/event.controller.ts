@@ -10,14 +10,20 @@ class EventController {
 
     // log event payload in db
     async eventLog(req: express.Request, res: express.Response, next) {
-        const eventBody = req.body;
-        const shipmentNo = req.body.shipmentNo;
-        const reportedAt = req.body.reportedAt;
+        const eventPayload = req.body;
+        const shipmentNo = eventPayload.shipmentNo;
+        const reportedBy = eventPayload.reportedBy;
+        const reportedAt = eventPayload.reportedAt;
+        const timezone = eventPayload.timezone;
+        const priority = eventPayload.priority;
 
-        await db.none('INSERT INTO events_log(shipment_no, reported_at, event_body, lbn_status) VALUES($(shipment_no), $(reported_at), $(event_body), $(lbn_status))', {
+        await db.none('INSERT INTO events_log(shipment_no, reported_by, reported_at, timezone, priority, event_body, lbn_status) VALUES($(shipment_no), $(reported_by), $(reported_at), $(timezone), $(priority), $(event_body), $(lbn_status))', {
             shipment_no: shipmentNo,
+            reported_by: reportedBy,
             reported_at: reportedAt,
-            event_body: eventBody,
+            timezone: timezone,
+            priority: priority,
+            event_body: eventPayload,
             lbn_status: "In Process",
         }).catch((error) => {
             Logger.error(`while logging event: ${error}`);
@@ -33,69 +39,36 @@ class EventController {
         const request = new RequestConfig(oDestination?.data);
         const auth = request.headers.Authorization;
 
-        const eventBody = req.body;
-        const shipmentNo = req.body.shipmentNo;
-        const reportedAt = req.body.reportedAt;
+        const eventPayload = req.body;
+        const shipmentNo = eventPayload.shipmentNo;
+        const reportedAt = eventPayload.reportedAt;
+        const timezone = eventPayload.timezone;
+        const priority = eventPayload.priority;
 
         let lbnFormat = {
             "eventReasonText": "",
-            "eventReasonCode": "",
-            "senderPartyId": "",
-            "reportedBy": "",
-            "altKey": "xri://sap.com/id:LBN#10010003536:QW9:SHIPMENT_ORDER:9678292607",
-            "locationAltKey": "",
-            "eventMatchKey": "",
-            "priority": 0,
-            "references": [
-                {
-                    "referenceType_code": "TRACKING",
-                    "altKey": "",
-                    "validFrom": "",
-                    "validTo": "",
-                    "action_code": "ADD"
-                }
-            ],
-            "estimatedTimestamps": [
-                {
-                    "eventType": "",
-                    "locationAltKey": "",
-                    "eventMatchKey": "",
-                    "estimatedTimestamp": "",
-                    "additionalMatchKey": ""
-                }
-            ],
-            "actualTechnicalTimestamp": "",
+            "altKey": "",
+            "priority": "",
             "actualBusinessTimestamp": "",
-            "actualBusinessTimeZone": "",
-            "longitude": 999.999999999,
-            "latitude": 999.999999999,
-            "folderId": "",
-            "messageSourceType": "",
-            "reasonCode_code": "NOT_APP_OUT_GERMANY",
-            "attachments": [
-                {
-                    "fileId": "",
-                    "fileName": "",
-                    "mimeType": "",
-                    "size": 0,
-                    "creationDateTime": ""
-                }
-            ]
+            "actualBusinessTimeZone": ""
         };
+
+        // add mapping here for event payload to LBN format
+        lbnFormat.eventReasonText = eventPayload.eventDetails.Key;
+        lbnFormat.altKey = `xri://sap.com/id:LBN#10010003536:QW9CLNT170:SHIPMENT_ORDER:${shipmentNo}`;
+        lbnFormat.priority = priority;
+        lbnFormat.actualBusinessTimestamp = reportedAt;
+        lbnFormat.actualBusinessTimeZone = timezone;
 
         let responseAt;
         let resStatus;
         let responseError;
-
-        // add mapping here for event payload to LBN format
-        lbnFormat.actualTechnicalTimestamp = reportedAt;
 
         // post event to LBN
         const response = await axios
             .post(request.url, lbnFormat, {
                 headers: {
                     'Authorization': `${auth}`
-
                 }
             })
             .then(function (response) {
@@ -110,7 +83,7 @@ class EventController {
                     responseAt = new Date().toISOString();
                     resStatus = "Failed";
                     responseError = error.response.data;
-                    res.status(400).send(error.response.data);
+                    res.status(400).send(`Error while posting to LBN: ${error.response.data}`);
                 }
             });
 
@@ -138,7 +111,7 @@ class EventController {
 
     // return list of events stored in db
     async eventList(req: express.Request, res: express.Response) {
-        await db.result('SELECT shipment_no, reported_at, event_body, lbn_status, updated_at FROM events_log')
+        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_status, updated_at FROM events_log')
             .then(data => {
                 res.status(200).send(data.rows);
             })
@@ -152,7 +125,7 @@ class EventController {
     async eventListByID(req: express.Request, res: express.Response) {
         const shipmentNo = req.params.shipmentNo;
         const reportedAt = req.params.reportedAt;
-        await db.result('SELECT shipment_no, reported_at, event_body, lbn_status, updated_at FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
+        await db.result('SELECT hipment_no, reported_by, reported_at, timezone, event_body, lbn_status, updated_at  FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
             .then(data => {
                 res.status(200).send(data.rows);
             })
@@ -170,7 +143,7 @@ class EventController {
         let processFlowJSON: any = JSON.parse(processFlowObject);
 
         // event details
-        await db.result('SELECT shipment_no, reported_at, event_body, lbn_status, updated_at FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
+        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_status, updated_at FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
             .then(data => {
                 processFlowJSON.event.push = data.rows;
             })
@@ -191,11 +164,6 @@ class EventController {
 
         res.status(200).send(processFlowJSON);
     }
-
-
-
-
-
 }
 
 export default new EventController();
