@@ -1,7 +1,7 @@
 # GTT-V2-ShipmentIotLogs-Service
 
-This application exposes the event endpoint to pass IOT event payload and also serves as a log application to trace the message processing through to BN4L.
-The application is based on TODO. (provide technology)  
+This application exposes the event endpoint to pass IoT event payload and also serves as a log application to trace the message processing through to BN4L.
+The application is based on the Express Node.js web application framework using Typescript. It is deployed on an SAP BTP Cloud Foundry environment and uses PostgreSQL as a database.
 
 ![](../Assets/BN4L_IOT_Logs_Ser.png)
 

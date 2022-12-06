@@ -1,7 +1,7 @@
 # GTT-V2-TrackShipmentExtended-Service
 
 This application provides CRUD services to manage extended fields. It enables extending Track shipment application with custom fields.
-The application is based on TODO (provide technology)
+The application is based on the Express Node.js web application framework using Typescript. It is deployed on an SAP BTP Cloud Foundry environment and uses PostgreSQL as a database.
 
 ![](../Assets/BN4L_IOT_TS_Ser.png)
 
