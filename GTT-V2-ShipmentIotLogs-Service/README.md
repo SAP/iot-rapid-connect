@@ -1,6 +1,7 @@
-# SAP Repository Template
+# GTT-V2-ShipmentIotLogs-Service
 
-Default templates for SAP open source repositories, including LICENSE, .reuse/dep5, Code of Conduct, etc... All repositories on github.com/SAP will be created based on this template.
+This application exposes the event endpoint to pass IOT event payload and also serves as a log application to trace the message processing through to BN4L.
+The application is based on TODO. (provide technology)  
 
 ![](../Assets/BN4L_IOT_Logs_Ser.png)
 
@@ -36,7 +37,7 @@ TODO
 
 ### Test
 Using Postman, send a http request to the following endpoints:
- `"application-url"/api/v1/iot/shipment/events` POST - Send an event payload to the microservice
-`"application-url"/api/v1/iot/shipment/events` GET - returns a list of events logged by the microservice
-`"application-url"/api/v1/iot/shipment/:shipmentNo/events/:reportedAt` GET - returns event log by id
-`"application-url"/api/v1/iot/shipment/:shipmentNo/events/:reportedAt/processFlow` GET - returns process flow details by id
+- `"application-url"/api/v1/iot/shipment/events` POST - Send an event payload to the microservice
+- `"application-url"/api/v1/iot/shipment/events` GET - returns a list of events logged by the microservice
+- `"application-url"/api/v1/iot/shipment/:shipmentNo/events/:reportedAt` GET - returns event log by id
+- `"application-url"/api/v1/iot/shipment/:shipmentNo/events/:reportedAt/processFlow` GET - returns process flow details by id
