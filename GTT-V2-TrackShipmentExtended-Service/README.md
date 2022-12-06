@@ -1,6 +1,7 @@
-# SAP Repository Template
+# GTT-V2-TrackShipmentExtended-Service
 
-Default templates for SAP open source repositories, including LICENSE, .reuse/dep5, Code of Conduct, etc... All repositories on github.com/SAP will be created based on this template.
+This application provides CRUD services to manage extended fields. It enables extending Track shipment application with custom fields.
+The application is based on TODO (provide technology)
 
 ![](../Assets/BN4L_IOT_TS_Ser.png)
 
@@ -33,7 +34,7 @@ TODO
 
 ### Test
 Using Postman, send a http request to the following endpoints:
- `"application-url"/api/v1/iot/shipment/customFields` POST - Send a payload to the application that defines the required custom fields
-`"application-url"/api/v1/iot/shipment/:shipmentNo/customFields` GET - returns the custom fields and their values for shipment id
-`"application-url"/api/v1/iot/shipment/:shipmentNo/customFields` PUT - updates the custom fields and their values for shipment id
-`"application-url"/api/v1/iot/shipment/:shipmentNo/customFields` DELETE - deletes the custom fields and their values for shipment id
+- `"application-url"/api/v1/iot/shipment/customFields` POST - Send a payload to the application that defines the required custom fields
+- `"application-url"/api/v1/iot/shipment/:shipmentNo/customFields` GET - returns the custom fields and their values for shipment id
+- `"application-url"/api/v1/iot/shipment/:shipmentNo/customFields` PUT - updates the custom fields and their values for shipment id
+- `"application-url"/api/v1/iot/shipment/:shipmentNo/customFields` DELETE - deletes the custom fields and their values for shipment id
