@@ -25,7 +25,11 @@ Then, run create script for required table.
 
 ``` sql
 CREATE TABLE IF NOT EXISTS public.custom_fields(shipment_no character varying(100) NOT NULL,iot_device_identifier character varying(50),name_of_goods character varying(50),export_company character varying(50),customer_code character varying(50),smart_shipment_id character varying(50),value_of_goods character varying(50),import_company character varying(50),customer_address character varying(50),shipping_company character varying(50),value_of_goods_currency character varying(50),customer_profile character varying(50),customer_id character varying(50),CONSTRAINT custom_fields_pkey PRIMARY KEY (shipment_no));
-``` 
+```
+The above fields are only exemplary. If you wish you can replace these or add new fields as required.
+
+### API payload definition.
+TODO
 
 ### Test
 Using Postman, send a http request to the following endpoints:
