@@ -1,14 +1,20 @@
-import * as dotenv from 'dotenv'
-dotenv.config()
 import pgPromise from 'pg-promise';
+import xsenv from '@sap/xsenv';
 
-// localhost db
+// get db service credentials from environment variables
+var dbService = xsenv.cfServiceCredentials({ tag: 'database' });
+
+// db connection format
 const conn = {
-    host: 'localhost',
-    port: 5432,
-    database: '',
-    user: 'postgres',
-    password: ''
+    host: dbService.hostname,
+    port: dbService.port,
+    database: dbService.dbname,
+    user: dbService.username,
+    password: dbService.password,
+    ssl: {
+        sslmode: 'verify-ca',
+        ca: dbService.sslcert
+    }
 };
 
 var initOptions = {
