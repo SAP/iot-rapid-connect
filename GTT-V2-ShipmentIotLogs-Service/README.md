@@ -1,7 +1,7 @@
 # GTT-V2-ShipmentIotLogs-Service
 
-This application exposes the event endpoint to pass IOT event payload and also serves as a log application to trace the message processing through to BN4L.
-The application is based on TODO. (provide technology)  
+This application exposes the event endpoint to pass IoT event payload and also serves as a log application to trace the message processing through to BN4L.
+The application is based on the Express Node.js web application framework using Typescript. It is deployed on an SAP BTP Cloud Foundry environment and uses PostgreSQL as a database.
 
 ![](../Assets/BN4L_IOT_Logs_Ser.png)
 
@@ -33,10 +33,35 @@ CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),
 CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100),reported_at timestamp with time zone,response_at timestamp with time zone,error_body character varying(100),status character varying(30),CONSTRAINT lbn_response_pkey PRIMARY KEY (shipment_no, reported_at));
 ```
 ### Event API specification
-TODO
-- <payload structure, explain fields>
-- authentication for API call. This should be based on client credentials.
+#### Payload Structure
+- The following example payload is logged in the PostgreSQL database instance.
+- `shipmentNo` and `reportedAt` are required fields.
+``` json
+{
+    "shipmentNo":"9678292607",
+    "reportedAt":"2022-12-06T18:06:12.075Z",
+    "timezone": "London",
+    "priority": 3,
+    "reportedBy":"MO001",
+    "eventDetails":
+        {
+            "Key":"Temperature Exceeded",
+            "Value":"500",
+            "Timestamp":""
+        }
+}
+```
+#### Authentication for API call
+The application uses the `passport` `@sap/xsenv` and `@sap/xssec` packages to provide client credential authentication via a JSON web token (JWT) strategy, verifying the token against the bound UAA service instance.
+``` js
+import passport from 'passport';
+import { JWTStrategy } from '@sap/xssec';
+import xsenv from '@sap/xsenv';
 
+passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false }));
+```
 ### Test
 Using Postman, send a http request to the following endpoints:
 - `"application-url"/api/v1/iot/shipment/events` POST - Send an event payload to the microservice

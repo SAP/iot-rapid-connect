@@ -1,7 +1,7 @@
 # GTT-V2-TrackShipmentExtended-Service
 
 This application provides CRUD services to manage extended fields. It enables extending Track shipment application with custom fields.
-The application is based on TODO (provide technology)
+The application is based on the Express Node.js web application framework using Typescript. It is deployed on an SAP BTP Cloud Foundry environment and uses PostgreSQL as a database.
 
 ![](../Assets/BN4L_IOT_TS_Ser.png)
 
@@ -29,9 +29,38 @@ CREATE TABLE IF NOT EXISTS public.custom_fields(shipment_no character varying(10
 ```
 The above fields are only exemplary. If you wish you can replace these or add new fields as required.
 
-### API payload definition.
-TODO
+### Extended Fields API specification
+#### Payload Structure
+- The following example payload is logged in the PostgreSQL database instance.
+- `shipmentNo` is a required field.
+``` json
+{
+    "shipmentNo": "9678292607",
+    "iotDeviceIdentifier": "MO001", 
+    "nameOfGoods": "MOS", 
+    "exportCompany": "Company A", 
+    "customerCode": "1932", 
+    "smartShipmentId": "0243296", 
+    "valueOfGoods": "1000,000", 
+    "importCompany": "Company B", 
+    "customerAddress": "**City, **Street, NO.1", 
+    "shippingCompany": "MAERSK", 
+    "valueOfGoodsCurrency": "EUR", 
+    "customerProfile": "C02", 
+    "customerId": "349034293"
+}
+```
+#### Authentication for API call
+The application uses the `passport` `@sap/xsenv` and `@sap/xssec` packages to provide client credential authentication via a JSON web token (JWT) strategy, verifying the token against the bound UAA service instance.
+``` js
+import passport from 'passport';
+import { JWTStrategy } from '@sap/xssec';
+import xsenv from '@sap/xsenv';
 
+passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false }));
+```
 ### Test
 Using Postman, send a http request to the following endpoints:
 - `"application-url"/api/v1/iot/shipment/customFields` POST - Send a payload to the application that defines the required custom fields
