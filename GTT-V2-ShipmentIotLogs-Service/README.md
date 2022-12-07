@@ -67,6 +67,11 @@ Append the path `/api/v1/iot/shipment/events` and use the method POST to call th
             "Key":"Temperature",
             "Value":"500",
             "Timestamp":"2022-12-06T18:06:12.075Z"
+        },
+        {
+            "Key":"Vibration",
+            "Value":"300",
+            "Timestamp":"2022-12-06T18:06:12.075Z"
         }
       ]
 }
