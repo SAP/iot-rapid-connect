@@ -33,6 +33,25 @@ CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),
 CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100),reported_at timestamp with time zone,response_at timestamp with time zone,error_body character varying(100),status character varying(30),CONSTRAINT lbn_response_pkey PRIMARY KEY (shipment_no, reported_at));
 ```
 ### Event API specification
+
+#### Host URL and path
+The host or application url can be found by accessing the application ```IoT-LBN-microservice``` using the command ```cf a ``` in the BTP environment.
+Append the path `/api/v1/iot/shipment/events` and use the method POST to call the API with the payload defined below.
+
+#### Payload specification
+
+| Field | Description |
+| --- | --- |
+| shipmentNo | Shipment no to track. This has to be BN4L-GTT understandable shipment no |
+| reportedAt | Time at which the event is reported to GTT |
+| timezone | Timezone of reporting entity/system |
+| priority | Priority that identifies criticality of the event |
+| reportedBy | reporter's identification. Could be system ID or if manual readings taken, the ID/name of the person |
+| eventDetails | This section captures the IOT event details |
+| eventDetails-Key | Parameter that has exceeded threshold |
+| eventDetails-Value | Value of the parameter |
+| eventDetails-Timestamp | Timestamp of the reading |
+
 #### Payload Structure
 - The following example payload is logged in the PostgreSQL database instance.
 - `shipmentNo` and `reportedAt` are required fields.
@@ -40,28 +59,30 @@ CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100
 {
     "shipmentNo":"9678292607",
     "reportedAt":"2022-12-06T18:06:12.075Z",
-    "timezone": "London",
+    "timezone": "Australia/Brisbane",
     "priority": 3,
     "reportedBy":"MO001",
-    "eventDetails":
+    "eventDetails": [
         {
-            "Key":"Temperature Exceeded",
+            "Key":"Temperature",
             "Value":"500",
-            "Timestamp":""
+            "Timestamp":"2022-12-06T18:06:12.075Z"
         }
+      ]
 }
 ```
 #### Authentication for API call
 The application uses the `passport` `@sap/xsenv` and `@sap/xssec` packages to provide client credential authentication via a JSON web token (JWT) strategy, verifying the token against the bound UAA service instance.
-``` js
-import passport from 'passport';
-import { JWTStrategy } from '@sap/xssec';
-import xsenv from '@sap/xsenv';
 
-passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
-app.use(passport.initialize());
-app.use(passport.authenticate('JWT', { session: false }));
-```
+The application uses Oauth 2.0 to authenticate API calls.
+In order to get the Token to make the API call, fetch the credentials from the environment variables of the microservice as:
+
+`cf env IoT-LBN-microservice`
+
+Extract the token URL, client ID and client secret as below.
+
+![](../Assets/auth.png)
+
 ### Test
 Using Postman, send a http request to the following endpoints:
 - `"application-url"/api/v1/iot/shipment/events` POST - Send an event payload to the microservice
