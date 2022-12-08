@@ -5,29 +5,16 @@ import EventDto from '../dto/event.dto.js';
 import Logger from '../utils/logger.config.js';
 
 class RoutesMiddleware {
-    async validateRequiredFields(
-        req: express.Request,
-        res: express.Response,
-        next: express.NextFunction
-    ) {
-        if (req.body && req.body.shipmentNo && req.body.reportedAt) {
+    async validateRequiredFields(req: express.Request, res: express.Response, next: express.NextFunction) {
+        const eventToValidate = plainToInstance(EventDto, req.body);
+
+        try {
+            await validateOrReject(eventToValidate);
             next();
-        } else {
-            res.status(400).send({
-                error: `Missing required fields: shipmentNo and/or reportedAt`,
-            });
-            next();
+        } catch (errors) {
+            Logger.error(errors);
+            res.status(400).send(errors);
         }
-
-        // const shipmentToValidate = plainToInstance(EventDto, req.body);
-
-        // try {
-        //     await validateOrReject(shipmentToValidate);
-        //     next();
-        // } catch (error) {
-        //     Logger.error(error);
-        //     res.status(400).send(error);
-        // }
     }
 }
 
