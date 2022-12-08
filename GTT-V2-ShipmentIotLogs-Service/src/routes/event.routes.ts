@@ -14,7 +14,7 @@ export class EventRoutes extends RoutesConfig {
             .post(
                 routesMiddleware.validateRequiredFields,
                 EventController.eventLog,
-                EventController.lbnRequest
+                EventController.lbnRequestPost
             )
             .get(
                 EventController.eventList

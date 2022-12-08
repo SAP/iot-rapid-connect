@@ -24,7 +24,9 @@ class EventController {
             timezone: timezone,
             priority: priority,
             event_body: eventPayload,
-            lbn_status: "In Process",
+            lbn_status: "In Process"
+        }).then(() => {
+            res.status(200).send("Event logged");
         }).catch((error) => {
             Logger.error(`while logging event: ${error}`);
             res.status(400).send(`Error logging event: ${error}`);
@@ -33,8 +35,9 @@ class EventController {
         next();
     }
 
-    // map event payload to LBN format and send to LBN
-    async lbnRequest(req: express.Request, res: express.Response) {
+
+    // post event payload to LBN, log response and update event status
+    async lbnRequestPost(req: express.Request, res: express.Response, next) {
         const oDestination = await DestinationConfig("LBN_Access");
         const request = new RequestConfig(oDestination?.data);
         const auth = request.headers.Authorization;
@@ -42,23 +45,35 @@ class EventController {
         const eventPayload = req.body;
         const shipmentNo = eventPayload.shipmentNo;
         const reportedAt = eventPayload.reportedAt;
-        const timezone = eventPayload.timezone;
-        const priority = eventPayload.priority;
 
-        let lbnFormat = {
-            "eventReasonText": "",
+        let lbnRequestPayload = {
+            "eventReasonCode": "IOT Event",
             "altKey": "",
+            "reportedBy": "",
             "priority": "",
             "actualBusinessTimestamp": "",
-            "actualBusinessTimeZone": ""
+            "actualBusinessTimeZone": "",
+            "eventReasonText": ""
         };
 
         // add mapping here for event payload to LBN format
-        lbnFormat.eventReasonText = eventPayload.eventDetails.Key;
-        lbnFormat.altKey = `xri://sap.com/id:LBN#10010003536:QW9CLNT170:SHIPMENT_ORDER:${shipmentNo}`;
-        lbnFormat.priority = priority;
-        lbnFormat.actualBusinessTimestamp = reportedAt;
-        lbnFormat.actualBusinessTimeZone = timezone;
+        lbnRequestPayload.eventReasonText = JSON.stringify(eventPayload.eventDetails);
+        lbnRequestPayload.altKey = `xri://sap.com/id:LBN#10010003536:QW9CLNT170:SHIPMENT_ORDER:${shipmentNo}`;
+        lbnRequestPayload.reportedBy = eventPayload.reportedBy;
+        lbnRequestPayload.priority = eventPayload.priority;
+        lbnRequestPayload.actualBusinessTimestamp = reportedAt;
+        lbnRequestPayload.actualBusinessTimeZone = eventPayload.timezone;
+
+        console.log(lbnRequestPayload);
+
+        // log request payload
+        await db.none('UPDATE events_log SET lbn_payload = $(lbn_payload) WHERE shipment_no = $(shipment_no) AND reported_at = $(reported_at)', {
+            shipment_no: shipmentNo,
+            reported_at: reportedAt,
+            lbn_payload: lbnRequestPayload
+        }).catch((error) => {
+            Logger.error(`while logging LBN request payload: ${error}`);
+        })
 
         let responseAt;
         let resStatus;
@@ -66,7 +81,7 @@ class EventController {
 
         // post event to LBN
         const response = await axios
-            .post(request.url, lbnFormat, {
+            .post(request.url, lbnRequestPayload, {
                 headers: {
                     'Authorization': `${auth}`
                 }
@@ -75,7 +90,7 @@ class EventController {
                 responseAt = new Date().toISOString();
                 resStatus = "Success";
                 responseError = "null";
-                res.status(200).send("Event received");
+                Logger.info("Event posted to LBN");
             })
             .catch(function (error) {
                 if (error.response) {
@@ -83,7 +98,6 @@ class EventController {
                     responseAt = new Date().toISOString();
                     resStatus = "Failed";
                     responseError = error.response.data;
-                    res.status(400).send(`Error while posting to LBN: ${error.response.data}`);
                 }
             });
 
@@ -98,26 +112,27 @@ class EventController {
             Logger.error(`while logging LBN response: ${error}`);
         })
 
-        // update event status
-        await db.none('UPDATE events_log SET lbn_status = $(lbn_status), updated_at = $(updated_at) WHERE  shipment_no = $(shipment_no) AND reported_at = $(reported_at)', {
+        // update event status and log request payload
+        await db.none('UPDATE events_log SET lbn_payload = $(lbn_payload), lbn_status = $(lbn_status), updated_at = $(updated_at) WHERE  shipment_no = $(shipment_no) AND reported_at = $(reported_at)', {
             shipment_no: shipmentNo,
             reported_at: reportedAt,
+            lbn_payload: lbnRequestPayload,
             lbn_status: resStatus,
             updated_at: responseAt,
         }).catch((error) => {
-            Logger.error(`while updating event status: ${error}`);
+            Logger.error(`while updating event's LBN request status: ${error}`);
         })
     }
 
     // return list of events stored in db
     async eventList(req: express.Request, res: express.Response) {
-        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_status, updated_at FROM events_log')
+        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_payload, lbn_status, updated_at FROM events_log')
             .then(data => {
                 res.status(200).send(data.rows);
             })
             .catch(error => {
                 Logger.error(`while listing all events: ${error}`);
-                res.status(400).send(`Error: ${error.detail}`);
+                res.status(500).send(`Error: ${error.detail}`);
             });;
     }
 
@@ -125,13 +140,13 @@ class EventController {
     async eventListByID(req: express.Request, res: express.Response) {
         const shipmentNo = req.params.shipmentNo;
         const reportedAt = req.params.reportedAt;
-        await db.result('SELECT hipment_no, reported_by, reported_at, timezone, event_body, lbn_status, updated_at  FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
+        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_payload, lbn_status, updated_at  FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
             .then(data => {
                 res.status(200).send(data.rows);
             })
             .catch(error => {
                 Logger.error(`while listing event by ID: ${error}`);
-                res.status(400).send(`Error: ${error.detail}`);
+                res.status(500).send(`Error: ${error.detail}`);
             });;
     }
 
@@ -143,14 +158,14 @@ class EventController {
         let processFlowJSON: any = JSON.parse(processFlowObject);
 
         // event details
-        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_status, updated_at FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
+        await db.result('SELECT shipment_no, reported_by, reported_at, timezone, event_body, lbn_payload, lbn_status, updated_at FROM events_log WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
             .then(data => {
                 processFlowJSON.event.push = data.rows;
             })
             .catch(error => {
                 Logger.error(`while creating event process flow JSON: ${error}`);
-                res.status(400).send(`Error: ${error}`);
-            });;
+                res.status(500).send(`Error: ${error}`);
+            });
 
         // LBN response details
         await db.result('SELECT shipment_no, reported_at, response_at, error_body, status from lbn_response WHERE shipment_no = $1 AND reported_at = $2', [shipmentNo, reportedAt])
@@ -159,8 +174,8 @@ class EventController {
             })
             .catch(error => {
                 Logger.error(`while creating LBN process flow JSON: ${error}`);
-                res.status(400).send(`Error: ${error}`);
-            });;
+                res.status(500).send(`Error: ${error}`);
+            });
 
         res.status(200).send(processFlowJSON);
     }

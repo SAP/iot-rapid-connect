@@ -7,22 +7,23 @@ The application is based on the Express Node.js web application framework using 
 
 ### How to deploy
 #### Create Services
-In subaccount, create instances of required services: UAA and PostgreSQL.
+In SAP BTP Cockpit, create instances of required services: UAA and PostgreSQL.
 
 #### Install packages
 Run `npm install` to install required application packages.
 #### Deploy to Cloud Foundry
-Login to subaccount via cf cli.
+Login to your subaccount's Cloud Foundry dev space via cf cli.
 Run `npm run-script build` followed by `cf push` to deploy to subaccount.
 #### Bind Services
-Bind created services to track-shipment-extended application either via cf cli or on subaccount.
+Bind created services to track-shipment-extended application either via cf cli or on SAP BTP Cockpit.
 
 #### Configure Database
 For PostgreSQL, SSH into instance from using Cloud Foundry CLI and psql.
-`cf ssh -L 63306:"Hostname":"Port" "App-Name"`
+`cf enable-ssh track-shipment-extended`
+`cf ssh -L 63306:"Hostname":"Port" track-shipment-extended`
 `psql -d "Database" -U "User" -p 63306 -h localhost`
 
-Then, run create script for required table.
+Then, run CREATE script for required table.
 
 ``` sql
 CREATE TABLE IF NOT EXISTS public.custom_fields(shipment_no character varying(100) NOT NULL,iot_device_identifier character varying(50),name_of_goods character varying(50),export_company character varying(50),customer_code character varying(50),smart_shipment_id character varying(50),value_of_goods character varying(50),import_company character varying(50),customer_address character varying(50),shipping_company character varying(50),value_of_goods_currency character varying(50),customer_profile character varying(50),customer_id character varying(50),CONSTRAINT custom_fields_pkey PRIMARY KEY (shipment_no));
@@ -51,16 +52,15 @@ The above fields are only exemplary. If you wish you can replace these or add ne
 }
 ```
 #### Authentication for API call
-The application uses the `passport` `@sap/xsenv` and `@sap/xssec` packages to provide client credential authentication via a JSON web token (JWT) strategy, verifying the token against the bound UAA service instance.
-``` js
-import passport from 'passport';
-import { JWTStrategy } from '@sap/xssec';
-import xsenv from '@sap/xsenv';
+The application uses Oauth 2.0 Bearer Tokens to authenticate API calls. The token is verified against the bound UAA service instance using the `passport` `@sap/xsenv` and `@sap/xssec` packages on a JWT strategy.
 
-passport.use(new JWTStrategy(xsenv.getServices({ xsuaa: { tag: 'xsuaa' } }).xsuaa));
-app.use(passport.initialize());
-app.use(passport.authenticate('JWT', { session: false }));
-```
+In order to get a token to make the API call: 
+1. Fetch the environment variables of the microservice using `cf env track-shipment-extended` or from the application overview on SAP BTP Cockpit.
+2. Extract the token authentication URL, client ID and client secret as shown below.
+3. Append `/oauth/token?grant_type=client_credentials&response_type=token` to the authentication URL.
+4. Add the URL and client credentials as Oauth 2.0 Bearer authentication on http requests to the API.
+   
+![](../Assets/auth.png)
 ### Test
 Using Postman, send a http request to the following endpoints:
 - `"application-url"/api/v1/iot/shipment/customFields` POST - Send a payload to the application that defines the required custom fields

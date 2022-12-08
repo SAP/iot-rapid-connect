@@ -7,27 +7,28 @@ The application is based on the Express Node.js web application framework using 
 
 ### How to deploy
 #### Create Services
-In subaccount, create instances of required services: UAA, Destination Service, PostgreSQL.
+In SAP BTP Cockpit, create instances of required services: UAA, Destination Service, PostgreSQL.
 
 
 #### Configure Destination
-Create LBN destination in the Destination Service. Define the destination's name in event.controller.ts
+Create LBN destination in the Destination Service. Define the destination's name in `event.controller.ts`
 #### Install packages
 Run `npm install` to install required application packages.
 #### Deploy to Cloud Foundry
-Login to subaccount via cf cli.
+Login to your subaccount's Cloud Foundry dev space via cf cli.
 Run `npm run-script build` followed by `cf push` to deploy to subaccount.
 #### Bind Services
-Bind created services to IoT-logs application either via cf cli or on subaccount.
+Bind created services to IoT-logs application either via cf cli or on SAP BTP Cockpit.
 #### Configure Database
 For PostgreSQL, SSH into instance from using Cloud Foundry CLI and psql.
-`cf ssh -L 63306:"Hostname":"Port" "App-Name"`
+`cf enable-ssh IoT-LBN-microservice`
+`cf ssh -L 63306:"Hostname":"Port" IoT-LBN-microservice`
 `psql -d "Database" -U "User" -p 63306 -h localhost`
 
-Then, run create scripts for required tables.
+Then, run CREATE scripts for required tables.
 
 ``` sql
-CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),reported_at character varying(30),event_body json,lbn_status character varying(30),updated_at timestamp with time zone,CONSTRAINT events_log_pkey PRIMARY KEY (shipment_no, reported_at));
+CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),reported_at character varying(30),timezone character varying(50),reported_by character varying(30),priority smallint,event_body json,lbn_payload json,lbn_status character varying(30),updated_at timestamp with time zone,CONSTRAINT events_log_pkey PRIMARY KEY (shipment_no, reported_at));
 ```
 ``` sql
 CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100),reported_at timestamp with time zone,response_at timestamp with time zone,error_body character varying(100),status character varying(30),CONSTRAINT lbn_response_pkey PRIMARY KEY (shipment_no, reported_at));
@@ -67,19 +68,23 @@ Append the path `/api/v1/iot/shipment/events` and use the method POST to call th
             "Key":"Temperature",
             "Value":"500",
             "Timestamp":"2022-12-06T18:06:12.075Z"
+        },
+        {
+            "Key":"Vibration",
+            "Value":"300",
+            "Timestamp":"2022-12-06T18:06:12.075Z"
         }
       ]
 }
 ```
 #### Authentication for API call
-The application uses the `passport` `@sap/xsenv` and `@sap/xssec` packages to provide client credential authentication via a JSON web token (JWT) strategy, verifying the token against the bound UAA service instance.
+The application uses Oauth 2.0 Bearer Tokens to authenticate API calls. The token is verified against the bound UAA service instance using the `passport` `@sap/xsenv` and `@sap/xssec` packages on a JWT strategy.
 
-The application uses Oauth 2.0 to authenticate API calls.
-In order to get the Token to make the API call, fetch the credentials from the environment variables of the microservice as:
-
-`cf env IoT-LBN-microservice`
-
-Extract the token URL, client ID and client secret as below.
+In order to get a token to make the API call: 
+1. Fetch the environment variables of the microservice using `cf env IoT-LBN-microservice` or from the application overview on SAP BTP Cockpit.
+2. Extract the token authentication URL, client ID and client secret as shown below.
+3. Append `/oauth/token?grant_type=client_credentials&response_type=token` to the authentication URL.
+4. Add the URL and client credentials as Oauth 2.0 Bearer authentication on http requests to the API.
 
 ![](../Assets/auth.png)
 
