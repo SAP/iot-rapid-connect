@@ -32,13 +32,19 @@ sap.ui.define([
           type: "GET",
           async: false,
           success: function (oData) {
+            var eventBody = oData.event.push[0];
             var lbnResponse = oData.lbn_response.push[0];
             var oDetail = {};
             oDetail.requestId = lbnResponse.shipment_no;
             oDetail.reportedAt = new Date(lbnResponse.reported_at);
             oDetail.responseAt = new Date(lbnResponse.response_at);
             oDetail.status = lbnResponse.status;
-            oDetail.payload = JSON.stringify(lbnResponse.error_body.error, undefined, 4);
+            oDetail.payload = JSON.stringify(eventBody.lbn_payload, undefined, 4);
+            if (lbnResponse.status == "Success") {
+              oDetail.responseData = "Event Received Successfully";
+            } else  {
+              oDetail.responseData = JSON.stringify(lbnResponse.error_body.error, undefined, 4);
+            }
             oView.setModel(new JSONModel(oDetail), "detailModel");
           }
         });
