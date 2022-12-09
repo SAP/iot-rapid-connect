@@ -1,0 +1,20 @@
+<mvc:View controllerName="com.sap.gtt.app.iot.sst.controller.EventDetails"
+  xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+   height="100%">
+		<l:VerticalLayout
+		class="sapUiContentPadding"
+		width="100%">
+		<l:content>
+			<Label text="Event Details" />
+			<TextArea 
+			placeholder="Enter Text" 
+			value = "{/responseText}"
+			growing="true" growingMaxLines="20" 
+			width="100%"/>
+		</l:content>
+	</l:VerticalLayout>
+</mvc:View>

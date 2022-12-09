@@ -312,6 +312,36 @@ sap.ui.define(
         }
       },
 
+      navToExternalEventDetailPage: function (id, timeStamp) {
+        var navObj = {
+          target: {
+            semanticObject: "Shipment",
+            action: "track",
+          },
+        };
+
+        if (sap.ushell && sap.ushell.Container) {
+          sap.ushell.Container.getServiceAsync(
+            "CrossApplicationNavigation"
+          ).then(function (
+            /** @type {sap.ushell.services.CrossApplicationNavigation} */
+            crossAppNav
+          ) {
+            crossAppNav.isNavigationSupported([
+              navObj,
+            ]).done(function (results) {
+              if (results[0].supported) {
+                var href = crossAppNav.hrefForExternal(navObj);
+                var url = window.location.href.split("#")[0] + href + "&/EventDetails/" + id + "/" + timeStamp;
+                sap.m.URLHelper.redirect(url, true);
+              } else {
+                MessageBox.error(this.getText("crossNavigationNotSupportedMsg"));
+              }
+            }.bind(this));
+          }.bind(this));
+        }
+      },
+
       // ============================================================
       // Error handler
       // ============================================================
