@@ -93,7 +93,7 @@ sap.ui.define([
               eventNode.id = "1";
               eventNode.lane = "0";
               eventNode.title = "Shipment Number:" + eventPush.shipment_no;
-              eventNode.state = "Positive"; //"Positive";
+              eventNode.state = "Positive";
               eventNode.stateText = "Successful";
               eventNode.focused = true;
               eventNode.texts = null;
@@ -110,7 +110,7 @@ sap.ui.define([
               lbnNode.id = "2";
               lbnNode.lane = "1";
               lbnNode.title = "Trackig process Shipment Number:" + lbnPush.shipment_no;
-              lbnNode.state = "Negative"; //"Positive";
+              lbnNode.state = lbnPush.status == "Success" ? "Positive" : "Negative";
               lbnNode.stateText = lbnPush.status;
               lbnNode.focused = false;
               lbnNode.texts = null;
@@ -150,6 +150,7 @@ sap.ui.define([
             oDetail.status = "Success";
             oDetail.priority = oData[0].event_body.priority;
             oDetail.payload = JSON.stringify(oData[0].event_body.eventDetails, undefined, 4);
+            oDetail.responseData = "Event Received Successfully";
             oView.setModel(new JSONModel(oDetail), "detailModel");
           }
         });
