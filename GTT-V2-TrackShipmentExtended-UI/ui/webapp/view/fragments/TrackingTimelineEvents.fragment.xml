@@ -138,6 +138,11 @@
 							class="sapUiTinyMarginTop sapUiSmallMarginEnd"
 							text="{i18n>reportingHistory} ({= ${timeline>historicalEvents}.length })"
 							press=".openReportingHistoryPopover(${$source>}, ${timeline>historicalEvents})" />
+
+						<m:Link class="sapUiTinyMarginTop sapUiSmallMarginEnd" 
+						visible="{= ${timeline>eventStatusCode} === 'UNPLANNED'}" 
+						text="{i18n>showDetails}" 
+						press=".navigateEventDetails(${timeline>actualBusinessTimestamp})"/>		
 					</m:HBox>
 				</m:VBox>
 

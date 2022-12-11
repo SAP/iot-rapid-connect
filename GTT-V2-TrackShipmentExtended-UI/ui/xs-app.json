@@ -33,6 +33,12 @@
       "scope": ["$XSAPPNAME.sst.r"]
     },
     {
+      "source": "^/shipmentLogTest/(.*)$",
+      "target": "/$1",
+      "httpMethods": ["GET"],
+      "destination": "lbn-iot-gtt-sst-eventlogs-api"
+    },
+    {
       "source": "^(.*)$",
       "target": "$1",
       "service": "html5-apps-repo-rt",

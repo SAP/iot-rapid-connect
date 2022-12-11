@@ -342,6 +342,19 @@ sap.ui.define(
         }
       },
 
+
+      navigateEventDetails: function (actualBusinessTimestamp) {
+        var bindings = this.getView().getModel().getBindings();
+        var id;
+        for (var i = 0; i < bindings.length; i++) {
+          if (bindings[i].sPath === "shipmentNo") {
+            id = bindings[i].vOriginalValue;
+            break;
+          }
+        }
+        this.navToExternalEventDetailPage(id, actualBusinessTimestamp);
+      },
+
       // ======================================================================
       // Map
       // ======================================================================
