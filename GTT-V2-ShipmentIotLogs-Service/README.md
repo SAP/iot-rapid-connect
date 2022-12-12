@@ -28,7 +28,7 @@ For PostgreSQL, SSH into instance from using Cloud Foundry CLI and psql.
 Then, run CREATE scripts for required tables.
 
 ``` sql
-CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),reported_at character varying(30),timezone character varying(50),reported_by character varying(30),priority smallint,event_body json,lbn_payload json,lbn_status character varying(30),updated_at timestamp with time zone,CONSTRAINT events_log_pkey PRIMARY KEY (shipment_no, reported_at));
+CREATE TABLE IF NOT EXISTS public.events_log(shipment_no character varying(100),reported_at timestamp with time zone,timezone character varying(50),reported_by character varying(30),priority smallint,event_body json,lbn_payload json,lbn_status character varying(30),updated_at timestamp with time zone,CONSTRAINT events_log_pkey PRIMARY KEY (shipment_no, reported_at));
 ```
 ``` sql
 CREATE TABLE IF NOT EXISTS public.lbn_response(shipment_no character varying(100),reported_at timestamp with time zone,response_at timestamp with time zone,error_body character varying(100),status character varying(30),CONSTRAINT lbn_response_pkey PRIMARY KEY (shipment_no, reported_at));

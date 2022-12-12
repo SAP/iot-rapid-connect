@@ -46,6 +46,7 @@ class EventController {
         const shipmentNo = eventPayload.shipmentNo;
         const reportedAt = eventPayload.reportedAt;
 
+        // create LBN post request payload
         let lbnRequestPayload = {
             "eventReasonCode": "IOT Event",
             "altKey": "",
@@ -63,8 +64,6 @@ class EventController {
         lbnRequestPayload.priority = eventPayload.priority;
         lbnRequestPayload.actualBusinessTimestamp = reportedAt;
         lbnRequestPayload.actualBusinessTimeZone = eventPayload.timezone;
-
-        console.log(lbnRequestPayload);
 
         // log request payload
         await db.none('UPDATE events_log SET lbn_payload = $(lbn_payload) WHERE shipment_no = $(shipment_no) AND reported_at = $(reported_at)', {

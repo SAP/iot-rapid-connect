@@ -1,6 +1,5 @@
 import pgPromise from 'pg-promise';
 import xsenv from '@sap/xsenv';
-import Logger from '../utils/logger.config.js';
 
 // get db service credentials from environment variables
 var dbService = xsenv.cfServiceCredentials({ tag: 'database' });
@@ -22,8 +21,8 @@ var initOptions = {
     error: function (error, e) {
         if (e.cn) {
             // A connection-related error;
-            Logger.error(`CN: ${e.cn}`);
-            Logger.error(`EVENT: ${error.message}`);
+            console.log("CN:", e.cn);
+            console.log("EVENT:", error.message);
         }
     }
 };
@@ -35,10 +34,10 @@ var db = pgp(conn);
 db.connect()
     .then(function (obj) {
         obj.done(); // success, release connection;
-        Logger.info(`connected to ${conn.database}`);
+        console.log("Connected to db: ", conn.database);
     })
     .catch(function (error) {
-        Logger.error(`while connecting to database: ${error.message}`);
+        console.log("ERROR:", error.message);
     });
 
 export default db
