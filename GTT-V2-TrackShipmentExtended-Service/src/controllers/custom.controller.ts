@@ -2,6 +2,7 @@ import axios, { AxiosError } from 'axios';
 import express, { response } from 'express';
 
 import db from '../db/db.config.js';
+import Logger from '../utils/logger.config.js';
 
 class CustomController {
 
@@ -28,7 +29,7 @@ class CustomController {
         }).then(() => {
             res.status(200).send(`Custom fields received for Shipment No: ${shipmentNo}`);
         }).catch((error) => {
-            console.error(`while saving custom fields: ${error}`);
+            Logger.error(`while saving custom fields: ${error}`);
             res.status(400).send(`Error saving custom fields: ${error}`);
         })
 
@@ -43,7 +44,7 @@ class CustomController {
                 res.status(200).send(data.rows);
             })
             .catch(error => {
-                console.error(`while returning custom fields by ID: ${error}`);
+                Logger.error(`while returning custom fields by ID: ${error}`);
                 res.status(400).send(`Error: ${error}`);
             });;
 
@@ -70,7 +71,7 @@ class CustomController {
         ]).then(() => {
             res.status(200).send(`Custom fields updated for Shipment No: ${shipmentNo}`);
         }).catch((error) => {
-            console.error(`while updating custom fields: ${error}`);
+            Logger.error(`while updating custom fields: ${error}`);
             res.status(400).send(`Error updating custom fields: ${error}`);
         })
     }
@@ -82,7 +83,7 @@ class CustomController {
         await db.any('DELETE FROM custom_fields WHERE shipment_no = $1', [shipmentNo]).then(() => {
             res.status(200).send(`Custom fields deleted for Shipment No: ${shipmentNo}`);
         }).catch((error) => {
-            console.error(`while deleting custom fields: ${error}`);
+            Logger.error(`while deleting custom fields: ${error}`);
             res.status(400).send(`Error deleting custom fields: ${error}`);
         })
     }
